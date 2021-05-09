@@ -6,7 +6,15 @@
     <string name="home">홈</string>
     <string name="scrap">스크랩</string>
     <string name="user">마이페이지</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- for category fragment -->
+    <string-array name="bottom_navigation_category">
+        <item>살인</item>
+        <item>폭행</item>
+        <item>사기</item>
+        <item>마약</item>
+        <item>절도</item>
+        <item>강간</item>
+    </string-array>
 
 </resources>
