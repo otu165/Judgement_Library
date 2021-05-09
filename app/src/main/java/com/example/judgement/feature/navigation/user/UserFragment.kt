@@ -59,7 +59,7 @@ class UserFragment : Fragment() {
         intent.putExtra(Intent.EXTRA_SUBJECT, "Suggestions for better application")
 
         if (intent.resolveActivity(requireContext().packageManager) != null)
-            startActivityForResult(intent, SEND_EMAIL)
+            startActivity(intent)
     }
 
     private fun showNotifications() {
@@ -82,13 +82,7 @@ class UserFragment : Fragment() {
         builder.show()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-    }
-
     companion object {
         private const val TAG = "UserFragment"
-        private const val SEND_EMAIL = 1003
     }
 }
