@@ -2,11 +2,14 @@ package com.example.judgement.feature.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import com.example.judgement.R
 import com.example.judgement.feature.navigation.category.CategoryFragment
 import com.example.judgement.feature.navigation.home.HomeFragment
 import com.example.judgement.feature.navigation.scrap.ScrapFragment
 import com.example.judgement.feature.navigation.user.UserFragment
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,31 +28,31 @@ class MainActivity : AppCompatActivity() {
             .commit()
 
         // navigation selected listener
+
         bottom_navigation_main.setOnNavigationItemSelectedListener { item ->
             val transaction = supportFragmentManager.beginTransaction()
             when (item.itemId) {
                 R.id.category -> {
                     transaction.replace(R.id.frame_layout_main, CategoryFragment()).commit()
-                    true
                 }
                 R.id.home -> {
                     transaction.replace(R.id.frame_layout_main, HomeFragment()).commit()
-                    true
                 }
                 R.id.scrap -> {
                     transaction.replace(R.id.frame_layout_main, ScrapFragment()).commit()
-                    true
                 }
                 R.id.user -> {
                     transaction.replace(R.id.frame_layout_main, UserFragment()).commit()
-                    true
                 }
             }
-            false
+
+            true
         }
     }
 
     companion object {
         private const val TAG = "MainActivity"
     }
+
+
 }
