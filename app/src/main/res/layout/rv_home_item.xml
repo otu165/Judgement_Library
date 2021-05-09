@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/TextPadding"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/txt_home_news_title"
+            style="@style/MiddleFontStyle"
+            tools:text="살인 피의자 구속"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txt_home_news_description"
+            style="@style/NormalFontStyle"
+            tools:text="피의자 영장... 스토킹 정황 수사 경찰, \'큰딸 A씨 스토킹 피해\' 진술..."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_home_news"
+        android:background="@color/light_gray"
+        android:layout_width="74dp"
+        android:layout_height="74dp"/>
+
+
+
+</LinearLayout>

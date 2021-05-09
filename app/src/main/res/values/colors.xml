@@ -10,4 +10,5 @@
     <color name="splash_color">#90A1B8</color>
     <color name="main_color">#17233C</color>
     <color name="gray">#595959</color>
+    <color name="light_gray">#C3C3C3</color>
 </resources>
