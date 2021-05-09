@@ -18,4 +18,11 @@
         <item>강간</item>
     </string-array>
 
+    <!-- for user activity -->
+    <string name="modify">회원 정보 수정</string>
+    <string name="suggestions">건의사항</string>
+    <string name="notifications">공지사항</string>
+    <string name="sign_out">로그아웃</string>
+    <string name="application_version">Application version 1.0.0</string>
+
 </resources>

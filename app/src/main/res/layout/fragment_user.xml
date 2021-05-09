@@ -1,10 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".feature.navigation.user.UserFragment">
 
+    <!-- top -->
+    <LinearLayout
+        android:id="@+id/linear_layout_user_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <TextView
+            android:text="@string/user"
+            style="@style/HeadFontStyle"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <!-- profile -->
+    <LinearLayout
+        android:id="@+id/linear_layout_user_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingBottom="15dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/linear_layout_user_top">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_user"
+            android:src="@color/light_gray"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/main_color"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:id="@+id/txt_user_name"
+            style="@style/MiddleFontStyle"
+            tools:text="홍길동"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <!-- menu -->
+    <LinearLayout
+        android:id="@+id/linear_layout_user_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        style="@style/TextPadding"
+        app:layout_constraintTop_toBottomOf="@id/linear_layout_user_profile">
+
+        <TextView
+            android:text="@string/modify"
+            style="@style/NormalFontStyleWithBorder"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="@string/suggestions"
+            style="@style/NormalFontStyleWithBorder"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="@string/notifications"
+            style="@style/NormalFontStyleWithBorder"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="@string/sign_out"
+            style="@style/NormalFontStyleWithBorder"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_user_app_version"
+        android:text="@string/application_version"
+        android:textSize="16sp"
+        android:textColor="@color/light_gray"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextPadding"
+        android:gravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
