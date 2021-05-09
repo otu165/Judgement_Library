@@ -36,7 +36,7 @@ class ScrapFragment : Fragment() {
         tab.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 // TODO request server data
-                Toast.makeText(requireContext(), "request server data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "request server data ${tab?.text}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {

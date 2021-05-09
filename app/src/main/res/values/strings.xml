@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Judgement</string>
+    <string name="app_name">형량도서관</string>
 
     <!-- for bottom navigation menu -->
     <string name="category">메뉴</string>

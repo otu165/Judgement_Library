@@ -10,7 +10,7 @@ import com.example.judgement.R
 class CategoryRvAdapter(private val context: Context, private val data: Array<String>): RecyclerView.Adapter<CategoryRvVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryRvVH {
-        val view: View = LayoutInflater.from(context).inflate(R.layout.rv_category_item, null)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.rv_category_item, parent, false)
         return CategoryRvVH(view)
     }
 
