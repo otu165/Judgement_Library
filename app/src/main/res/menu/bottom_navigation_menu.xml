@@ -5,18 +5,22 @@
     <!-- TODO add icon -->
     <item
         android:id="@+id/category"
+        android:icon="@drawable/category_selector"
         android:title="@string/category"/>
 
     <item
         android:id="@+id/home"
+        android:icon="@drawable/home_selector"
         android:title="@string/home"/>
 
     <item
         android:id="@+id/scrap"
+        android:icon="@drawable/scrap_selector"
         android:title="@string/scrap"/>
 
     <item
         android:id="@+id/user"
+        android:icon="@drawable/user_selector"
         android:title="@string/user"/>
 
 </menu>

@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
             .commit()
 
         // navigation selected listener
-
         bottom_navigation_main.setOnNavigationItemSelectedListener { item ->
             val transaction = supportFragmentManager.beginTransaction()
             when (item.itemId) {
