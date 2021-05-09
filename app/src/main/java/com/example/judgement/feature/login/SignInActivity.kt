@@ -1,4 +1,4 @@
-package com.example.judgement
+package com.example.judgement.feature.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
+import com.example.judgement.api.MySingleton
+import com.example.judgement.R
+import com.example.judgement.feature.navigation.MainActivity
+import com.example.judgement.feature.signup.SignUpActivity
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 

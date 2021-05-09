@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Judgement"
         tools:ignore="Instantiatable">
 
-        <activity android:name=".SplashActivity">
+        <activity android:name=".feature.navigation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,9 +21,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".SignUpActivity"/>
-        <activity android:name=".SignInActivity"/>
+        <activity android:name=".feature.SplashActivity"/>
+        <activity android:name=".feature.signup.SignUpActivity"/>
+        <activity android:name=".feature.login.SignInActivity"/>
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.judgement
+package com.example.judgement.api
 
 import android.content.Context
 import com.android.volley.Request;

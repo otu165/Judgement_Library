@@ -1,4 +1,4 @@
-package com.example.judgement
+package com.example.judgement.feature.signup
 
 import android.content.Context
 import android.content.Intent
@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
+import com.example.judgement.R
+import com.example.judgement.api.MySingleton
+import com.example.judgement.feature.login.SignInActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 var id_flag : Int = 0
