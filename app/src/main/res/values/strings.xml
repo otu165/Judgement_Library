@@ -25,4 +25,6 @@
     <string name="sign_out">로그아웃</string>
     <string name="application_version">Application version 1.0.0</string>
 
+    <string name="application_email">judgement@google.com</string>
+
 </resources>
