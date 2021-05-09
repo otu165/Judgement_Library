@@ -8,6 +8,7 @@
     <string name="user">마이페이지</string>
 
     <!-- for category fragment -->
+    <!-- Todo 이름 수정, bn 말고도 쓰임새 있음 -->
     <string-array name="bottom_navigation_category">
         <item>살인</item>
         <item>폭행</item>
