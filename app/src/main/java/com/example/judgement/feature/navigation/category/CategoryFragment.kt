@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
+import kotlinx.android.synthetic.main.fragment_category.*
 
 class CategoryFragment : Fragment() {
     private lateinit var categoryView: View
@@ -26,6 +27,14 @@ class CategoryFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setRecyclerView()
+
+        img_category_back.setOnClickListener {
+            requestChangeFragment()
+        }
+    }
+
+    private fun setRecyclerView() {
         val rv = view?.findViewById(R.id.rv_category) as RecyclerView
         val rvAdapter = CategoryRvAdapter(
             requireContext(),
@@ -37,6 +46,11 @@ class CategoryFragment : Fragment() {
         rv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager(requireContext()).orientation))
 
         rvAdapter.notifyDataSetChanged()
+    }
+
+    private fun requestChangeFragment() {
+        // TODO
+        Log.d("TAG", "clicked requestChangeFragment");
     }
 
     companion object {

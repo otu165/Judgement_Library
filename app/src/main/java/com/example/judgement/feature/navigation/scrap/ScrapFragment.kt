@@ -1,6 +1,7 @@
 package com.example.judgement.feature.navigation.scrap
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
 import com.example.judgement.data.ScrapRvData
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.fragment_scrap.*
 
 class ScrapFragment : Fragment() {
     private lateinit var scrapView: View
@@ -28,7 +30,16 @@ class ScrapFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        // tab layout setup
+        // compose UI
+        setTabLayout()
+        setRecyclerView()
+
+        img_scrap_remove.setOnClickListener {
+            removeScrapItem()
+        }
+    }
+
+    private fun setTabLayout() {
         val tab = view?.findViewById(R.id.tab_layout_scrap) as TabLayout
         for (category in resources.getStringArray(R.array.bottom_navigation_category)) {
             tab.addTab(tab.newTab().setText(category))
@@ -48,23 +59,30 @@ class ScrapFragment : Fragment() {
 
         })
 
-        // recycler view setup
+        // TODO add border to tab and widen each tab size
+    }
+
+    private fun setRecyclerView() {
         val rv = view?.findViewById(R.id.rv_scrap) as RecyclerView
-        val tempData = mutableListOf<ScrapRvData>( // TODO replace it to server data
-            ScrapRvData("믿을 수 없는 사건", "인천시의 한 아파트에서 싸늘한 주검..", "21.01.19"),
-            ScrapRvData("믿을 수 없는 사건", "인천시의 한 아파트에서 싸늘한 주검..", "21.01.19"),
-            ScrapRvData("믿을 수 없는 사건", "인천시의 한 아파트에서 싸늘한 주검..", "21.01.19"),
-            ScrapRvData("믿을 수 없는 사건", "인천시의 한 아파트에서 싸늘한 주검..", "21.01.19"),
-            ScrapRvData("믿을 수 없는 사건", "인천시의 한 아파트에서 싸늘한 주검..", "21.01.19"),
-            ScrapRvData("믿을 수 없는 사건", "인천시의 한 아파트에서 싸늘한 주검..", "21.01.19")
-        )
-        val rvAdapter = ScrapRvAdapter(requireContext(), tempData)
+        val rvAdapter = ScrapRvAdapter(requireContext(), getTempData())
 
         rv.adapter = rvAdapter
         rv.layoutManager = LinearLayoutManager(requireContext())
         rv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager(requireContext()).orientation))
 
         rvAdapter.notifyDataSetChanged()
+    }
+
+    private fun getTempData(): MutableList<ScrapRvData> {
+        val tempData = mutableListOf<ScrapRvData>()
+        for (idx in 0..10)
+            tempData.add(idx, ScrapRvData("믿을 수 없는 사건", "인천시의 한 아파트에서 싸늘한 주검..", "21.01.19"))
+
+        return tempData
+    }
+
+    private fun removeScrapItem() {
+        Log.d("TAG", "clicked removeScrapItem function");
     }
 
     companion object {

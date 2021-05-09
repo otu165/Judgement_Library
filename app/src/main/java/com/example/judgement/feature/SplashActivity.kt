@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.example.judgement.R
-import com.example.judgement.feature.login.SignInActivity
+import com.example.judgement.feature.signin.SignInActivity
 
 class SplashActivity : AppCompatActivity() {
 

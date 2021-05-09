@@ -1,4 +1,4 @@
-package com.example.judgement.feature.login
+package com.example.judgement.feature.signin
 
 import android.content.Intent
 import android.os.Bundle
