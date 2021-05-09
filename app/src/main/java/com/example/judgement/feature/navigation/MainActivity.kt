@@ -13,21 +13,24 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainFunction()
+        attachBaseFragment()
+        setNavigationSelectedListener()
+        bottom_navigation_main.selectedItemId = R.id.home
     }
 
-    private fun mainFunction() {
-        // attach main fragment
+    private fun attachBaseFragment() {
         supportFragmentManager
             .beginTransaction()
             .add(R.id.frame_layout_main, HomeFragment())
             .commit()
+    }
 
-        // navigation selected listener
+    private fun setNavigationSelectedListener() {
         bottom_navigation_main.setOnNavigationItemSelectedListener { item ->
             val transaction = supportFragmentManager.beginTransaction()
             when (item.itemId) {
@@ -52,6 +55,4 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "MainActivity"
     }
-
-
 }
