@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TableLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
@@ -61,6 +62,7 @@ class ScrapFragment : Fragment() {
 
         rv.adapter = rvAdapter
         rv.layoutManager = LinearLayoutManager(requireContext())
+        rv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager(requireContext()).orientation))
 
         rvAdapter.notifyDataSetChanged()
     }

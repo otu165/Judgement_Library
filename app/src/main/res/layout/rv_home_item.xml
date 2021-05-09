@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:background="@drawable/edge"
     android:weightSum="1">
 
     <LinearLayout
@@ -33,6 +34,7 @@
 
     <ImageView
         android:id="@+id/img_home_news"
+        android:layout_gravity="center_horizontal"
         android:background="@color/light_gray"
         android:layout_width="74dp"
         android:layout_height="74dp"/>

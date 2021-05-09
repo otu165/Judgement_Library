@@ -1,5 +1,6 @@
 package com.example.judgement.feature.navigation.home
 
+import android.graphics.Rect
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,6 +39,12 @@ class HomeFragment : Fragment() {
 
         rv.adapter = rvAdapter
         rv.layoutManager = LinearLayoutManager(requireContext())
+        rv.addItemDecoration(object: RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
+                outRect.top = 16
+                outRect.bottom = 16
+            }
+        })
 
         rvAdapter.notifyDataSetChanged()
     }

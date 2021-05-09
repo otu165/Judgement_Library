@@ -9,18 +9,14 @@
     tools:context=".feature.navigation.scrap.ScrapFragment">
 
     <!-- top -->
-    <LinearLayout
+    <TextView
+        android:text="@string/scrap"
+        style="@style/HeadFontStyle"
+        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:text="@string/scrap"
-            style="@style/HeadFontStyle"
-            android:padding="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="2dp"/>
 
     <!-- Tab -->
     <com.google.android.material.tabs.TabLayout
@@ -28,14 +24,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/TabLayoutStyle"
-        app:tabTextAppearance="@style/TabLayoutTextStyle"/>
+        app:tabTextAppearance="@style/TabLayoutTextStyle" />
 
     <!-- description -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/TextPadding"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="@color/white"
+        android:elevation="1dp">
 
         <TextView
             android:id="@+id/txt_scrap_list"
@@ -47,10 +45,10 @@
 
         <ImageView
             android:id="@+id/img_scrap_remove"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_gravity="center"
-            android:src="@color/black"/>
+            android:src="@drawable/ic_trash_bin"/>
 
     </LinearLayout>
 
@@ -59,6 +57,7 @@
         android:id="@+id/rv_scrap"
         android:overScrollMode="never"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:listitem="@layout/rv_scrap_item"/>
 
 </LinearLayout>

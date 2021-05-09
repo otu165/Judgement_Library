@@ -42,7 +42,9 @@
         android:id="@+id/rv_home"
         android:overScrollMode="never"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        style="@style/TextPadding"
+        tools:listitem="@layout/rv_home_item"/>
 
 
 </LinearLayout>
