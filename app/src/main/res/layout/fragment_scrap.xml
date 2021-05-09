@@ -15,20 +15,22 @@
 
         <TextView
             android:text="@string/scrap"
-            android:textSize="32sp"
-            android:textStyle="bold"
+            style="@style/HeadFontStyle"
             android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
     </LinearLayout>
 
-    <!-- menu -->
+    <!-- Tab -->
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_scrap"
+        android:id="@+id/tab_layout_scrap"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        style="@style/TabLayoutStyle"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"/>
 
+    <!-- description -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,6 +60,5 @@
         android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
 
 </LinearLayout>
