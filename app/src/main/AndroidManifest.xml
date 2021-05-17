@@ -11,10 +11,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Judgement"
+        android:usesCleartextTraffic="true"
         tools:ignore="Instantiatable">
-
+        <activity android:name=".feature.navigation.user.UserInfoEditActivity"></activity>
         <activity android:name=".feature.navigation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,11 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".feature.SplashActivity"/>
-        <activity android:name=".feature.signup.SignUpActivity"/>
-        <activity android:name=".feature.signin.SignInActivity"/>
-
+        <activity android:name=".feature.SplashActivity" />
+        <activity android:name=".feature.signup.SignUpActivity" />
+        <activity android:name=".feature.signin.SignInActivity" />
     </application>
 
 </manifest>

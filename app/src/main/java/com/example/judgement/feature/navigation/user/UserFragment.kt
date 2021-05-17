@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.judgement.R
+import com.example.judgement.feature.navigation.MainActivity
 import com.example.judgement.feature.signin.SignInActivity
 import kotlinx.android.synthetic.main.fragment_user.*
 
@@ -32,7 +33,7 @@ class UserFragment : Fragment() {
         // TODO UI_update user name (get data from sign in data) and add proper profile image
 
         txt_user_modify.setOnClickListener {
-            modifyUserName()
+            moveToUserInfoEditFragment()
         }
 
         txt_user_suggestions.setOnClickListener {
@@ -48,9 +49,11 @@ class UserFragment : Fragment() {
         }
     }
 
-    private fun modifyUserName() {
-        // TODO not developed yet
-        Log.d("TAG", "clicked modifyUserName function");
+    private fun moveToUserInfoEditFragment() {
+        Log.d("TAG", "clicked modifyUserInfo function");
+
+        // replace Fragment
+        (requireActivity() as MainActivity).replaceFragment(UserInfoEditFragment())
     }
 
     private fun sendSuggestions() {
