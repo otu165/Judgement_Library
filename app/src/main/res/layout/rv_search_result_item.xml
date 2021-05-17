@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/rv_scrap_item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/TextPadding"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/txt_search_result_title"
+            tools:text="\'부모 욕해봐\' 패드립 시킨뒤 죽도록 폭행"
+            style="@style/MiddleFontStyle"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingRight="12dp"
+            android:layout_weight="1"/>
+
+        <ToggleButton
+            android:id="@+id/toggle_search_result_scrap"
+            android:background="@drawable/toggle_selector"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:textOn=""
+            android:textOff=""
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_search_result_description"
+        tools:text="믿을 수 없는 사건"
+        style="@style/NormalFontStyle"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
