@@ -43,17 +43,17 @@ class SignUpActivity : AppCompatActivity() {
                 { response ->
                     // Display the first 500 characters of the response string.
                     if (response.equals("Available")) {
-                        id_check_txt.text = "사용 가능한 아이디 입니다"
+                        id_check_txt.helperText = "사용 가능한 아이디 입니다"
                         val mHandler = Handler()
                         mHandler.postDelayed({
-                            id_check_txt.text = " "
+                            id_check_txt.helperText = null
                         }, 3000) // 3초후
 
                     } else {
-                        id_check_txt.text = "중복된 아이디 입니다"
+                        id_check_txt.error = "중복된 아이디 입니다"
                     }
                 },
-                { id_check_txt.text = "Error" })
+                { id_check_txt.error = "Error" })
 
             // Add the request to the RequestQueue.
             MySingleton.getInstance(this).addToRequestQueue(stringRequest)
@@ -65,11 +65,11 @@ class SignUpActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {} //EditText에 변화가 있을 경우
             override fun afterTextChanged(s: Editable) = //EditText에 입력이 끝난 후
                 if (password_check.text.toString() != password.text.toString()) {
-                    password_check_txt.text = "일치하지 않습니다." // 경고 메세지
-                    password_check.setBackgroundResource(com.example.judgement.R.drawable.red_edge) // 적색 테두리 적용
+                    password_check_txt.error = "일치하지 않습니다." // 경고 메세지
+                    //password_check.setBackgroundResource(com.example.judgement.R.drawable.red_edge) // 적색 테두리 적용
                 } else {
-                    password_check_txt.text = " " // 에러 메세지 제거
-                    password_check.setBackgroundResource(com.example.judgement.R.drawable.edge) //테투리 흰색으로 변경
+                    password_check_txt.error = null // 에러 메세지 제거
+                    //password_check.setBackgroundResource(com.example.judgement.R.drawable.edge) //테투리 흰색으로 변경
                 }
         });
 
@@ -80,11 +80,11 @@ class SignUpActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) =
                 if (!Patterns.EMAIL_ADDRESS.matcher(s.toString()).matches()) {
-                    email_check_txt.text = "이메일 형식으로 입력해주세요." // 경고 메세지
-                    email.setBackgroundResource(com.example.judgement.R.drawable.red_edge) // 적색 테두리 적용
+                    email_check_txt.error = "이메일 형식으로 입력해주세요." // 경고 메세지
+                    //email.setBackgroundResource(com.example.judgement.R.drawable.red_edge) // 적색 테두리 적용
                 } else {
-                    email_check_txt.text = ""//에러 메세지 제거
-                    email.setBackgroundResource(com.example.judgement.R.drawable.edge) //테투리 흰색으로 변경
+                    email_check_txt.error = null //에러 메세지 제거
+                    //email.setBackgroundResource(com.example.judgement.R.drawable.edge) //테투리 흰색으로 변경
                 } // afterTextChanged()..
         });
 
@@ -101,16 +101,16 @@ class SignUpActivity : AppCompatActivity() {
                 { response ->
                     // Display the first 500 characters of the response string.
                     if (response.equals("Available")) {
-                        email_check_txt.text = "사용 가능한 이메일 입니다"
+                        email_check_txt.helperText = "사용 가능한 이메일 입니다"
                         val mHandler = Handler()
                         mHandler.postDelayed({
-                            email_check_txt.text = " "
+                            email_check_txt.helperText = null
                         }, 3000) // 3초후
                     } else {
-                        email_check_txt.text = "중복된 이메일 입니다"
+                        email_check_txt.error = "중복된 이메일 입니다"
                     }
                 },
-                { email_check_txt.text = "Error" })
+                { email_check_txt.error = "Error" })
 
             // Add the request to the RequestQueue.
             MySingleton.getInstance(this).addToRequestQueue(stringRequest)

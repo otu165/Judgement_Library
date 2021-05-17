@@ -42,13 +42,13 @@ class SignInActivity : AppCompatActivity() {
                         mHandler.postDelayed({
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
-                        }, 3000) // 3초후
+                        }, 500) // 0.5초후
 
                     } else {
                         Toast.makeText(this, "아이디 혹은 패스워드를 잘못 입력하셨습니다.", Toast.LENGTH_SHORT).show()
                     }
                 },
-                { id_check_txt.text = "Error" })
+                { id_check_txt.error = "Error" })
 
             // Add the request to the RequestQueue.
             MySingleton.getInstance(this).addToRequestQueue(stringRequest)

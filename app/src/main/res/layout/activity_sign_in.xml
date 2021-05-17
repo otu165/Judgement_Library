@@ -35,38 +35,75 @@
         app:layout_constraintVertical_bias="0.295"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/loginID"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginID_text_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="262dp"
-        android:layout_height="45dp"
-        android:background="@drawable/edge"
-        android:ems="10"
-        android:hint="   ID"
-        android:inputType="text"
+        android:layout_height="71dp"
+        app:boxStrokeColor="@color/main_color"
+        app:helperTextTextColor="@color/main_color"
+        app:hintTextColor="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.428"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints">
 
-    <EditText
-        android:id="@+id/loginPW"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginID"
+            android:layout_width="262dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:hint="ID"
+            android:inputType="text"
+            android:textCursorDrawable="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.435"
+            tools:ignore="MissingConstraints" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginPW_text_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="262dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/edge"
-        android:ems="10"
-        android:hint="   Password"
-        android:inputType="text"
+        android:layout_height="71dp"
+        app:boxStrokeColor="@color/main_color"
+        app:helperTextTextColor="@color/main_color"
+        app:hintTextColor="@color/main_color"
+        app:passwordToggleEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.536"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPW"
+            android:layout_width="262dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="text"
+            android:textCursorDrawable="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.541"
+            tools:ignore="MissingConstraints" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/sign_in"
