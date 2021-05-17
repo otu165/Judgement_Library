@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.judgement">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,7 +28,5 @@
         <activity android:name=".feature.signin.SignInActivity"/>
 
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
