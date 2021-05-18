@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
 import com.example.judgement.data.HomeRvData
+import com.example.judgement.data.Items
 
-class HomeRvAdapter(private val context: Context, private val data: MutableList<HomeRvData>): RecyclerView.Adapter<HomeRvVH>() {
+class HomeRvAdapter(private val context: Context): RecyclerView.Adapter<HomeRvVH>() {
+    private var data = listOf<Items>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRvVH {
         val view: View = LayoutInflater.from(context).inflate(R.layout.rv_home_item, parent, false)
@@ -20,4 +22,8 @@ class HomeRvAdapter(private val context: Context, private val data: MutableList<
     }
 
     override fun getItemCount(): Int = data.size
+
+    fun updateData(serverData: List<Items>) {
+        data = serverData
+    }
 }
