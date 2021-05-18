@@ -5,5 +5,5 @@
         android:state_checked="false"/>
 
     <item android:drawable="@drawable/toggle_star_filled"
-        android:state_checked="true" />
+        android:state_checked="true"/>
 </selector>
