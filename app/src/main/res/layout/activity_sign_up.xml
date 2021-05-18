@@ -22,21 +22,6 @@
         app:layout_constraintVertical_bias="0.106"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/id"
-        android:layout_width="214dp"
-        android:layout_height="48dp"
-        android:background="@drawable/edge"
-        android:ems="10"
-        android:hint="   ID"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245"
-        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/id_check_btn"
@@ -51,82 +36,109 @@
         app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246"
+        app:layout_constraintVertical_bias="0.287"
         tools:ignore="MissingConstraints" />
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/id_check_txt"
-        android:layout_width="214dp"
-        android:layout_height="20dp"
-        android:text=""
-        android:textColor="#FF0000"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="230dp"
+        android:layout_height="80dp"
+        app:boxStrokeColor="@color/main_color"
+        app:helperTextTextColor="@color/main_color"
+        app:hintTextColor="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintVertical_bias="0.285"
+        tools:ignore="MissingConstraints">
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="330dp"
-        android:layout_height="48dp"
-        android:background="@drawable/edge"
-        android:ems="10"
-        android:hint="   Password"
-        android:inputType="textPassword"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/id"
+            android:layout_width="213dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="ID"
+            android:inputType="text"
+            android:textCursorDrawable="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.261"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.256"
+            tools:ignore="MissingConstraints" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_txt"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="348dp"
+        android:layout_height="80dp"
+        app:boxStrokeColor="@color/main_color"
+        app:hintTextColor="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintHorizontal_bias="0.634"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.408"
+        app:passwordToggleEnabled="true"
+        tools:ignore="MissingConstraints">
 
-    <EditText
-        android:id="@+id/password_check"
-        android:layout_width="330dp"
-        android:layout_height="48dp"
-        android:background="@drawable/edge"
-        android:ems="10"
-        android:hint="   Password Check"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.483"
-        tools:ignore="MissingConstraints" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textCursorDrawable="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.36"
+            tools:ignore="MissingConstraints" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_check_txt"
-        android:layout_width="214dp"
-        android:layout_height="20dp"
-        android:text=""
-        android:textColor="#FF0000"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="349dp"
+        android:layout_height="80dp"
+        app:boxStrokeColor="@color/main_color"
+        app:hintTextColor="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintHorizontal_bias="0.645"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.544" />
+        app:layout_constraintVertical_bias="0.531"
+        app:passwordToggleEnabled="true"
+        tools:ignore="MissingConstraints">
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="214dp"
-        android:layout_height="48dp"
-        android:background="@drawable/edge"
-        android:ems="10"
-        android:hint="   E-mail"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.614"
-        tools:ignore="MissingConstraints" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_check"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Password Check"
+            android:inputType="textPassword"
+            android:textCursorDrawable="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.645"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.522"
+            tools:ignore="MissingConstraints" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/email_check_btn"
@@ -138,71 +150,108 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintHorizontal_bias="0.88"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.614"
+        app:layout_constraintVertical_bias="0.637"
         tools:ignore="MissingConstraints" />
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_check_txt"
-        android:layout_width="214dp"
-        android:layout_height="20dp"
-        android:text=""
-        android:textColor="#FF0000"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="230dp"
+        android:layout_height="80dp"
+        app:boxStrokeColor="@color/main_color"
+        app:helperTextTextColor="@color/main_color"
+        app:hintTextColor="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.675" />
+        app:layout_constraintVertical_bias="0.654">
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="330dp"
-        android:layout_height="48dp"
-        android:background="@drawable/edge"
-        android:ems="10"
-        android:hint="   Name"
-        android:inputType="text"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="214dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:textCursorDrawable="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.213"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.614"
+            tools:ignore="MissingConstraints" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_check_txt"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="349dp"
+        android:layout_height="80dp"
+        app:boxStrokeColor="@color/main_color"
+        app:hintTextColor="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintHorizontal_bias="0.645"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.777"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="text"
+            android:textCursorDrawable="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.518"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.748"
+            tools:ignore="MissingConstraints" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/register"
         android:layout_width="92dp"
         android:layout_height="42dp"
+        android:background="@android:color/transparent"
         android:text="확인"
         android:textColor="#17233C"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintHorizontal_bias="0.329"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.895"
-        tools:ignore="MissingConstraints"
-        android:background="@android:color/transparent" />
+        app:layout_constraintVertical_bias="0.867"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/register_back"
         android:layout_width="92dp"
         android:layout_height="42dp"
+        android:background="@android:color/transparent"
         android:text="취소"
         android:textColor="#17233C"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.717"
+        app:layout_constraintHorizontal_bias="0.708"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.895"
-        tools:ignore="MissingConstraints"
-        android:background="@android:color/transparent" />
+        app:layout_constraintVertical_bias="0.867"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
