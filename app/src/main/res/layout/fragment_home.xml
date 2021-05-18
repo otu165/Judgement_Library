@@ -1,60 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    android:id="@+id/fragment_home"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".feature.navigation.home.HomeFragment"
-    app:layout_scrollFlags="scroll"
-    android:overScrollMode="never">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="fragment_home"
+            type="com.example.judgement.feature.navigation.home.HomeFragment" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/fragment_home"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:overScrollMode="never"
+        app:layout_scrollFlags="scroll"
+        tools:context=".feature.navigation.home.HomeFragment">
 
-        <!-- top -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_view_home"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <!-- graph -->
-        <ImageView
-            android:id="@+id/img_home_graph"
-            android:background="@color/light_gray"
-            style="@style/Margin"
-            android:layout_width="match_parent"
-            android:layout_height="270dp"/>
-
-        <!-- news -->
-        <TextView
-            android:id="@+id/txt_home_news"
-            tools:text="오늘의 뉴스 (키워드 : 살인)"
-            style="@style/NormalFontStyle"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_home"
-            android:overScrollMode="never"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            style="@style/TextPadding"
-            tools:listitem="@layout/rv_home_item"/>
+            android:orientation="vertical">
+
+            <!-- top -->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search_view_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <!-- graph -->
+            <ImageView
+                android:id="@+id/img_home_graph"
+                style="@style/Margin"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:background="@color/light_gray" />
+
+            <!-- news -->
+            <TextView
+                android:id="@+id/txt_home_news"
+                style="@style/NormalFontStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                tools:text="오늘의 뉴스 (키워드 : 살인)" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home"
+                style="@style/TextPadding"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                tools:listitem="@layout/rv_home_item" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
+
