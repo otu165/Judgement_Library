@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.judgement.R
 import com.example.judgement.feature.navigation.category.CategoryFragment
 import com.example.judgement.feature.navigation.home.HomeFragment
@@ -26,8 +28,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun attachBaseFragment() {
-        supportFragmentManager
-            .beginTransaction()
+        supportFragmentManager.beginTransaction()
             .add(R.id.frame_layout_main, HomeFragment())
             .commit()
     }
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private fun setNavigationSelectedListener() {
         bottom_navigation_main.setOnNavigationItemSelectedListener { item ->
             val transaction = supportFragmentManager.beginTransaction()
+
             when (item.itemId) {
                 R.id.category -> {
                     transaction.replace(R.id.frame_layout_main, CategoryFragment()).commit()
@@ -52,6 +54,11 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+    }
+
+    public fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_layout_main, fragment).commit()
     }
 
     override fun onBackPressed() {

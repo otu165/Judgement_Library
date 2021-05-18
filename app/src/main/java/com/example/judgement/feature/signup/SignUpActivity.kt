@@ -30,7 +30,6 @@ class SignUpActivity : AppCompatActivity() {
 
         //val id_flag : Int = 0
 
-
         // 아이디 중복확인
         id_check_btn.setOnClickListener {
             id_flag = 1

@@ -13,6 +13,8 @@
         android:id="@+id/txt_scrap_title"
         tools:text="믿을 수 없는 사건"
         style="@style/MiddleFontStyle"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -26,6 +28,8 @@
                 android:id="@+id/txt_scrap_description"
                 tools:text="인천시의 한 아파트에서 싸늘한 주검 .."
                 style="@style/NormalFontStyle"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>

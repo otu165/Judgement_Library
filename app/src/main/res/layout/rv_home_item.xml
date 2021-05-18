@@ -18,15 +18,19 @@
 
         <TextView
             android:id="@+id/txt_home_news_title"
-            style="@style/MiddleFontStyle"
             tools:text="살인 피의자 구속"
+            style="@style/MiddleFontStyle"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/txt_home_news_description"
-            style="@style/NormalFontStyle"
             tools:text="피의자 영장... 스토킹 정황 수사 경찰, \'큰딸 A씨 스토킹 피해\' 진술..."
+            style="@style/NormalFontStyle"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
