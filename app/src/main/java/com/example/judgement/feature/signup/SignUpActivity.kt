@@ -17,7 +17,6 @@ import com.example.judgement.R
 import com.example.judgement.api.MySingleton
 import com.example.judgement.feature.signin.SignInActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import org.mindrot.jbcrypt.BCrypt
 
 
 class SignUpActivity : AppCompatActivity() {
