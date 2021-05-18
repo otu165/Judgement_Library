@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.judgement.R
 import com.example.judgement.data.HomeRvData
-import kotlinx.android.synthetic.main.rv_home_item.view.*
 
 class HomeRvVH(private val view: View): RecyclerView.ViewHolder(view) {
     private val title: TextView = view.findViewById(R.id.txt_home_news_title)
