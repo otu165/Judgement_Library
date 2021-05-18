@@ -14,7 +14,8 @@
         android:theme="@style/Theme.Judgement"
         android:usesCleartextTraffic="true"
         tools:ignore="Instantiatable">
-        <activity android:name=".feature.law.DetailResultActivity"></activity>
+        <activity android:name=".feature.navigation.home.NewsActivity"></activity>
+        <activity android:name=".feature.law.DetailResultActivity" />
         <activity android:name=".feature.law.search_result.SearchResultActivity" />
         <activity android:name=".feature.navigation.user.UserInfoEditActivity" />
         <activity android:name=".feature.navigation.MainActivity">

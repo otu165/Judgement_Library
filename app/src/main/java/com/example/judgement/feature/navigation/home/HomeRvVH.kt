@@ -1,5 +1,6 @@
 package com.example.judgement.feature.navigation.home
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -21,7 +22,10 @@ class HomeRvVH(private val view: View): RecyclerView.ViewHolder(view) {
 //        Glide.with(view).load(data.imageUrl).centerCrop().into(thumbnail)
 
         view.setOnClickListener {
-            Log.d("HomeRvVH", "${data.link}");
+            val intent = Intent(view.context, NewsActivity::class.java)
+                .putExtra("address", data.link)
+
+            view.context.startActivity(intent)
         }
     }
 }
