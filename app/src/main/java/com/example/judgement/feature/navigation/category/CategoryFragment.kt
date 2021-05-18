@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
+import com.example.judgement.feature.navigation.MainActivity
+import com.example.judgement.feature.navigation.home.HomeFragment
 import kotlinx.android.synthetic.main.fragment_category.*
 
 class CategoryFragment : Fragment() {
@@ -49,8 +51,7 @@ class CategoryFragment : Fragment() {
     }
 
     private fun requestChangeFragment() {
-        // TODO
-        Log.d("TAG", "clicked requestChangeFragment");
+        (requireActivity() as MainActivity).replaceFragment(HomeFragment(), "Home")
     }
 
     companion object {

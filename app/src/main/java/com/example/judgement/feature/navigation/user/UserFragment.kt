@@ -53,7 +53,7 @@ class UserFragment : Fragment() {
         Log.d("TAG", "clicked modifyUserInfo function");
 
         // replace Fragment
-        (requireActivity() as MainActivity).replaceFragment(UserInfoEditFragment())
+        (requireActivity() as MainActivity).replaceFragment(UserInfoEditFragment(), "User")
     }
 
     private fun sendSuggestions() {
