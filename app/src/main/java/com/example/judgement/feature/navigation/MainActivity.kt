@@ -5,26 +5,32 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.judgement.R
+import com.example.judgement.databinding.ActivityMainBinding
+import com.example.judgement.databinding.ActivitySignUpBinding
 import com.example.judgement.feature.navigation.category.CategoryFragment
 import com.example.judgement.feature.navigation.home.HomeFragment
 import com.example.judgement.feature.navigation.scrap.ScrapFragment
 import com.example.judgement.feature.navigation.user.UserFragment
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private var backKeyPressed : Long = 0
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.activity = this
 
         attachBaseFragment()
         setNavigationSelectedListener()
-        bottom_navigation_main.selectedItemId = R.id.home
+        binding.bottomNavigationMain.selectedItemId = R.id.home
     }
 
 
@@ -35,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setNavigationSelectedListener() {
-        bottom_navigation_main.setOnNavigationItemSelectedListener { item ->
+        binding.bottomNavigationMain.setOnNavigationItemSelectedListener { item ->
             val transaction = supportFragmentManager.beginTransaction()
 
             when (item.itemId) {
@@ -63,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
         when(tag) {
             "Home" -> {
-                bottom_navigation_main.selectedItemId = R.id.home
+                binding.bottomNavigationMain.selectedItemId = R.id.home
             }
             else -> {
                 Log.d(TAG, "replaceFragment called from unexpected fragment")

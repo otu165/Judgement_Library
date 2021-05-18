@@ -8,23 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TableLayout
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
 import com.example.judgement.data.ScrapRvData
+import com.example.judgement.databinding.FragmentScrapBinding
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.fragment_scrap.*
+
 
 class ScrapFragment : Fragment() {
-    private lateinit var scrapView: View
+
+    private lateinit var binding: FragmentScrapBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        scrapView = inflater.inflate(R.layout.fragment_scrap, container, false)
-        return scrapView
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_scrap, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -34,7 +37,7 @@ class ScrapFragment : Fragment() {
         setTabLayout()
         setRecyclerView()
 
-        img_scrap_remove.setOnClickListener {
+        binding.imgScrapRemove.setOnClickListener {
             removeScrapItem()
         }
     }

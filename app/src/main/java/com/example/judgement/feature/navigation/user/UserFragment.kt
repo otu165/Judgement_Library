@@ -11,20 +11,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.example.judgement.R
+import com.example.judgement.databinding.FragmentUserBinding
 import com.example.judgement.feature.navigation.MainActivity
 import com.example.judgement.feature.signin.SignInActivity
-import kotlinx.android.synthetic.main.fragment_user.*
 
 class UserFragment : Fragment() {
-    private lateinit var userView: View
+    private lateinit var binding: FragmentUserBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        userView = inflater.inflate(R.layout.fragment_user, container, false)
-        return userView
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -32,19 +33,19 @@ class UserFragment : Fragment() {
 
         // TODO UI_update user name (get data from sign in data) and add proper profile image
 
-        txt_user_modify.setOnClickListener {
+        binding.txtUserModify.setOnClickListener {
             moveToUserInfoEditFragment()
         }
 
-        txt_user_suggestions.setOnClickListener {
+        binding.txtUserSuggestions.setOnClickListener {
             sendSuggestions()
         }
 
-        txt_user_notifications.setOnClickListener {
+        binding.txtUserNotifications.setOnClickListener {
             showNotifications()
         }
 
-        txt_user_sign_out.setOnClickListener {
+        binding.txtUserSignOut.setOnClickListener {
             requestSignOut()
         }
     }
