@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_layout_main, fragment).commit()
 
-        // TODO 바꿔지는 Fragment 에 따라서 하단 navigation tint 변경하기
         when(tag) {
             "Home" -> {
                 bottom_navigation_main.selectedItemId = R.id.home

@@ -69,7 +69,6 @@
                 android:layout_height="48dp"
                 android:textOn=""
                 android:textOff=""
-                android:checked="true"
                 android:layout_gravity="center_horizontal|top"/>
 
         </LinearLayout>
