@@ -17,11 +17,12 @@ import com.example.judgement.R
 import com.example.judgement.api.MySingleton
 import com.example.judgement.feature.signin.SignInActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import org.mindrot.jbcrypt.BCrypt
 
-var id_flag : Int = 0
-var email_flag : Int = 0
 
 class SignUpActivity : AppCompatActivity() {
+    var id_flag : Int = 0
+    var email_flag : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

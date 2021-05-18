@@ -3,6 +3,7 @@ package com.example.judgement.feature.signin
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
@@ -13,6 +14,7 @@ import com.example.judgement.feature.navigation.MainActivity
 import com.example.judgement.feature.signup.SignUpActivity
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import org.mindrot.jbcrypt.BCrypt
 
 
 class SignInActivity : AppCompatActivity() {
