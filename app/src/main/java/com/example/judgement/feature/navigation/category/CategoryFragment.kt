@@ -6,24 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
+import com.example.judgement.databinding.FragmentCategoryBinding
 import com.example.judgement.feature.navigation.MainActivity
 import com.example.judgement.feature.navigation.home.HomeFragment
-import kotlinx.android.synthetic.main.fragment_category.*
 
 class CategoryFragment : Fragment() {
-    private lateinit var categoryView: View
+    private lateinit var binding: FragmentCategoryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         Log.d("TAG", "CategoryFragment created");
-        categoryView = inflater.inflate(R.layout.fragment_category, container, false)
-        return categoryView
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class CategoryFragment : Fragment() {
 
         setRecyclerView()
 
-        img_category_back.setOnClickListener {
+        binding.imgCategoryBack.setOnClickListener {
             requestChangeFragment()
         }
     }

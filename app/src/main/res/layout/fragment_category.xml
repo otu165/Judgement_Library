@@ -1,42 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".feature.navigation.category.CategoryFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="fragment_category"
+            type="com.example.judgement.feature.navigation.category.CategoryFragment" />
+    </data>
 
     <LinearLayout
-        style="@style/TextPadding"
+
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        android:elevation="2dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".feature.navigation.category.CategoryFragment">
 
-        <ImageView
-            android:id="@+id/img_category_back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
+        <LinearLayout
+            style="@style/TextPadding"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:elevation="2dp"
+            android:orientation="horizontal">
 
-        <TextView
-            style="@style/MiddleFontStyle"
+            <ImageView
+                android:id="@+id/img_category_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
+            <TextView
+                style="@style/MiddleFontStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:gravity="center|start"
+                android:text="@string/app_name" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:gravity="center|start"
-            android:text="@string/app_name" />
+            android:overScrollMode="never"
+            tools:listitem="@layout/rv_category_item" />
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_category"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        tools:listitem="@layout/rv_category_item" />
-
-</LinearLayout>
+</layout>
