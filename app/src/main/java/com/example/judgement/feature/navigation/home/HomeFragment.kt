@@ -23,6 +23,7 @@ import java.util.*
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var rvAdapter: HomeRvAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,8 +38,8 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         setGraph()
-        setNews()
         setRecyclerViewForNews()
+        setNews()
     }
 
     private fun setGraph() {
@@ -55,14 +56,15 @@ class HomeFragment : Fragment() {
 
         val api = NaverAPI.create()
 
-        api.getSearchNews("살인", 10, 1).enqueue(object : Callback<NaverNewsData> {
+        api.getSearchNews("살인범", 10, 1).enqueue(object : Callback<NaverNewsData> {
             override fun onResponse(
                 call: Call<NaverNewsData>,
                 response: Response<NaverNewsData>
             ) {
                 // 성공
                 if (response.isSuccessful) {
-                    Log.d(tag, "onResponse: ${response.body()!!.display}, ${response.body()!!}")
+                    rvAdapter.updateData(response.body()!!.items)
+                    rvAdapter.notifyDataSetChanged()
                 }
             }
 
@@ -74,26 +76,20 @@ class HomeFragment : Fragment() {
 
     private fun setRecyclerViewForNews() {
         val rv = view?.findViewById(R.id.rv_home) as RecyclerView
-        val rvAdapter = HomeRvAdapter(requireContext(), getTempData())
+        rvAdapter = HomeRvAdapter(requireContext())
 
-        rv.adapter = rvAdapter
-        rv.layoutManager = LinearLayoutManager(requireContext())
-        rv.addItemDecoration(object: RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
-                outRect.top = 16
-                outRect.bottom = 16
-            }
-        })
+        rv.apply {
+            adapter = rvAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            addItemDecoration(object: RecyclerView.ItemDecoration() {
+                override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
+                    outRect.top = 16
+                    outRect.bottom = 16
+                }
+            })
+        }
 
         rvAdapter.notifyDataSetChanged()
-    }
-
-    private fun getTempData(): MutableList<HomeRvData> {
-        val tempData = mutableListOf<HomeRvData>()
-        for (i in 0..6)
-            tempData.add(HomeRvData("살인 피의자 구속", "피의자 영장... 스토킹 정황 수사 경찰, \'큰 딸 A씨 스토킹 피해\' 진술 .."))
-
-        return tempData
     }
 
     companion object {
