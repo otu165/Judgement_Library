@@ -28,7 +28,7 @@ class UserInfoEditFragment : Fragment() {
         }
 
         img_edit_back.setOnClickListener {
-            (requireActivity() as MainActivity).replaceFragment(UserFragment())
+            (requireActivity() as MainActivity).replaceFragment(UserFragment(), "User")
         }
 
         txt_edit_ok.setOnClickListener {
@@ -36,7 +36,7 @@ class UserInfoEditFragment : Fragment() {
         }
 
         txt_edit_cancel.setOnClickListener {
-            (requireActivity() as MainActivity).replaceFragment(UserFragment())
+            (requireActivity() as MainActivity).replaceFragment(UserFragment(), "User")
         }
     }
 

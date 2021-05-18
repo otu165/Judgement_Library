@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation_main.selectedItemId = R.id.home
     }
 
+
     private fun attachBaseFragment() {
         supportFragmentManager.beginTransaction()
             .add(R.id.frame_layout_main, HomeFragment())
@@ -56,9 +57,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    public fun replaceFragment(fragment: Fragment) {
+    public fun replaceFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_layout_main, fragment).commit()
+
+        // TODO 바꿔지는 Fragment 에 따라서 하단 navigation tint 변경하기
+        when(tag) {
+            "Home" -> {
+                bottom_navigation_main.selectedItemId = R.id.home
+            }
+            else -> {
+                Log.d(TAG, "replaceFragment called from unexpected fragment")
+            }
+        }
     }
 
     override fun onBackPressed() {

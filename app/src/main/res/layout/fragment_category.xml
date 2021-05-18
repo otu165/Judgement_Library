@@ -4,31 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.navigation.category.CategoryFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".feature.navigation.category.CategoryFragment">
 
     <LinearLayout
+        style="@style/TextPadding"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        style="@style/TextPadding"
-        android:orientation="horizontal"
         android:background="@color/white"
-        android:elevation="2dp">
+        android:elevation="2dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/img_category_back"
-            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
 
         <TextView
-            android:text="@string/app_name"
             style="@style/MiddleFontStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:gravity="center|start"/>
+            android:layout_marginStart="16dp"
+            android:gravity="center|start"
+            android:text="@string/app_name" />
 
     </LinearLayout>
 
@@ -37,6 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
-        tools:listitem="@layout/rv_category_item"/>
+        tools:listitem="@layout/rv_category_item" />
 
 </LinearLayout>
