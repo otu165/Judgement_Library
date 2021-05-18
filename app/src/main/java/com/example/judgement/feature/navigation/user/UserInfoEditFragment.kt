@@ -6,36 +6,40 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.judgement.R
+import com.example.judgement.databinding.FragmentUserInfoEditBinding
 import com.example.judgement.feature.navigation.MainActivity
-import kotlinx.android.synthetic.main.fragment_user_info_edit.*
 
 
 class UserInfoEditFragment : Fragment() {
+
+    private lateinit var binding: FragmentUserInfoEditBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_user_info_edit, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_info_edit, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        img_edit.setOnClickListener {
+        binding.imgEdit.setOnClickListener {
             // TODO replace User Profile Image
         }
 
-        img_edit_back.setOnClickListener {
+        binding.imgEditBack.setOnClickListener {
             (requireActivity() as MainActivity).replaceFragment(UserFragment(), "User")
         }
 
-        txt_edit_ok.setOnClickListener {
+        binding.txtEditOk.setOnClickListener {
             // TODO data valid check
         }
 
-        txt_edit_cancel.setOnClickListener {
+        binding.txtEditCancel.setOnClickListener {
             (requireActivity() as MainActivity).replaceFragment(UserFragment(), "User")
         }
     }

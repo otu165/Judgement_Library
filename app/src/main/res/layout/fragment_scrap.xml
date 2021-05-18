@@ -1,64 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/fragment_scrap"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".feature.navigation.scrap.ScrapFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- top -->
-    <TextView
-        android:text="@string/scrap"
-        style="@style/HeadFontStyle"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="2dp"/>
+    <data>
+        <variable
+            name="activity"
+            type="com.example.judgement.feature.navigation.scrap.ScrapFragment" />
 
-    <!-- Tab -->
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout_scrap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/TabLayoutStyle"
-        app:tabTextAppearance="@style/TabLayoutTextStyle" />
-
-    <!-- description -->
+    </data>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/TextPadding"
-        android:weightSum="1"
-        android:background="@color/white"
-        android:elevation="1dp">
-
-        <TextView
-            android:id="@+id/txt_scrap_list"
-            android:text="목록"
-            style="@style/MiddleFontStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:id="@+id/img_scrap_remove"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_trash_bin"/>
-
-    </LinearLayout>
-
-    <!-- contents -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_scrap"
-        android:overScrollMode="never"
+        android:id="@+id/fragment_scrap"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/rv_scrap_item"/>
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        tools:context=".feature.navigation.scrap.ScrapFragment">
 
-</LinearLayout>
+        <!-- top -->
+        <TextView
+            android:text="@string/scrap"
+            style="@style/HeadFontStyle"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="2dp"/>
+
+        <!-- Tab -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_scrap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TabLayoutStyle"
+            app:tabTextAppearance="@style/TabLayoutTextStyle" />
+
+        <!-- description -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextPadding"
+            android:weightSum="1"
+            android:background="@color/white"
+            android:elevation="1dp">
+
+            <TextView
+                android:id="@+id/txt_scrap_list"
+                android:text="목록"
+                style="@style/MiddleFontStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/img_scrap_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_trash_bin"/>
+
+        </LinearLayout>
+
+        <!-- contents -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_scrap"
+            android:overScrollMode="never"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/rv_scrap_item"/>
+
+    </LinearLayout>
+</layout>
