@@ -122,8 +122,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // 취소 버튼 선택 시 로그인 화면으로 이동
         binding.registerBack.setOnClickListener {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
+            this.finish()
         }
 
         // 확인 버튼 누를 시 회원 가입

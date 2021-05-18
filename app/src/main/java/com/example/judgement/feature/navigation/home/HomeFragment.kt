@@ -12,8 +12,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
+import com.example.judgement.api.NaverAPI
 import com.example.judgement.data.HomeRvData
+import com.example.judgement.data.NaverNewsData
 import com.example.judgement.databinding.FragmentHomeBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class HomeFragment : Fragment() {
@@ -32,7 +37,7 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         setGraph()
-        setNewsKeyword()
+        setNews()
         setRecyclerViewForNews()
     }
 
@@ -41,12 +46,30 @@ class HomeFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setNewsKeyword() {
+    private fun setNews() {
         val day = Calendar.DAY_OF_WEEK
         val keyword = resources.getStringArray(R.array.bottom_navigation_category)[day - 1]
         Log.d("TAG", "day : $day"); // ERROR wrong day of week
 
         binding.txtHomeNews.text = "오늘의 뉴스 (키워드 : $keyword)"
+
+        val api = NaverAPI.create()
+
+        api.getSearchNews("살인", 10, 1).enqueue(object : Callback<NaverNewsData> {
+            override fun onResponse(
+                call: Call<NaverNewsData>,
+                response: Response<NaverNewsData>
+            ) {
+                // 성공
+                if (response.isSuccessful) {
+                    Log.d(tag, "onResponse: ${response.body()!!.display}, ${response.body()!!}")
+                }
+            }
+
+            override fun onFailure(call: Call<NaverNewsData>, t: Throwable) {
+                // 실패
+            }
+        })
     }
 
     private fun setRecyclerViewForNews() {
