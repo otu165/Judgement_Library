@@ -8,25 +8,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
 import com.example.judgement.data.HomeRvData
-import kotlinx.android.synthetic.main.fragment_home.*
-import java.time.LocalDate
-import java.time.ZoneId
+import com.example.judgement.databinding.FragmentHomeBinding
 import java.util.*
 
 class HomeFragment : Fragment() {
-    private lateinit var mainView: View
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        mainView = inflater.inflate(R.layout.fragment_home, container, false)
-        return mainView
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -47,7 +46,7 @@ class HomeFragment : Fragment() {
         val keyword = resources.getStringArray(R.array.bottom_navigation_category)[day - 1]
         Log.d("TAG", "day : $day"); // ERROR wrong day of week
 
-        txt_home_news.text = "오늘의 뉴스 (키워드 : $keyword)"
+        binding.txtHomeNews.text = "오늘의 뉴스 (키워드 : $keyword)"
     }
 
     private fun setRecyclerViewForNews() {

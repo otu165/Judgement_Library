@@ -6,23 +6,27 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.judgement.R
 import com.example.judgement.data.SearchResultRvData
-import kotlinx.android.synthetic.main.activity_search_result.*
+import com.example.judgement.databinding.ActivitySearchResultBinding
 
 class SearchResultActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySearchResultBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_result)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_search_result)
+        binding.activitySearchResult = this
 
         // search keyword 받기
         intent.getStringExtra("keyword")?.apply {
-            txt_search_result_keyword.text = this
+            binding.txtSearchResultKeyword.text = this
         }
 
-        img_search_result_back.setOnClickListener {
+        binding.imgSearchResultBack.setOnClickListener {
             this.finish()
         }
 
@@ -31,13 +35,13 @@ class SearchResultActivity : AppCompatActivity() {
     }
 
     private fun setupSpinner() {
-        spinner_search_result.adapter = ArrayAdapter(
+        binding.spinnerSearchResult.adapter = ArrayAdapter(
             applicationContext,
             android.R.layout.simple_spinner_dropdown_item,
             resources.getStringArray(R.array.spinner)
         )
 
-        spinner_search_result.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spinnerSearchResult.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 Log.d(TAG, "selected spinner item : ${p2}");
             }
@@ -48,9 +52,9 @@ class SearchResultActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         val rvAdapter = SearchResultRvAdapter(applicationContext, getTempRvData())
-        rv_search_result.adapter = rvAdapter
-        rv_search_result.layoutManager = LinearLayoutManager(applicationContext)
-        rv_search_result.addItemDecoration(
+        binding.rvSearchResult.adapter = rvAdapter
+        binding.rvSearchResult.layoutManager = LinearLayoutManager(applicationContext)
+        binding.rvSearchResult.addItemDecoration(
             DividerItemDecoration(
                 applicationContext,
                 LinearLayoutManager(applicationContext).orientation
