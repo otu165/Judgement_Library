@@ -37,4 +37,6 @@
         <item>조회순</item>
     </string-array>
 
+    <string name="search_hint">원하는 키워드를 검색하세요.</string>
+
 </resources>
