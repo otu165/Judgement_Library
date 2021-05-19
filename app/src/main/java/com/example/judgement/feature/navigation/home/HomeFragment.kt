@@ -29,7 +29,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return binding.root
     }
@@ -56,7 +55,7 @@ class HomeFragment : Fragment() {
 
         val api = NaverAPI.create()
 
-        api.getSearchNews("살인범", 10, 1).enqueue(object : Callback<NaverNewsData> {
+        api.getSearchNews(keyword, 10, 1).enqueue(object : Callback<NaverNewsData> {
             override fun onResponse(
                 call: Call<NaverNewsData>,
                 response: Response<NaverNewsData>
