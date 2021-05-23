@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="fragment_home"
             type="com.example.judgement.feature.navigation.home.HomeFragment" />
@@ -11,7 +12,6 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/fragment_home"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
@@ -23,19 +23,57 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-<!--             top -->
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_home"
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                android:id="@+id/search_bar_home"
+                style="@style/MaterialSearchBarLight"
+                app:mt_placeholder="@string/app_name"
+                app:mt_placeholderColor="@color/main_color"
+                app:mt_hint="@string/search_hint"
+                app:mt_maxSuggestionsCount="6"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content" />
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_view_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+            <!-- AppBar -->
+            <!-- TODO remove underline -->
+<!--            <com.google.android.material.appbar.AppBarLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/white"-->
+<!--                android:fitsSystemWindows="true">-->
 
-            </androidx.appcompat.widget.Toolbar>
+<!--                <FrameLayout-->
+<!--                    android:id="@+id/toolbar_container"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+
+<!--                    <androidx.appcompat.widget.Toolbar-->
+<!--                        android:id="@+id/toolbar_home"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="?attr/actionBarSize"-->
+<!--                        app:menu="@menu/search"-->
+<!--                        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/toolbar_title"-->
+<!--                            style="@style/HeadFontStyle"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:text="@string/app_name" />-->
+
+<!--                    </androidx.appcompat.widget.Toolbar>-->
+
+<!--                    <com.ferfalk.simplesearchview.SimpleSearchView-->
+<!--                        android:id="@+id/searchView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:background="@color/white"-->
+<!--                        android:hint="@string/search_hint" />-->
+
+<!--                </FrameLayout>-->
+
+
+<!--            </com.google.android.material.appbar.AppBarLayout>-->
 
             <!-- graph -->
             <!--<ImageView

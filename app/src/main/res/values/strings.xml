@@ -16,7 +16,7 @@
         <item>마약</item>
         <item>절도</item>
         <item>강간</item>
-        <item>etc</item>
+        <item>아동학대</item>
     </string-array>
 
     <!-- for user activity -->
@@ -36,5 +36,7 @@
         <item>최신순</item>
         <item>조회순</item>
     </string-array>
+
+    <string name="search_hint">원하는 키워드를 검색하세요.</string>
 
 </resources>
