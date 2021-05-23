@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!-- top -->
+<!--             top -->
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_home"
                 android:layout_width="match_parent"
@@ -32,17 +32,24 @@
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/search_view_home"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    />
 
             </androidx.appcompat.widget.Toolbar>
 
             <!-- graph -->
-            <ImageView
+            <!--<ImageView
                 android:id="@+id/img_home_graph"
                 style="@style/Margin"
                 android:layout_width="match_parent"
                 android:layout_height="270dp"
-                android:background="@color/light_gray" />
+                android:background="@color/light_gray" />-->
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pie_chart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"/>
+
 
             <!-- news -->
             <TextView
