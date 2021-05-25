@@ -79,4 +79,7 @@ dependencies {
     // piechart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    // jsoup
+    implementation 'org.jsoup:jsoup:1.13.1'
+
 }
