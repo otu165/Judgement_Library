@@ -6,15 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.judgement.R
-import com.example.judgement.data.ScrapRvData
 import com.example.judgement.databinding.FragmentScrapBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -36,9 +30,7 @@ class ScrapFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        // compose UI
         initViewPagerWithTabLayout()
-//        initRecyclerView()
 
         binding.imgScrapRemove.setOnClickListener {
             removeScrapItem()
@@ -54,16 +46,7 @@ class ScrapFragment : Fragment() {
         viewPager.adapter = pagerAdapter
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                Log.d(TAG, "onPageSelected: position : $position")
-            }
-        })
-
         initTabLayout(viewPager)
-
-
     }
 
     private fun initTabLayout(viewPager: ViewPager2) {
@@ -76,27 +59,17 @@ class ScrapFragment : Fragment() {
 
         tab.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                // TODO request server data
-                Toast.makeText(requireContext(), "request server data ${tab?.text}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
+                // TODO refresh
             }
-
         })
 
         // TODO add border to tab and widen each tab size
-    }
-
-    private fun getTempData(): MutableList<ScrapRvData> {
-        val tempData = mutableListOf<ScrapRvData>()
-        for (idx in 0..10)
-            tempData.add(idx, ScrapRvData("믿을 수 없는 사건", "인천시의 한 아파트에서 싸늘한 주검..", "21.01.19"))
-
-        return tempData
     }
 
     private fun removeScrapItem() {

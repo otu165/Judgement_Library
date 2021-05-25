@@ -6,13 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <TextView
-        android:text="뷰페이저 동작 확인"
-        android:layout_gravity="center"
-        style="@style/HeadFontStyle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_scrap"
         android:overScrollMode="never"
