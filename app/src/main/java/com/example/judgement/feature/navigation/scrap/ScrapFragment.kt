@@ -6,26 +6,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TableLayout
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.judgement.R
 import com.example.judgement.data.ScrapRvData
 import com.example.judgement.databinding.FragmentScrapBinding
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class ScrapFragment : Fragment() {
 
     private lateinit var binding: FragmentScrapBinding
+    private lateinit var category: Array<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_scrap, container, false)
         return binding.root
     }
@@ -34,19 +37,42 @@ class ScrapFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         // compose UI
-        setTabLayout()
-        setRecyclerView()
+        initViewPagerWithTabLayout()
+//        initRecyclerView()
 
         binding.imgScrapRemove.setOnClickListener {
             removeScrapItem()
         }
     }
 
-    private fun setTabLayout() {
+    private fun initViewPagerWithTabLayout() {
+        category = resources.getStringArray(R.array.bottom_navigation_category)
+
+        val viewPager = view?.findViewById(R.id.view_pager_scrap) as ViewPager2
+        val pagerAdapter = ScrapPagerAdapter(requireContext(), category)
+
+        viewPager.adapter = pagerAdapter
+        viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                Log.d(TAG, "onPageSelected: position : $position")
+            }
+        })
+
+        initTabLayout(viewPager)
+
+
+    }
+
+    private fun initTabLayout(viewPager: ViewPager2) {
         val tab = view?.findViewById(R.id.tab_layout_scrap) as TabLayout
-        for (category in resources.getStringArray(R.array.bottom_navigation_category)) {
-            tab.addTab(tab.newTab().setText(category))
-        }
+
+        TabLayoutMediator(tab, viewPager) { tab, position ->
+            category = resources.getStringArray(R.array.bottom_navigation_category)
+            tab.text = category[position]
+        }.attach()
 
         tab.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -63,17 +89,6 @@ class ScrapFragment : Fragment() {
         })
 
         // TODO add border to tab and widen each tab size
-    }
-
-    private fun setRecyclerView() {
-        val rv = view?.findViewById(R.id.rv_scrap) as RecyclerView
-        val rvAdapter = ScrapRvAdapter(requireContext(), getTempData())
-
-        rv.adapter = rvAdapter
-        rv.layoutManager = LinearLayoutManager(requireContext())
-        rv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager(requireContext()).orientation))
-
-        rvAdapter.notifyDataSetChanged()
     }
 
     private fun getTempData(): MutableList<ScrapRvData> {
