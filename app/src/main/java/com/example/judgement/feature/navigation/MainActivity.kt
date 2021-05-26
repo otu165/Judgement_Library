@@ -80,6 +80,12 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val toast = Toast.makeText(this, "종료하시려면 뒤로가기를 한 번 더 누르세요.", Toast.LENGTH_SHORT)
 
+        if (binding.bottomNavigationMain.selectedItemId == R.id.category) {
+            supportFragmentManager.beginTransaction().replace(R.id.frame_layout_main, HomeFragment()).commit()
+            binding.bottomNavigationMain.selectedItemId = R.id.home
+            return
+        }
+
         if (System.currentTimeMillis() > backKeyPressed + 2000) {
             backKeyPressed = System.currentTimeMillis()
             toast.show()

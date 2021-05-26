@@ -19,19 +19,27 @@ import retrofit2.Response
 
 class ScrapPagerAdapter(
     private val context: Context,
-    private val list: Array<String>
+    private val list: Array<String>,
+    val scrapManager: ScrapManager
 ) : RecyclerView.Adapter<ScrapPagerAdapter.ScrapPagerVH>() {
 
     inner class ScrapPagerVH(val view: View) : RecyclerView.ViewHolder(view) {
         val rv: RecyclerView = view.findViewById(R.id.rv_scrap)
 
         fun initRecyclerView(category: String) {
-            Log.d("ScrapPagerAdapter", "initRecyclerView: $category")
-
             val rvAdapter = ScrapRvAdapter(view.context)
-            rv.adapter = rvAdapter
-            rv.layoutManager = LinearLayoutManager(view.context)
-            rv.addItemDecoration(DividerItemDecoration(view.context, LinearLayoutManager(view.context).orientation))
+            scrapManager.scrapRvAdapters[category] = rvAdapter // adapter 저장
+
+            rv.apply {
+                adapter = rvAdapter
+                layoutManager = LinearLayoutManager(view.context)
+                addItemDecoration(
+                    DividerItemDecoration(
+                        view.context,
+                        LinearLayoutManager(view.context).orientation
+                    )
+                )
+            }
 
             requestScrapData(category, rvAdapter)
         }
@@ -39,24 +47,36 @@ class ScrapPagerAdapter(
         private fun requestScrapData(category: String, adapter: ScrapRvAdapter) {
             val call: Call<List<ScrapRvData>> = ServerAPI.server.getScrap(category)
 
-            call.enqueue(object: Callback<List<ScrapRvData>> {
+            call.enqueue(object : Callback<List<ScrapRvData>> {
                 override fun onResponse(
                     call: Call<List<ScrapRvData>>,
                     response: Response<List<ScrapRvData>>
                 ) {
                     if (response.isSuccessful) {
                         adapter.updateData(response.body()!!)
-                        adapter.notifyDataSetChanged()
                     } else {
-                        Log.d("requestScrapData", "onResponse: is not successful")
+                        // Todo delete
+                        adapter.updateData(getTempData())
                     }
                 }
 
                 override fun onFailure(call: Call<List<ScrapRvData>>, t: Throwable) {
-                    Log.d("requestScrapData", "onFailure: server shutdown")
+                    Log.d("requestScrapData", "onFailure: $t")
                 }
             })
         }
+
+        private fun getTempData() = listOf<ScrapRvData>(
+            ScrapRvData("제목", "설명", "날짜"),
+            ScrapRvData("제목", "설명", "날짜"),
+            ScrapRvData("제목", "설명", "날짜"),
+            ScrapRvData("제목", "설명", "날짜"),
+            ScrapRvData("제목", "설명", "날짜"),
+            ScrapRvData("제목", "설명", "날짜"),
+            ScrapRvData("제목", "설명", "날짜"),
+            ScrapRvData("제목", "설명", "날짜"),
+            ScrapRvData("제목", "설명", "날짜"),
+        )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrapPagerVH {
