@@ -126,10 +126,10 @@ class HomeFragment : Fragment() {
         entries.add(PieEntry(250f, "아동학대"))
         entries.add(PieEntry(5310f, "강간"))*/
 
-        entries.add(PieEntry(209911f, "폭력"))
-        entries.add(PieEntry(376862f, "교통"))
-        entries.add(PieEntry(658664f, "재산"))
+        entries.add(PieEntry(376862f, "교통")) //32802f
         entries.add(PieEntry(32802f, "강력"))
+        entries.add(PieEntry(658664f, "재산"))
+        entries.add(PieEntry(209911f, "폭력"))
 
         // add a lot of colors
         val colorsItems = ArrayList<Int>()
@@ -145,27 +145,22 @@ class HomeFragment : Fragment() {
         pieDataSet.apply {
             colors = colorsItems
             valueTextColor = Color.BLACK
-            valueTextSize = 16f
+            valueTextSize = 14f
             valueFormatter = PercentFormatter(binding.pieChart)
 
             // Value lines
-            valueLinePart1Length = 0.6f
-            valueLinePart2Length = 0.3f
+            valueLinePart1Length = 0.3f
+            valueLinePart2Length = 0.6f
             valueLineWidth = 2f
-            valueLinePart1OffsetPercentage = 115f  // Line starts outside of chart
-            isUsingSliceColorAsValueLineColor = true
+            valueLinePart1OffsetPercentage = 80.0f  // Line starts outside of chart
+            //isUsingSliceColorAsValueLineColor = true
+            valueLineColor = Color.BLACK
 
             // Value text appearance
             yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
             //xValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
             valueTypeface = Typeface.DEFAULT_BOLD
-
-            /*valueFormatter = object : ValueFormatter() {
-                private val formatter = NumberFormat.getPercentInstance()
-
-                override fun getFormattedValue(value: Float) =
-                    formatter.format(value / 100f)
-            }*/
+            selectionShift = 5f
         }
 
         val pieData = PieData(pieDataSet)
@@ -175,8 +170,9 @@ class HomeFragment : Fragment() {
             description.isEnabled = false
             isRotationEnabled = false
             centerText = "2020 \n 발생건수"
-
             setEntryLabelColor(Color.BLACK)
+
+            //Animate
             animateY(1400, Easing.EaseInOutQuad)
             animate()
         }

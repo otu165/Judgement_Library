@@ -4,7 +4,7 @@
     package="com.example.judgement">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,6 +14,7 @@
         android:theme="@style/Theme.Judgement"
         android:usesCleartextTraffic="true"
         tools:ignore="Instantiatable">
+
         <activity android:name=".feature.navigation.home.NewsActivity"></activity>
         <activity android:name=".feature.law.DetailResultActivity" />
         <activity android:name=".feature.law.search_result.SearchResultActivity" />
