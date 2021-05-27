@@ -1,5 +1,6 @@
 package com.example.judgement.feature.navigation.scrap
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Build.*
 import android.os.Bundle
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.annotation.RequiresApi
 import androidx.core.view.allViews
@@ -52,7 +54,7 @@ class ScrapFragment : Fragment() {
 
         initTabLayout(viewPager)
     }
-
+    @SuppressLint("SetTextI18n")
     private fun initTabLayout(viewPager: ViewPager2) {
         val tab = binding.tabLayoutScrap
 
@@ -61,11 +63,11 @@ class ScrapFragment : Fragment() {
             tab.text = category[position]
         }.attach()
 
-        tab.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+        tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (scrapManager.scrapRvAdapters[category[tab?.position!!]]?.getItemViewType(tab.position) == ScrapRvAdapter.VISIBLE_TYPE) { // 삭제중
                     binding.toggleScrapRemove.isChecked = true
-                    binding.txtScrapList.text = "선택된 판례 : 0개"
+                    binding.txtScrapList.text = "삭제"
                 } else {
                     binding.toggleScrapRemove.isChecked = false
                     binding.txtScrapList.text = "목록"
@@ -81,14 +83,16 @@ class ScrapFragment : Fragment() {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initRvItemDelete() {
-        binding.viewPagerScrap.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+        binding.viewPagerScrap.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 
                 if (scrapManager.scrapRvAdapters[category[position]]?.getItemViewType(position) == ScrapRvAdapter.VISIBLE_TYPE) { // 삭제중
                     binding.toggleScrapRemove.isChecked = true
-                    binding.txtScrapList.text = "선택된 판례 : 0개"
+                    binding.txtScrapList.text = "삭제"
                 } else {
                     binding.toggleScrapRemove.isChecked = false
                     binding.txtScrapList.text = "목록"
@@ -100,16 +104,27 @@ class ScrapFragment : Fragment() {
         binding.toggleScrapRemove.setOnClickListener {
             val position = binding.viewPagerScrap.currentItem
 
-            if((it as ToggleButton).isChecked) {
-                scrapManager.scrapStatus[category[position]] = true  // 상태 저장
+            if ((it as ToggleButton).isChecked) {
                 scrapManager.scrapRvAdapters[category[position]]?.setItemViewType(ScrapRvAdapter.VISIBLE_TYPE)  // 레이아웃 갱신
-                binding.txtScrapList.text = "선택된 판례 : 0개"
+                binding.txtScrapList.text = "삭제"
             } else {
-                scrapManager.scrapStatus[category[position]] = false
+                // 삭제 아이템 개수 > 0
+                if (scrapManager.scrapRvAdapters[category[position]]!!.toDelete.size > 0) {
+                    removeDataFromRv(category[position]) // 삭제 요청
+                    scrapManager.scrapRvAdapters[category[position]]!!.toDelete.clear() // 리스트 초기화
+                }
+
                 scrapManager.scrapRvAdapters[category[position]]?.setItemViewType(ScrapRvAdapter.GONE_TYPE)
                 binding.txtScrapList.text = "목록"
             }
         }
+    }
+    
+    private fun removeDataFromRv(category: String) {
+        // TODO request delete data to Server
+        val data = scrapManager.scrapRvAdapters[category]?.toDelete // 삭제할 스크랩 리스트
+        scrapManager.scrapRvAdapters[category]?.notifyDataSetChanged()
+        Toast.makeText(context, "$data 삭제를 요청합니다.", Toast.LENGTH_SHORT).show()
     }
 
     companion object {

@@ -13,11 +13,13 @@ import com.example.judgement.R
 import com.example.judgement.data.ScrapRvData
 
 class ScrapRvAdapter(
-    private val context: Context
+    private val context: Context,
+    private val scrapManager: ScrapManager
 ) : RecyclerView.Adapter<ScrapRvAdapter.ScrapRvVH>() {
 
     private var data = listOf<ScrapRvData>()
     private var itemViewType: Int = 0
+    val toDelete = mutableListOf<Int>() // 삭제 리스트
 
     inner class ScrapRvVH(val view: View) : RecyclerView.ViewHolder(view) {
         private val title: TextView = view.findViewById(R.id.txt_scrap_title)
@@ -25,11 +27,20 @@ class ScrapRvAdapter(
         private val date: TextView = view.findViewById(R.id.txt_scrap_date)
         private val toggleButton: ToggleButton = view.findViewById(R.id.toggle_scrap_item_delete)
 
-        fun bind(data: ScrapRvData) {
+        fun bind(data: ScrapRvData, position: Int) {
             title.text = data.title
             description.text = data.description
             date.text = data.date
             if (toggleButton.isChecked) toggleButton.toggle()
+
+            toggleButton.setOnClickListener {
+                if (toggleButton.isChecked) {
+                    toDelete.add(position)
+                } else {
+                    toDelete.remove(position)
+                }
+                Log.d("Scrap", "bind: remove : $toDelete")
+            }
         }
     }
 
@@ -47,7 +58,7 @@ class ScrapRvAdapter(
     }
 
     override fun onBindViewHolder(holder: ScrapRvVH, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position], position)
     }
 
     override fun getItemCount(): Int = data.size

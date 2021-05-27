@@ -27,7 +27,7 @@ class ScrapPagerAdapter(
         val rv: RecyclerView = view.findViewById(R.id.rv_scrap)
 
         fun initRecyclerView(category: String) {
-            val rvAdapter = ScrapRvAdapter(view.context)
+            val rvAdapter = ScrapRvAdapter(view.context, scrapManager)
             scrapManager.scrapRvAdapters[category] = rvAdapter // adapter 저장
 
             rv.apply {
@@ -66,7 +66,7 @@ class ScrapPagerAdapter(
             })
         }
 
-        private fun getTempData() = listOf<ScrapRvData>(
+        private fun getTempData() = listOf(
             ScrapRvData("제목", "설명", "날짜"),
             ScrapRvData("제목", "설명", "날짜"),
             ScrapRvData("제목", "설명", "날짜"),
