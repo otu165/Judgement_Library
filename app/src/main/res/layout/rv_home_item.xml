@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    style="@style/TextPadding"
+<LinearLayout style="@style/TextPadding"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@drawable/edge"
-    android:weightSum="1">
+    android:weightSum="1"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
         android:layout_weight="1">
 
         <TextView
@@ -36,13 +36,23 @@
 
     </LinearLayout>
 
+    <!-- place holders -->
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:background="@color/light_gray"
+        app:shimmer_dropoff="1"
+        app:shimmer_auto_start="false"
+        app:shimmer_duration="2000">
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <ImageView
         android:id="@+id/img_home_news"
         android:layout_gravity="center_horizontal"
-        android:background="@color/light_gray"
         android:layout_width="74dp"
-        android:layout_height="74dp"/>
-
-
+        android:layout_height="74dp"
+        android:visibility="gone"/>
 
 </LinearLayout>
