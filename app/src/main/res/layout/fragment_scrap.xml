@@ -51,12 +51,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
-            <ImageView
-                android:id="@+id/img_scrap_remove"
+            <ToggleButton
+                android:id="@+id/toggle_scrap_remove"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:textOn=""
+                android:textOff=""
                 android:layout_gravity="center"
-                android:src="@drawable/ic_trash_bin"/>
+                android:background="@drawable/scrap_delete_bin_selector"/>
 
         </LinearLayout>
 
