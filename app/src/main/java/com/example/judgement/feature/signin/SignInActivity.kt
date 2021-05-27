@@ -9,11 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
-import com.example.judgement.api.MySingleton
 import com.example.judgement.R
+import com.example.judgement.api.MyPreference
+import com.example.judgement.api.MySingleton
 import com.example.judgement.databinding.ActivitySignInBinding
 import com.example.judgement.feature.navigation.MainActivity
 import com.example.judgement.feature.signup.SignUpActivity
+import com.google.gson.JsonParser
+import org.json.JSONArray
+import org.json.JSONObject
+import com.google.gson.JsonObject as GsonJsonObject
 
 
 class SignInActivity : AppCompatActivity() {
@@ -36,13 +41,23 @@ class SignInActivity : AppCompatActivity() {
             val id = binding.loginID.text.toString().trim()
             val pw = binding.loginPW.text.toString().trim()
 
-            val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/login.php?id=" + id +"&pw=" + pw
+            val url =
+                "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/login.php?id=$id&pw=$pw"
 
             // Request a string response from the provided URL.
             val stringRequest = StringRequest(Request.Method.GET, url,
                 { response ->
                     // Display the first 500 characters of the response string.
-                    if (response.equals("Login Success")) {
+                    var strResp = response.toString()
+                    val jsonObj: JSONObject = JSONObject(strResp)
+                    val name: String = jsonObj.getString("name")
+
+                    if (name.isNotEmpty()) {
+
+                        MyPreference.prefs.setString("id",id)
+                        MyPreference.prefs.setString("pw",id)
+                        MyPreference.prefs.setString("name",name)
+
                         Toast.makeText(this, "로그인을 성공하였습니다.", Toast.LENGTH_SHORT).show()
                         val mHandler = Handler()
                         mHandler.postDelayed({

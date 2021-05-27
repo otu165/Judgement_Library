@@ -48,8 +48,7 @@
             android:id="@+id/linear_layout_edit_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
-            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/constraint_layout_edit_top">
 
@@ -109,7 +108,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txt_input_edt_edit_pwd"
+            android:id="@+id/txt_input_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
@@ -120,6 +119,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_input_edit_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
@@ -128,17 +128,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txt_input_edt_edit_pwd_check"
+            android:id="@+id/txt_input_pwd_check"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:layout_marginBottom="8dp"
             app:passwordToggleEnabled="true"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_input_edit_pwd_check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password Check"
@@ -146,24 +146,41 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-    <!--    <com.google.android.material.textfield.TextInputLayout-->
-    <!--        android:id="@+id/txt_input_edt_edit_email"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginLeft="32dp"-->
-    <!--        android:layout_marginRight="32dp"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:layout_marginBottom="8dp"-->
-    <!--        app:errorEnabled="true"-->
-    <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
-    <!--        <com.google.android.material.textfield.TextInputEditText-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:hint="E-mail"-->
-    <!--            android:inputType="textEmailAddress"/>-->
-    <!--        -->
-    <!--    </com.google.android.material.textfield.TextInputLayout>-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_email"
+                android:layout_width="246dp"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_input_edit_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="E-mail"
+                    android:layout_marginRight="15dp"
+                    android:inputType="textEmailAddress"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_email_check"
+                android:layout_width="101dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="#17233C"
+                android:text="중복확인"
+                android:textColor="#FFFFFF"
+                android:textSize="12dp"
+
+                tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
         <!-- below -->
         <LinearLayout

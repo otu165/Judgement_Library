@@ -39,7 +39,8 @@ class SignUpActivity : AppCompatActivity() {
             id_flag = 1
             val id = binding.id.text.toString().trim()
 
-            val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/user_check.php?id=" + id
+            val url =
+                "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/user_check.php?id=$id"
 
             // Request a string response from the provided URL.
             val stringRequest = StringRequest(
