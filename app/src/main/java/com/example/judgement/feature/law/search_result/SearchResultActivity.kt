@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.judgement.R
+import com.example.judgement.api.MyPreference
 import com.example.judgement.data.SearchResultRvData
 import com.example.judgement.databinding.ActivitySearchResultBinding
 import org.xmlpull.v1.XmlPullParser
