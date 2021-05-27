@@ -16,6 +16,8 @@ import com.example.judgement.R
 import com.example.judgement.databinding.FragmentUserBinding
 import com.example.judgement.feature.navigation.MainActivity
 import com.example.judgement.feature.signin.SignInActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.dialog.MaterialDialogs
 
 class UserFragment : Fragment() {
     private lateinit var binding: FragmentUserBinding
@@ -71,7 +73,7 @@ class UserFragment : Fragment() {
     }
 
     private fun requestSignOut() {
-        val builder = AlertDialog.Builder(requireContext(), R.style.Custom_Dialog_Alert)
+        MaterialAlertDialogBuilder(requireContext(), R.style.Custom_Dialog_Alert)
             .setTitle("로그아웃")
             .setMessage("정말 로그아웃 하시겠습니까?")
             .setNegativeButton("CANCEL", null)
@@ -79,11 +81,8 @@ class UserFragment : Fragment() {
                 val intent = Intent(requireContext(), SignInActivity::class.java)
                 startActivity(intent)
                 activity?.finish()
-
                 Toast.makeText(requireContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
-            }
-
-        builder.show()
+            }.show()
     }
 
     companion object {
