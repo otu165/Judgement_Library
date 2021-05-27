@@ -36,6 +36,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.math.min
+import java.time.DayOfWeek
 
 
 class HomeFragment : Fragment() {
@@ -181,9 +182,8 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setNews() {
-        val day = Calendar.DAY_OF_WEEK
+        val day = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul")).get(Calendar.DAY_OF_WEEK)
         val keyword = resources.getStringArray(R.array.bottom_navigation_category)[day - 1]
-        Log.d("TAG", "day : $day"); // ERROR wrong day of week
 
         binding.txtHomeNews.text = "오늘의 뉴스 (키워드 : $keyword)"
 
