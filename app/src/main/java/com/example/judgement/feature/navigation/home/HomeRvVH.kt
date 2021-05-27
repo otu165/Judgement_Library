@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.judgement.R
 import com.example.judgement.data.Items
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerFrameLayout
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -22,6 +24,7 @@ class HomeRvVH(private val view: View) : RecyclerView.ViewHolder(view) {
     private val title: TextView = view.findViewById(R.id.txt_home_news_title)
     private val description: TextView = view.findViewById(R.id.txt_home_news_description)
     private val thumbnail: ImageView = view.findViewById(R.id.img_home_news)
+    private val shimmer: ShimmerFrameLayout = view.findViewById(R.id.shimmer_view_container)
 
     fun bind(data: Items) {
         title.text = stripHtml(data.title)
@@ -42,6 +45,9 @@ class HomeRvVH(private val view: View) : RecyclerView.ViewHolder(view) {
     inner class GetThumbnailAsync internal constructor(var this_url: String) :
         AsyncTask<Any?, Any?, Any?>() {
         private var image: String = ""
+        override fun onPreExecute() {
+            shimmer.startShimmer()
+        }
 
         override fun doInBackground(vararg params: Any?): Any? {
             try {
@@ -69,7 +75,13 @@ class HomeRvVH(private val view: View) : RecyclerView.ViewHolder(view) {
 
         override fun onPostExecute(result: Any?) {
             try {
-                Glide.with(view).load(image).centerCrop().into(thumbnail)
+
+                Glide.with(view).load(image).override(100, 100).centerCrop()
+                    .into(thumbnail)
+                shimmer.stopShimmer()
+                shimmer.visibility = View.GONE
+                
+                thumbnail.visibility = View.VISIBLE
             } catch (i: IllegalArgumentException) {
                 Log.d("HomeRvVH", "doInBackground: no thumbnail")
             }

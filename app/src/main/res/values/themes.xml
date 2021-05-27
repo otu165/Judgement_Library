@@ -15,12 +15,16 @@
     </style>
 
     <!-- Custom AlertDialog -->
-    <style name="Custom.Dialog.Alert" parent="Theme.AppCompat.Light.Dialog">
+    <style name="Custom.Dialog.Alert" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="colorAccent">@color/main_color</item>
         <item name="buttonBarNegativeButtonStyle">@style/NormalFontStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/NormalFontStyle</item>
         <item name="android:windowMinWidthMinor">@dimen/alert_dialog_width_minor</item>
         <item name="android:windowTitleStyle">@style/WindowTitleStyle</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:outlineProvider">none</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="WindowTitleStyle" parent="TextAppearance.AppCompat.Large">

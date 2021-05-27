@@ -33,56 +33,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <!-- AppBar -->
-            <!-- TODO remove underline -->
-<!--            <com.google.android.material.appbar.AppBarLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@color/white"-->
-<!--                android:fitsSystemWindows="true">-->
-
-<!--                <FrameLayout-->
-<!--                    android:id="@+id/toolbar_container"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content">-->
-
-<!--                    <androidx.appcompat.widget.Toolbar-->
-<!--                        android:id="@+id/toolbar_home"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="?attr/actionBarSize"-->
-<!--                        app:menu="@menu/search"-->
-<!--                        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar">-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/toolbar_title"-->
-<!--                            style="@style/HeadFontStyle"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center"-->
-<!--                            android:text="@string/app_name" />-->
-
-<!--                    </androidx.appcompat.widget.Toolbar>-->
-
-<!--                    <com.ferfalk.simplesearchview.SimpleSearchView-->
-<!--                        android:id="@+id/searchView"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:background="@color/white"-->
-<!--                        android:hint="@string/search_hint" />-->
-
-<!--                </FrameLayout>-->
-
-
-<!--            </com.google.android.material.appbar.AppBarLayout>-->
-
-            <!-- graph -->
-            <!--<ImageView
-                android:id="@+id/img_home_graph"
-                style="@style/Margin"
-                android:layout_width="match_parent"
-                android:layout_height="270dp"
-                android:background="@color/light_gray" />-->
-
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pie_chart"
                 android:layout_width="match_parent"
