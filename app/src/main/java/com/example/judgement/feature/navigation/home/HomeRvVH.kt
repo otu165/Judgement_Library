@@ -45,6 +45,7 @@ class HomeRvVH(private val view: View) : RecyclerView.ViewHolder(view) {
     inner class GetThumbnailAsync internal constructor(var this_url: String) :
         AsyncTask<Any?, Any?, Any?>() {
         private var image: String = ""
+
         override fun onPreExecute() {
             shimmer.startShimmer()
         }
@@ -59,7 +60,7 @@ class HomeRvVH(private val view: View) : RecyclerView.ViewHolder(view) {
                 }
                 // extract ogTag
                 for (i in 0 until ogTags.size) {
-                    val tag: Element = ogTags.get(i)
+                    val tag: Element = ogTags[i]
                     val text: String = tag.attr("property")
 
                     if ("og:image" == text) {
@@ -68,15 +69,18 @@ class HomeRvVH(private val view: View) : RecyclerView.ViewHolder(view) {
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
-                Log.d("HomeRvVH", "doInBackground: error")
+                Log.d("HomeRvVH", "doInBackground: error, image : $image")
             }
             return null
         }
 
         override fun onPostExecute(result: Any?) {
             try {
-
-                Glide.with(view).load(image).override(100, 100).centerCrop()
+                Glide.with(view)
+                    .load(image)
+                    .error(view.context.resources.getDrawable(R.drawable.error_thumbnail))
+                    .override(100, 100)
+                    .centerCrop()
                     .into(thumbnail)
                 shimmer.stopShimmer()
                 shimmer.visibility = View.GONE
