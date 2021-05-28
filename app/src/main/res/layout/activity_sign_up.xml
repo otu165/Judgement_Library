@@ -6,7 +6,7 @@
     <data>
         <variable
             name="activity"
-            type="com.example.judgement.feature.signup.SignUpActivity" />
+            type="com.example.judgement.ui.signup.SignUpActivity" />
 
     </data>
 

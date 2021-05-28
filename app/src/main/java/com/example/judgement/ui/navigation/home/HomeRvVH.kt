@@ -1,4 +1,4 @@
-package com.example.judgement.feature.navigation.home
+package com.example.judgement.ui.navigation.home
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.judgement.R
 import com.example.judgement.data.Items
-import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document

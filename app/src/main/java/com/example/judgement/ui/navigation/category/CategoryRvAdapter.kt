@@ -1,4 +1,4 @@
-package com.example.judgement.feature.navigation.category
+package com.example.judgement.ui.navigation.category
 
 import android.content.Context
 import android.view.LayoutInflater

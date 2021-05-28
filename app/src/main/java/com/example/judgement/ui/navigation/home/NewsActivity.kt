@@ -1,9 +1,6 @@
-package com.example.judgement.feature.navigation.home
+package com.example.judgement.ui.navigation.home
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebChromeClient

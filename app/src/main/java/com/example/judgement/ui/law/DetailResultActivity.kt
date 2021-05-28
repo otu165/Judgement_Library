@@ -1,4 +1,4 @@
-package com.example.judgement.feature.law
+package com.example.judgement.ui.law
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="activity"
-            type="com.example.judgement.feature.navigation.scrap.ScrapFragment" />
+            type="com.example.judgement.ui.navigation.scrap.ScrapFragment" />
 
     </data>
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".feature.navigation.scrap.ScrapFragment">
+        tools:context=".ui.navigation.scrap.ScrapFragment">
 
         <!-- top -->
         <TextView

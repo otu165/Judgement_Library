@@ -1,4 +1,4 @@
-package com.example.judgement.feature.navigation.category
+package com.example.judgement.ui.navigation.category
 
 import android.os.Bundle
 import android.util.Log
@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
 import com.example.judgement.databinding.FragmentCategoryBinding
-import com.example.judgement.feature.navigation.MainActivity
-import com.example.judgement.feature.navigation.home.HomeFragment
+import com.example.judgement.ui.navigation.MainActivity
+import com.example.judgement.ui.navigation.home.HomeFragment
 
 class CategoryFragment : Fragment() {
     private lateinit var binding: FragmentCategoryBinding

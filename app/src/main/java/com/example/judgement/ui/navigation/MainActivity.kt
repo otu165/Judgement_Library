@@ -1,21 +1,17 @@
-package com.example.judgement.feature.navigation
+package com.example.judgement.ui.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.example.judgement.R
 import com.example.judgement.databinding.ActivityMainBinding
-import com.example.judgement.databinding.ActivitySignUpBinding
-import com.example.judgement.feature.navigation.category.CategoryFragment
-import com.example.judgement.feature.navigation.home.HomeFragment
-import com.example.judgement.feature.navigation.scrap.ScrapFragment
-import com.example.judgement.feature.navigation.user.UserFragment
-import com.google.android.material.navigation.NavigationView
+import com.example.judgement.ui.navigation.category.CategoryFragment
+import com.example.judgement.ui.navigation.home.HomeFragment
+import com.example.judgement.ui.navigation.scrap.ScrapFragment
+import com.example.judgement.ui.navigation.user.UserFragment
 
 class MainActivity : AppCompatActivity() {
     private var backKeyPressed : Long = 0

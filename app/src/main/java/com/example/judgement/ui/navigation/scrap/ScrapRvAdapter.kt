@@ -1,7 +1,6 @@
-package com.example.judgement.feature.navigation.scrap
+package com.example.judgement.ui.navigation.scrap
 
 import android.content.Context
-import android.opengl.Visibility
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View

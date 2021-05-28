@@ -1,4 +1,4 @@
-package com.example.judgement.feature.navigation.home
+package com.example.judgement.ui.navigation.home
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,7 +7,6 @@ import android.graphics.Rect
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -18,10 +17,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
 import com.example.judgement.api.NaverAPI
 import com.example.judgement.data.GetFilteredNewsItems
-import com.example.judgement.data.Items
 import com.example.judgement.data.NaverNewsData
 import com.example.judgement.databinding.FragmentHomeBinding
-import com.example.judgement.feature.law.search_result.SearchResultActivity
+import com.example.judgement.ui.law.search_result.SearchResultActivity
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -35,8 +33,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.math.min
-import java.time.DayOfWeek
 
 
 class HomeFragment : Fragment() {

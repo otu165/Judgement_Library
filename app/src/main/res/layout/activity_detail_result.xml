@@ -6,7 +6,7 @@
     <data>
         <variable
             name="activity"
-            type="com.example.judgement.feature.law.DetailResultActivity" />
+            type="com.example.judgement.ui.law.DetailResultActivity" />
 
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".feature.law.DetailResultActivity">
+        tools:context=".ui.law.DetailResultActivity">
 
         <!-- top -->
         <LinearLayout

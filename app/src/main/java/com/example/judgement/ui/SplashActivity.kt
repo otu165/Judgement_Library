@@ -1,11 +1,11 @@
-package com.example.judgement.feature
+package com.example.judgement.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.example.judgement.R
-import com.example.judgement.feature.signin.SignInActivity
+import com.example.judgement.ui.signin.SignInActivity
 
 class SplashActivity : AppCompatActivity() {
 

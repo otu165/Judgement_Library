@@ -1,13 +1,10 @@
-package com.example.judgement.feature.navigation.user
+package com.example.judgement.ui.navigation.user
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,8 +19,7 @@ import com.example.judgement.R
 import com.example.judgement.api.MyPreference
 import com.example.judgement.api.MySingleton
 import com.example.judgement.databinding.FragmentUserInfoEditBinding
-import com.example.judgement.feature.navigation.MainActivity
-import com.example.judgement.feature.signin.SignInActivity
+import com.example.judgement.ui.navigation.MainActivity
 
 
 class UserInfoEditFragment : Fragment() {

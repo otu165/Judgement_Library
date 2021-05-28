@@ -6,13 +6,13 @@
     <data>
         <variable
             name="activity"
-            type="com.example.judgement.feature.navigation.MainActivity" />
+            type="com.example.judgement.ui.navigation.MainActivity" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature.navigation.MainActivity">
+        tools:context=".ui.navigation.MainActivity">
 
         <FrameLayout
             android:id="@+id/frame_layout_main"

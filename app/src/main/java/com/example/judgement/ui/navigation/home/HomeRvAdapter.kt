@@ -1,4 +1,4 @@
-package com.example.judgement.feature.navigation.home
+package com.example.judgement.ui.navigation.home
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
-import com.example.judgement.data.HomeRvData
 import com.example.judgement.data.Items
 
 class HomeRvAdapter(private val context: Context): RecyclerView.Adapter<HomeRvVH>() {

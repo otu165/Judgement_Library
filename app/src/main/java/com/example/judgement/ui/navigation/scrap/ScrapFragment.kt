@@ -1,18 +1,14 @@
-package com.example.judgement.feature.navigation.scrap
+package com.example.judgement.ui.navigation.scrap
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Build.*
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.ToggleButton
-import androidx.annotation.RequiresApi
-import androidx.core.view.allViews
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.judgement.R

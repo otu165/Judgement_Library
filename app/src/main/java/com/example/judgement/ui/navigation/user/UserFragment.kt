@@ -1,6 +1,5 @@
-package com.example.judgement.feature.navigation.user
+package com.example.judgement.ui.navigation.user
 
-import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
@@ -14,10 +13,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.judgement.R
 import com.example.judgement.databinding.FragmentUserBinding
-import com.example.judgement.feature.navigation.MainActivity
-import com.example.judgement.feature.signin.SignInActivity
+import com.example.judgement.ui.navigation.MainActivity
+import com.example.judgement.ui.signin.SignInActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.dialog.MaterialDialogs
 
 class UserFragment : Fragment() {
     private lateinit var binding: FragmentUserBinding

@@ -1,4 +1,4 @@
-package com.example.judgement.feature.signup
+package com.example.judgement.ui.signup
 
 import android.content.Context
 import android.content.Intent
@@ -17,7 +17,7 @@ import com.android.volley.toolbox.StringRequest
 import com.example.judgement.R
 import com.example.judgement.api.MySingleton
 import com.example.judgement.databinding.ActivitySignUpBinding
-import com.example.judgement.feature.signin.SignInActivity
+import com.example.judgement.ui.signin.SignInActivity
 
 
 class SignUpActivity : AppCompatActivity() {

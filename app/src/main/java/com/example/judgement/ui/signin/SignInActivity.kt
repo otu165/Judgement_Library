@@ -1,9 +1,8 @@
-package com.example.judgement.feature.signin
+package com.example.judgement.ui.signin
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -13,12 +12,9 @@ import com.example.judgement.R
 import com.example.judgement.api.MyPreference
 import com.example.judgement.api.MySingleton
 import com.example.judgement.databinding.ActivitySignInBinding
-import com.example.judgement.feature.navigation.MainActivity
-import com.example.judgement.feature.signup.SignUpActivity
-import com.google.gson.JsonParser
-import org.json.JSONArray
+import com.example.judgement.ui.navigation.MainActivity
+import com.example.judgement.ui.signup.SignUpActivity
 import org.json.JSONObject
-import com.google.gson.JsonObject as GsonJsonObject
 
 
 class SignInActivity : AppCompatActivity() {
