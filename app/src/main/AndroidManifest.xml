@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
-        android:name=".api.MyPreference"
+        android:name=".util.MyPreference"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,20 +16,20 @@
         android:usesCleartextTraffic="true"
         tools:ignore="Instantiatable">
 
-        <activity android:name=".feature.navigation.home.NewsActivity"></activity>
-        <activity android:name=".feature.law.DetailResultActivity" />
-        <activity android:name=".feature.law.search_result.SearchResultActivity" />
-        <activity android:name=".feature.navigation.user.UserInfoEditActivity" />
-        <activity android:name=".feature.navigation.MainActivity">
+        <activity android:name=".view.main.home.news.NewsActivity"></activity>
+        <activity android:name=".view.detail_result.DetailResultActivity" />
+        <activity android:name=".view.search_result.SearchResultActivity" />
+        <activity android:name=".view.main.user.UserInfoEditActivity" />
+        <activity android:name=".view.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.SplashActivity" />
-        <activity android:name=".feature.signup.SignUpActivity" />
-        <activity android:name=".feature.signin.SignInActivity" />
+        <activity android:name=".view.SplashActivity" />
+        <activity android:name=".view.signup.SignUpActivity" />
+        <activity android:name=".view.signin.SignInActivity" />
     </application>
 
 </manifest>

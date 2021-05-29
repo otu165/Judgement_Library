@@ -7,13 +7,13 @@
     <data>
         <variable
             name="activity_news"
-            type="com.example.judgement.feature.navigation.home.NewsActivity" />
+            type="com.example.judgement.view.main.home.news.NewsActivity" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature.navigation.home.NewsActivity">
+        tools:context=".view.main.home.news.NewsActivity">
 
         <WebView
             android:id="@+id/web_view_news"
