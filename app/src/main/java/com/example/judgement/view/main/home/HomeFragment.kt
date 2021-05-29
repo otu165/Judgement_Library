@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
-import com.example.judgement.adapter.HomeRvAdapter
+import com.example.judgement.adapter.HomeAdapter
 import com.example.judgement.api.NaverAPI
 import com.example.judgement.data.GetFilteredNewsItems
 import com.example.judgement.data.NaverNewsData
@@ -38,7 +38,7 @@ import java.util.*
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var rvAdapter: HomeRvAdapter
+    private lateinit var rvAdapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -207,7 +207,7 @@ class HomeFragment : Fragment() {
 
     private fun setRecyclerViewForNews() {
         val rv = view?.findViewById(R.id.rv_home) as RecyclerView
-        rvAdapter = HomeRvAdapter(requireContext())
+        rvAdapter = HomeAdapter(requireContext())
 
         rv.apply {
             adapter = rvAdapter

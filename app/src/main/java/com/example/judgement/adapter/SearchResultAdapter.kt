@@ -13,7 +13,7 @@ import com.example.judgement.R
 import com.example.judgement.data.SearchResultRvData
 import com.example.judgement.view.detail_result.DetailResultActivity
 
-class SearchResultRvAdapter(
+class SearchResultAdapter(
     val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

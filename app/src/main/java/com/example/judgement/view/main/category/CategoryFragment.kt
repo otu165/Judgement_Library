@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
-import com.example.judgement.adapter.CategoryRvAdapter
+import com.example.judgement.adapter.CategoryAdapter
 import com.example.judgement.databinding.FragmentCategoryBinding
 import com.example.judgement.view.main.MainActivity
 import com.example.judgement.view.main.home.HomeFragment
@@ -40,7 +40,7 @@ class CategoryFragment : Fragment() {
 
     private fun setRecyclerView() {
         val rv = view?.findViewById(R.id.rv_category) as RecyclerView
-        val rvAdapter = CategoryRvAdapter(
+        val rvAdapter = CategoryAdapter(
             requireContext(),
             resources.getStringArray(R.array.bottom_navigation_category)
         )

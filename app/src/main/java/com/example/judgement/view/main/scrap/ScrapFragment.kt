@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.judgement.R
 import com.example.judgement.adapter.ScrapPagerAdapter
-import com.example.judgement.adapter.ScrapRvAdapter
+import com.example.judgement.adapter.ScrapAdapter
 import com.example.judgement.databinding.FragmentScrapBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -62,7 +62,7 @@ class ScrapFragment : Fragment() {
 
         tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                if (scrapManager.scrapRvAdapters[category[tab?.position!!]]?.getItemViewType(tab.position) == ScrapRvAdapter.VISIBLE_TYPE) { // 삭제중
+                if (scrapManager.scrapRvAdapters[category[tab?.position!!]]?.getItemViewType(tab.position) == ScrapAdapter.VISIBLE_TYPE) { // 삭제중
                     binding.toggleScrapRemove.isChecked = true
                     binding.txtScrapList.text = "삭제"
                 } else {
@@ -87,7 +87,7 @@ class ScrapFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 
-                if (scrapManager.scrapRvAdapters[category[position]]?.getItemViewType(position) == ScrapRvAdapter.VISIBLE_TYPE) { // 삭제중
+                if (scrapManager.scrapRvAdapters[category[position]]?.getItemViewType(position) == ScrapAdapter.VISIBLE_TYPE) { // 삭제중
                     binding.toggleScrapRemove.isChecked = true
                     binding.txtScrapList.text = "삭제"
                 } else {
@@ -102,7 +102,7 @@ class ScrapFragment : Fragment() {
             val position = binding.viewPagerScrap.currentItem
 
             if ((it as ToggleButton).isChecked) {
-                scrapManager.scrapRvAdapters[category[position]]?.setItemViewType(ScrapRvAdapter.VISIBLE_TYPE)  // 레이아웃 갱신
+                scrapManager.scrapRvAdapters[category[position]]?.setItemViewType(ScrapAdapter.VISIBLE_TYPE)  // 레이아웃 갱신
                 binding.txtScrapList.text = "삭제"
             } else {
                 // 삭제 아이템 개수 > 0
@@ -111,7 +111,7 @@ class ScrapFragment : Fragment() {
                     scrapManager.scrapRvAdapters[category[position]]!!.toDelete.clear() // 리스트 초기화
                 }
 
-                scrapManager.scrapRvAdapters[category[position]]?.setItemViewType(ScrapRvAdapter.GONE_TYPE)
+                scrapManager.scrapRvAdapters[category[position]]?.setItemViewType(ScrapAdapter.GONE_TYPE)
                 binding.txtScrapList.text = "목록"
             }
         }

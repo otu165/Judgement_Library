@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
-import com.example.judgement.adapter.SearchResultRvAdapter
+import com.example.judgement.adapter.SearchResultAdapter
 import com.example.judgement.data.SearchResultRvData
 import com.example.judgement.databinding.ActivitySearchResultBinding
 import org.xmlpull.v1.XmlPullParser
@@ -25,7 +25,7 @@ import java.net.URL
 
 class SearchResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchResultBinding
-    private lateinit var rvAdapter: SearchResultRvAdapter
+    private lateinit var rvAdapter: SearchResultAdapter
 
     private lateinit var keyword: String
 
@@ -77,7 +77,7 @@ class SearchResultActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        rvAdapter = SearchResultRvAdapter(applicationContext)
+        rvAdapter = SearchResultAdapter(applicationContext)
         getXmlData()
 
         binding.rvSearchResult.apply {

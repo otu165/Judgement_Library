@@ -26,7 +26,7 @@ class ScrapPagerAdapter(
         val rv: RecyclerView = view.findViewById(R.id.rv_scrap)
 
         fun initRecyclerView(category: String) {
-            val rvAdapter = ScrapRvAdapter(view.context, scrapManager)
+            val rvAdapter = ScrapAdapter(view.context, scrapManager)
             scrapManager.scrapRvAdapters[category] = rvAdapter // adapter 저장
 
             rv.apply {
@@ -43,7 +43,7 @@ class ScrapPagerAdapter(
             requestScrapData(category, rvAdapter)
         }
 
-        private fun requestScrapData(category: String, adapter: ScrapRvAdapter) {
+        private fun requestScrapData(category: String, adapter: ScrapAdapter) {
             val call: Call<List<ScrapRvData>> = ServerAPI.server.getScrap(category)
 
             call.enqueue(object : Callback<List<ScrapRvData>> {

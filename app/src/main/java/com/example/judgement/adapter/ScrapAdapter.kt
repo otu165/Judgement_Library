@@ -12,10 +12,10 @@ import com.example.judgement.R
 import com.example.judgement.data.ScrapRvData
 import com.example.judgement.view.main.scrap.ScrapManager
 
-class ScrapRvAdapter(
+class ScrapAdapter(
     private val context: Context,
     private val scrapManager: ScrapManager
-) : RecyclerView.Adapter<ScrapRvAdapter.ScrapRvVH>() {
+) : RecyclerView.Adapter<ScrapAdapter.ScrapRvVH>() {
 
     private var data = listOf<ScrapRvData>()
     private var itemViewType: Int = 0
