@@ -27,6 +27,7 @@ class CategoryAdapter(
 
     override fun getItemCount(): Int = data.size
 
+    /* ViewHolder */
     inner class CategoryViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         private val txtCategory: TextView = view.findViewById(R.id.rv_category_item)
 

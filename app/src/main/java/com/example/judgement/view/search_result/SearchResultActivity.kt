@@ -17,6 +17,7 @@ import com.example.judgement.R
 import com.example.judgement.adapter.SearchResultAdapter
 import com.example.judgement.data.SearchResultRvData
 import com.example.judgement.databinding.ActivitySearchResultBinding
+import com.example.judgement.extension.logd
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.InputStreamReader
@@ -69,7 +70,7 @@ class SearchResultActivity : AppCompatActivity() {
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     // TODO request server data
-                    Log.d(TAG, "selected spinner item : ${p2}");
+                    logd("selected spinner item : ${p2}");
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {}
@@ -147,7 +148,7 @@ class SearchResultActivity : AppCompatActivity() {
         try {
             val queryUrl =
                 "https://www.law.go.kr/DRF/lawSearch.do?OC=judy6647&target=prec&type=XML&mobileYn=Y&query=$keyword&page=$page"
-            Log.d(TAG, "getXmlData: $queryUrl")
+            logd("getXmlData: $queryUrl")
             val url = URL(queryUrl) //문자열로 된 요청 url을 URL 객체로 생성.
             val `is` = url.openStream() //url위치로 입력스트림 연결
             val factory = XmlPullParserFactory.newInstance() //xml파싱을 위한
@@ -237,10 +238,6 @@ class SearchResultActivity : AppCompatActivity() {
             Log.d("error", e.toString())
         }
         return buffer
-    }
-
-    companion object {
-        private const val TAG = "SearchResultActivity"
     }
 }
 

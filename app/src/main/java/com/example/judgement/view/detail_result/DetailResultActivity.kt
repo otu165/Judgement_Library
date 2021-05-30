@@ -14,14 +14,13 @@ class DetailResultActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_result)
         binding.activity = this
 
+        setOnClickListener()
         // TODO 사용자의 스크랩여부에 따라 토글 버튼 Checked 여부 변경하기
+    }
 
+    private fun setOnClickListener() {
         binding.imgDetailResultBack.setOnClickListener {
             this.finish()
         }
-    }
-
-    companion object {
-        private const val TAG = "DetailResultActivity"
     }
 }

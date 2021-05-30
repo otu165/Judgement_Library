@@ -11,7 +11,6 @@ import android.widget.ToggleButton
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.judgement.R
-import com.example.judgement.adapter.ScrapPagerAdapter
 import com.example.judgement.adapter.ScrapAdapter
 import com.example.judgement.databinding.FragmentScrapBinding
 import com.google.android.material.tabs.TabLayout
@@ -33,8 +32,8 @@ class ScrapFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initViewPagerWithTabLayout()
         initRvItemDelete()
@@ -51,6 +50,7 @@ class ScrapFragment : Fragment() {
 
         initTabLayout(viewPager)
     }
+
     @SuppressLint("SetTextI18n")
     private fun initTabLayout(viewPager: ViewPager2) {
         val tab = binding.tabLayoutScrap
@@ -71,12 +71,9 @@ class ScrapFragment : Fragment() {
                 }
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
 
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
-
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
     }
 
@@ -122,9 +119,5 @@ class ScrapFragment : Fragment() {
         val data = scrapManager.scrapRvAdapters[category]?.toDelete // 삭제할 스크랩 리스트
         scrapManager.scrapRvAdapters[category]?.notifyDataSetChanged()
         Toast.makeText(context, "$data 삭제를 요청합니다.", Toast.LENGTH_SHORT).show()
-    }
-
-    companion object {
-        private const val TAG = "ScrapFragment"
     }
 }

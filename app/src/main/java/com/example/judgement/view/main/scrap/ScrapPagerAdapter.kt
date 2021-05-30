@@ -1,7 +1,6 @@
-package com.example.judgement.adapter
+package com.example.judgement.view.main.scrap
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
+import com.example.judgement.adapter.ScrapAdapter
 import com.example.judgement.api.ServerAPI
 import com.example.judgement.data.ScrapRvData
-import com.example.judgement.view.main.scrap.ScrapManager
+import com.example.judgement.extension.logd
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,9 +20,9 @@ class ScrapPagerAdapter(
     private val context: Context,
     private val list: Array<String>,
     val scrapManager: ScrapManager
-) : RecyclerView.Adapter<ScrapPagerAdapter.ScrapPagerVH>() {
+) : RecyclerView.Adapter<ScrapPagerAdapter.ScrapPagerViewHolder>() {
 
-    inner class ScrapPagerVH(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ScrapPagerViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val rv: RecyclerView = view.findViewById(R.id.rv_scrap)
 
         fun initRecyclerView(category: String) {
@@ -60,7 +60,7 @@ class ScrapPagerAdapter(
                 }
 
                 override fun onFailure(call: Call<List<ScrapRvData>>, t: Throwable) {
-                    Log.d("requestScrapData", "onFailure: $t")
+                    logd("onFailure: $t")
                 }
             })
         }
@@ -78,12 +78,12 @@ class ScrapPagerAdapter(
         )
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrapPagerVH {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrapPagerViewHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.scrap_vp_item, parent, false)
-        return ScrapPagerVH(view)
+        return ScrapPagerViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ScrapPagerVH, position: Int) {
+    override fun onBindViewHolder(holder: ScrapPagerViewHolder, position: Int) {
         holder.initRecyclerView(list[position])
     }
 

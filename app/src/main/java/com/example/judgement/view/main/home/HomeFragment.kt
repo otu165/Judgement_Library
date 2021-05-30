@@ -20,6 +20,7 @@ import com.example.judgement.api.NaverAPI
 import com.example.judgement.data.GetFilteredNewsItems
 import com.example.judgement.data.NaverNewsData
 import com.example.judgement.databinding.FragmentHomeBinding
+import com.example.judgement.extension.logd
 import com.example.judgement.view.search_result.SearchResultActivity
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.PieData
@@ -40,6 +41,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var rvAdapter: HomeAdapter
 
+    private lateinit var keyword: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,24 +56,20 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initSearchBar()
-        setGraph()
-        setRecyclerViewForNews()
-        setNews()
+        initGraph()
+        initNews()
     }
 
     // ERROR 첫 번째 history 삭제 안됨 -> library 자체에서 지원 안하는것 확인
     private fun initSearchBar() {
-
         binding.searchBarHome.apply {
             // 검색 동작 리스너
-            setOnSearchActionListener(object :
-                MaterialSearchBar.OnSearchActionListener {
-                override fun onSearchStateChanged(enabled: Boolean) {
-                }
+            setOnSearchActionListener(object : MaterialSearchBar.OnSearchActionListener {
+                override fun onSearchStateChanged(enabled: Boolean) {}
 
                 override fun onSearchConfirmed(text: CharSequence?) {
                     if (text.isNullOrEmpty() || text.isNullOrBlank()) {
@@ -78,15 +77,14 @@ class HomeFragment : Fragment() {
                     } else {
                         Intent(requireContext(), SearchResultActivity::class.java)
                             .putExtra("keyword", text.toString())
-                            .apply {
-                                startActivity(this)
+                            .let {
+                                startActivity(it)
                             }
                         closeSearch()
                     }
                 }
 
-                override fun onButtonClicked(buttonCode: Int) {
-                }
+                override fun onButtonClicked(buttonCode: Int) {}
             })
 
             // 검색 history 클릭 리스너
@@ -94,23 +92,18 @@ class HomeFragment : Fragment() {
                 override fun OnItemClickListener(position: Int, v: View?) {
                     Intent(requireContext(), SearchResultActivity::class.java)
                         .putExtra("keyword", this@apply.lastSuggestions[position].toString())
-                        .apply {
-                            startActivity(this)
+                        .let {
+                            startActivity(it)
                         }
                     closeSearch()
                 }
 
-                override fun OnItemDeleteListener(position: Int, v: View?) {
-                }
+                override fun OnItemDeleteListener(position: Int, v: View?) {}
             })
         }
-
-        // TODO 검색 history 저장 (updateLastSuggestions & setLastSuggestions)
     }
 
-    private fun setGraph() {
-        // TODO attach graph
-
+    private fun initGraph() {
         binding.pieChart.setUsePercentValues(true)
 
         // data Set
@@ -178,38 +171,44 @@ class HomeFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setNews() {
+    private fun initNews() {
+        initNewsTitle()
+        initRecyclerViewForNews()
+        requestNewsData()
+    }
+
+    private fun initNewsTitle() {
         val day = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul")).get(Calendar.DAY_OF_WEEK)
-        val keyword = resources.getStringArray(R.array.bottom_navigation_category)[day - 1]
-
+        keyword = resources.getStringArray(R.array.bottom_navigation_category)[day - 1]
         binding.txtHomeNews.text = "오늘의 뉴스 (키워드 : $keyword)"
+    }
 
+    private fun requestNewsData() {
         val api = NaverAPI.create()
-
         api.getSearchNews("$keyword 피해자 피의자", 100, 1).enqueue(object : Callback<NaverNewsData> {
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onResponse(
                 call: Call<NaverNewsData>,
                 response: Response<NaverNewsData>
             ) {
-                // 성공
-                if (response.isSuccessful) {
+                if (response.isSuccessful) {  // 성공
                     rvAdapter.updateData(GetFilteredNewsItems(response.body()!!.items).getSelectedItems())
                     rvAdapter.notifyDataSetChanged()
+                } else {
+                    logd("onResponse: ${response.errorBody()}")
                 }
             }
 
             override fun onFailure(call: Call<NaverNewsData>, t: Throwable) {
-                // 실패
+                logd("onFailure: ${t.printStackTrace()}")
             }
         })
     }
 
-    private fun setRecyclerViewForNews() {
-        val rv = view?.findViewById(R.id.rv_home) as RecyclerView
+    private fun initRecyclerViewForNews() {
         rvAdapter = HomeAdapter(requireContext())
 
-        rv.apply {
+        binding.rvHome.apply {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(object : RecyclerView.ItemDecoration() {
@@ -225,9 +224,5 @@ class HomeFragment : Fragment() {
         }
 
         rvAdapter.notifyDataSetChanged()
-    }
-
-    companion object {
-        private const val TAG = "HomeFragment"
     }
 }
