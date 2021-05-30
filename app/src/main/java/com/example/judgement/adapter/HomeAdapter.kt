@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.judgement.R
 import com.example.judgement.data.Items
+import com.example.judgement.extension.logd
 import com.example.judgement.view.main.home.news.NewsActivity
 import com.facebook.shimmer.ShimmerFrameLayout
 import org.jsoup.Jsoup
@@ -41,6 +42,7 @@ class HomeAdapter(private val context: Context): RecyclerView.Adapter<HomeAdapte
         data = serverData
     }
 
+    /* ViewHolder */
     inner class HomeViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         private val title: TextView = view.findViewById(R.id.txt_home_news_title)
         private val description: TextView = view.findViewById(R.id.txt_home_news_description)
@@ -90,7 +92,7 @@ class HomeAdapter(private val context: Context): RecyclerView.Adapter<HomeAdapte
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()
-                    Log.d("HomeRvVH", "doInBackground: error, image : $image")
+                    logd("doInBackground: error, image : $image")
                 }
                 return null
             }
@@ -108,7 +110,7 @@ class HomeAdapter(private val context: Context): RecyclerView.Adapter<HomeAdapte
 
                     thumbnail.visibility = View.VISIBLE
                 } catch (i: IllegalArgumentException) {
-                    Log.d("HomeRvVH", "doInBackground: no thumbnail")
+                    logd("doInBackground: no thumbnail")
                 }
             }
         }

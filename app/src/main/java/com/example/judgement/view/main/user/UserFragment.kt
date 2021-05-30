@@ -28,23 +28,30 @@ class UserFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         // TODO UI_update user name (get data from sign in data) and add proper profile image
+        setOnclickListener()
+    }
 
+    private fun setOnclickListener() {
+        // 회원 정보 수정
         binding.txtUserModify.setOnClickListener {
             moveToUserInfoEditFragment()
         }
 
+        // 건의사항
         binding.txtUserSuggestions.setOnClickListener {
             sendSuggestions()
         }
 
+        // 공지사항
         binding.txtUserNotifications.setOnClickListener {
             showNotifications()
         }
 
+        // 로그아웃
         binding.txtUserSignOut.setOnClickListener {
             requestSignOut()
         }

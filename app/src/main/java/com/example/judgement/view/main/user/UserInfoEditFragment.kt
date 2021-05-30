@@ -35,17 +35,24 @@ class UserInfoEditFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        binding.imgEdit.setOnClickListener {
-            // TODO replace User Profile Image
-        }
+        setOnClickListener()
+    }
 
+    private fun setOnClickListener() {
+        // 뒤로가기
         binding.imgEditBack.setOnClickListener {
             (requireActivity() as MainActivity).replaceFragment(UserFragment(), "User")
         }
 
+        // 프로필 사진 변경
+        binding.imgEdit.setOnClickListener {
+            // TODO replace User Profile Image
+        }
+
+        // 수정 제출
         binding.txtEditOk.setOnClickListener {
 
             val id = MyPreference.prefs.getString("id", "")
@@ -55,14 +62,15 @@ class UserInfoEditFragment : Fragment() {
             //  문자열 빈 값 없는지 체크
             if ( TextUtils.isEmpty(pw) || TextUtils.isEmpty(email)
             ) {
-                Toast.makeText(activity!!.applicationContext, "모든 값을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity().applicationContext, "모든 값을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }  else if (email_flag == 0) {
-                Toast.makeText(activity!!.applicationContext, "이메일 중복확인을 해주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity().applicationContext, "이메일 중복확인을 해주세요.", Toast.LENGTH_SHORT).show()
             } else {
                 updateNewAccount( id, pw, email)
             }
         }
 
+        // 수정 취소
         binding.txtEditCancel.setOnClickListener {
             (requireActivity() as MainActivity).replaceFragment(UserFragment(), "User")
         }
@@ -106,7 +114,7 @@ class UserInfoEditFragment : Fragment() {
                 },
                 { binding.txtInputEmail.error = "Error" })
 
-            MySingleton.getInstance(activity!!.baseContext).addToRequestQueue(stringRequest)
+            MySingleton.getInstance(requireActivity().baseContext).addToRequestQueue(stringRequest)
         }
 
         // 패스워드 체크
@@ -134,11 +142,11 @@ class UserInfoEditFragment : Fragment() {
         val request: StringRequest = object : StringRequest(
             Method.POST, url,
             Response.Listener { response ->
-                Toast.makeText(activity!!.applicationContext, "수정 되었습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity().applicationContext, "수정 되었습니다.", Toast.LENGTH_SHORT).show()
                 (requireActivity() as MainActivity).replaceFragment(UserFragment(), "User")
             },
             Response.ErrorListener { error ->
-                Toast.makeText(activity!!.applicationContext, "오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity().applicationContext, "오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
             }
         ) {
             override fun getParams(): Map<String, String> {
@@ -149,7 +157,7 @@ class UserInfoEditFragment : Fragment() {
                 return params
             }
         }
-        MySingleton.getInstance(activity!!.baseContext).addToRequestQueue(request)
+        MySingleton.getInstance(requireActivity().baseContext).addToRequestQueue(request)
     }
 
     companion object {

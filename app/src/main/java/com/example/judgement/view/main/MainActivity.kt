@@ -2,12 +2,12 @@ package com.example.judgement.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.judgement.R
 import com.example.judgement.databinding.ActivityMainBinding
+import com.example.judgement.extension.logd
 import com.example.judgement.view.main.category.CategoryFragment
 import com.example.judgement.view.main.home.HomeFragment
 import com.example.judgement.view.main.scrap.ScrapFragment
@@ -24,13 +24,13 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.activity = this
 
-        attachBaseFragment()
+        initBaseFragment()
         setNavigationSelectedListener()
         binding.bottomNavigationMain.selectedItemId = R.id.home
     }
 
 
-    private fun attachBaseFragment() {
+    private fun initBaseFragment() {
         supportFragmentManager.beginTransaction()
             .add(R.id.frame_layout_main, HomeFragment())
             .commit()
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    public fun replaceFragment(fragment: Fragment, tag: String) {
+    fun replaceFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_layout_main, fragment).commit()
 
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomNavigationMain.selectedItemId = R.id.home
             }
             else -> {
-                Log.d(TAG, "replaceFragment called from unexpected fragment")
+                logd("replaceFragment called from unexpected fragment")
             }
         }
     }
@@ -89,9 +89,5 @@ class MainActivity : AppCompatActivity() {
             this.finish()
             toast.cancel()
         }
-    }
-
-    companion object {
-        private const val TAG = "MainActivity"
     }
 }
