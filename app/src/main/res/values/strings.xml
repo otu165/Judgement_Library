@@ -38,5 +38,6 @@
     </string-array>
 
     <string name="search_hint">원하는 키워드를 검색하세요.</string>
+    <string name="no_search_result">검색 결과가 없습니다.</string>
 
 </resources>

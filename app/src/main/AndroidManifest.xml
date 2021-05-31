@@ -16,10 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="Instantiatable">
 
-        <activity android:name=".view.main.home.news.NewsActivity"></activity>
+        <activity android:name=".view.main.home.news.NewsActivity"/>
         <activity android:name=".view.detail_result.DetailResultActivity" />
         <activity android:name=".view.search_result.SearchResultActivity" />
-        <activity android:name=".view.main.user.UserInfoEditActivity" />
         <activity android:name=".view.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

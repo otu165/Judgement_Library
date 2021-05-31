@@ -45,7 +45,6 @@ class SearchResultActivity : AppCompatActivity() {
 
         initUI()
         initSpinner()
-        initRecyclerView()
         initScrollListener()
     }
 
@@ -57,6 +56,14 @@ class SearchResultActivity : AppCompatActivity() {
         // 총 페이지 수 계산 & 검색결과 개수 반영
         totalCount = (getXmlCnt(keyword)).toString()
         binding.textSearchResultNumber.text = totalCount + " 개"
+
+        // 검색 결과에 따라 View 초기화
+        if (totalCount.toInt() == 0) {
+            binding.rvSearchResult.visibility = View.GONE
+            binding.constraintLayoutSearchResultNothing.visibility = View.VISIBLE
+        } else {
+            initRecyclerView()
+        }
     }
 
     private fun initSpinner() {
@@ -93,6 +100,7 @@ class SearchResultActivity : AppCompatActivity() {
             )
         }
         rvAdapter.notifyDataSetChanged()
+
     }
 
     private fun initScrollListener() {
