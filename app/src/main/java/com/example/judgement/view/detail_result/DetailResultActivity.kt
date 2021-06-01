@@ -11,6 +11,7 @@ class DetailResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.enter_from_bottom, R.anim.none)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_result)
         binding.activity = this
 
@@ -20,7 +21,8 @@ class DetailResultActivity : AppCompatActivity() {
 
     private fun setOnClickListener() {
         binding.imgDetailResultBack.setOnClickListener {
-            this.finish()
+            finish()
+            overridePendingTransition(R.anim.none, R.anim.exit_to_bottom)
         }
     }
 }

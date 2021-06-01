@@ -36,11 +36,14 @@ class SearchResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search_result)
         binding.activitySearchResult = this
 
         binding.imgSearchResultBack.setOnClickListener {
-            this.finish()
+            finish()
+            overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right)
         }
 
         initUI()
@@ -246,6 +249,13 @@ class SearchResultActivity : AppCompatActivity() {
             Log.d("error", e.toString())
         }
         return buffer
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (isFinishing) {
+            overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right)
+        }
     }
 }
 

@@ -14,9 +14,9 @@ import com.example.judgement.view.main.scrap.ScrapFragment
 import com.example.judgement.view.main.user.UserFragment
 
 class MainActivity : AppCompatActivity() {
-    private var backKeyPressed : Long = 0
-
+    private var backKeyPressed: Long = 0
     private lateinit var binding: ActivityMainBinding
+    private var isCategory: Boolean = false  // 현재 카테고리 프래그먼트가 보여지는가?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +26,15 @@ class MainActivity : AppCompatActivity() {
 
         initBaseFragment()
         setNavigationSelectedListener()
-        binding.bottomNavigationMain.selectedItemId = R.id.home
     }
 
 
     private fun initBaseFragment() {
-        supportFragmentManager.beginTransaction()
+        supportFragmentManager
+            .beginTransaction()
             .add(R.id.frame_layout_main, HomeFragment())
             .commit()
+        binding.bottomNavigationMain.selectedItemId = R.id.home
     }
 
     private fun setNavigationSelectedListener() {
@@ -42,16 +43,27 @@ class MainActivity : AppCompatActivity() {
 
             when (item.itemId) {
                 R.id.category -> {
-                    transaction.replace(R.id.frame_layout_main, CategoryFragment()).commit()
+                    isCategory = true
+                    transaction
+                        .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right)
+                        .replace(R.id.frame_layout_main, CategoryFragment())
+                        .commit()
                 }
                 R.id.home -> {
-                    transaction.replace(R.id.frame_layout_main, HomeFragment()).commit()
+                    if (isCategory) {
+                        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+                    }
+
+                    transaction
+                        .replace(R.id.frame_layout_main, HomeFragment()).commit()
                 }
                 R.id.scrap -> {
-                    transaction.replace(R.id.frame_layout_main, ScrapFragment()).commit()
+                    transaction
+                        .replace(R.id.frame_layout_main, ScrapFragment()).commit()
                 }
                 R.id.user -> {
-                    transaction.replace(R.id.frame_layout_main, UserFragment()).commit()
+                    transaction
+                        .replace(R.id.frame_layout_main, UserFragment()).commit()
                 }
             }
 
@@ -61,24 +73,19 @@ class MainActivity : AppCompatActivity() {
 
     fun replaceFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
             .replace(R.id.frame_layout_main, fragment).commit()
 
-        when(tag) {
-            "Home" -> {
-                binding.bottomNavigationMain.selectedItemId = R.id.home
-            }
-            else -> {
-                logd("replaceFragment called from unexpected fragment")
-            }
-        }
+        isCategory = tag == "home"
     }
 
     override fun onBackPressed() {
         val toast = Toast.makeText(this, "종료하시려면 뒤로가기를 한 번 더 누르세요.", Toast.LENGTH_SHORT)
 
         if (binding.bottomNavigationMain.selectedItemId == R.id.category) {
-            supportFragmentManager.beginTransaction().replace(R.id.frame_layout_main, HomeFragment()).commit()
             binding.bottomNavigationMain.selectedItemId = R.id.home
+            isCategory = false
+
             return
         }
 
