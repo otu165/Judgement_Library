@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.example.judgement.R
-import com.example.judgement.data.Item
 import com.example.judgement.databinding.ActivityDetailResultBinding
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document

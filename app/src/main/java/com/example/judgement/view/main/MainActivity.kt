@@ -75,10 +75,7 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(fragment: Fragment, tag: String) {
         when(fragment::class.java.simpleName) {
             "HomeFragment" -> {
-                supportFragmentManager.beginTransaction()
-                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
-                    .replace(R.id.frame_layout_main, fragment).commit()
-
+                binding.bottomNavigationMain.selectedItemId = R.id.home
                 isCategory = tag == "home"
             }
             "UserFragment" -> {
