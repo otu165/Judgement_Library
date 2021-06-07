@@ -47,6 +47,9 @@
         </LinearLayout>
 
         <!-- contents -->
+       <androidx.core.widget.NestedScrollView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/TextPadding"
             android:layout_width="match_parent"
@@ -90,13 +93,13 @@
                 android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@id/detail_result_title">
-
+                <!--사건번호-->
                 <TextView
                     android:id="@+id/txt_detail_result_case_title"
                     style="@style/MiddleFontStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="사건" />
+                    android:text="사건" />
 
                 <TextView
                     android:id="@+id/txt_detail_result_case_description"
@@ -105,9 +108,106 @@
                     android:layout_height="wrap_content"
                     tools:text="2019도 16192 폭력행위등처벌에관한법률위반" />
 
+                <!--판시사항-->
+                <TextView
+                    android:id="@+id/txt_detail_result_case_issue"
+                    style="@style/MiddleFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="판시사항" />
+
+                <TextView
+                    android:id="@+id/txt_detail_result_case_issue_description"
+                    style="@style/NormalFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="자동차 양수인이 양도인으로부터 자동차를 인도받고서도 등록명의의 이전을 하지 않는 경우" />
+
+                <!--판결요지-->
+                <TextView
+                    android:id="@+id/txt_detail_result_case_summary"
+                    style="@style/MiddleFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="판결요지" />
+
+                <TextView
+                    android:id="@+id/txt_detail_result_case_summary_description"
+                    style="@style/NormalFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="양도인은 전전 양수인에 대하여 직접 양수인 명의로 소유권이전등록의 인수절차 이행을 구할 수 없다" />
+
+                <!--원심판결-->
+                <TextView
+                    android:id="@+id/txt_detail_result_case_origin"
+                    style="@style/MiddleFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="원심판결" />
+
+                <TextView
+                    android:id="@+id/txt_detail_result_case_origin_description"
+                    style="@style/NormalFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="의정부지법 2020. 1. 16. 선고 2019나4039 판결" />
+
+                <!--주문-->
+                <TextView
+                    android:id="@+id/txt_detail_result_case_decision"
+                    style="@style/MiddleFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="주문" />
+
+                <TextView
+                    android:id="@+id/txt_detail_result_case_decision_description"
+                    style="@style/NormalFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="상고를 기각한다. 상고비용은 원고가 부담한다." />
+
+                <!--이유-->
+                <TextView
+                    android:id="@+id/txt_detail_result_case_reason"
+                    style="@style/MiddleFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="이유" />
+
+                <TextView
+                    android:id="@+id/txt_detail_result_case_reason_description"
+                    style="@style/NormalFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="상고이유를 판단한다." />
+
+                <!--재판장-->
+                <TextView
+                    android:id="@+id/txt_detail_result_case_judge"
+                    style="@style/MiddleFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="재판장" />
+
+                <TextView
+                    android:id="@+id/txt_detail_result_case_judge_description"
+                    style="@style/NormalFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="대법관 이동원(재판장) 김재형(주심) 민유숙 노태악" />
             </LinearLayout>
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+       </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 </layout>

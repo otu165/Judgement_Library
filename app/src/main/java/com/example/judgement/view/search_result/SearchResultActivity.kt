@@ -154,6 +154,7 @@ class SearchResultActivity : AppCompatActivity() {
         // data index
         var name: String? = null
         var caseNum: String? = null
+        var serialNum: String? = null
 
         // 모든 페이지 파싱 -> 한 페이지씩 파싱하도록 변경
         try {
@@ -183,6 +184,7 @@ class SearchResultActivity : AppCompatActivity() {
                             caseNum = Html.fromHtml(xpp.text).toString()
                         } else if (tag == "판례일련번호") {
                             xpp.next()
+                            serialNum = Html.fromHtml(xpp.text).toString()
                         }
                     }
                     XmlPullParser.TEXT -> {
