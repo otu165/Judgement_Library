@@ -58,6 +58,7 @@ class SearchResultAdapter(val context: Context) : RecyclerView.Adapter<RecyclerV
                 val intent =
                     Intent(view.context.applicationContext, DetailResultActivity::class.java)
                         .putExtra("precId", data.serialNum)
+                        .putExtra("title", data.title)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 view.context.startActivity(intent)
             }

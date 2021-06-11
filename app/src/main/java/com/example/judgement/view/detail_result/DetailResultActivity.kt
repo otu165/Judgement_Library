@@ -38,13 +38,16 @@ class DetailResultActivity : AppCompatActivity() {
     //AsyncTask 정의
     inner class MyAsyncTask: AsyncTask<String, String, ArrayList<String>>(){ //input, progress update type, result type
         lateinit var precId : String  // 법령 일련 번호
+        lateinit var title : String // 사건명
 
         var judgementList: ArrayList<String> = arrayListOf()
 
         override fun onPreExecute() { // background스레드를 실행하기전 준비 단계
             super.onPreExecute()
             precId = intent.getStringExtra("precId") ?: ""
+            title = intent.getStringExtra("title") ?: ""
             logd("precId : $precId")
+            logd("title : $title")
         }
 
         override fun doInBackground(vararg params: String?): ArrayList<String> { // background 스레드로 일처리를 해주는 곳(UI 스레드와 별개로 작동)
@@ -53,61 +56,34 @@ class DetailResultActivity : AppCompatActivity() {
             doc.select("br").append("\n");
 
             // 내용 중에서 원하는 부분을 가져온다.
+
             // 사건번호
             val case: Elements = doc.select("div.subtit1")
-            Log.d("elts", case.text()) // 사건번호
 
             // 판시사항, 판결요지
             val eltsSummary: Elements = doc.select("p.pty4")
-            Log.d("elts", eltsSummary[0].text())
-            Log.d("elts", eltsSummary[1].text())
 
-            // error 원심판결, 주문, 이유
-            val eltsOrigin: Elements = doc.select("p.pty4_dep1")
-            Log.d("elts", eltsOrigin[3].text())
-            Log.d("elts", eltsOrigin[4].text())
-            Log.d("elts", eltsOrigin[5].text())
-
+            // 재판장
             val judge: Elements = doc.select("div.pgroup div")
-            Log.d("elts", judge.text()) // 재판장
-            //Log.d("els", doc.title())
 
             //  사건번호, 판시사항, 판결요지, 원심판결, 주문, 이유, 재판장
             judgementList.add(case.text())
             judgementList.add(eltsSummary[0].text())
             judgementList.add(eltsSummary[1].text())
-            judgementList.add(eltsOrigin[3].text())
-            judgementList.add(eltsOrigin[4].text())
-            judgementList.add(eltsOrigin[5].text())
             judgementList.add(judge.text())
 
-/*
-            elts.forEachIndexed{ index, elem ->
-                val a_href = elem.select("title")
-                //val thumb_img = elem.select("img").attr("src")
-                //val title = elem.select("strong.tit_thumb").text()
-                Log.d("index", a_href.toString())
-
-                //var judgement = Item()
-            }
-*/
             return judgementList
         }
 
         override fun onPostExecute(result: ArrayList<String>?) { // background Thread가 일을 끝마치고 result 리턴
             // 문서제목 출력
             if (result != null) {
-                binding.txtDetailResultTitle.text = result[0]
-                binding.txtDetailResultCaseDescription.text = result[0]
-                binding.txtDetailResultCaseIssueDescription.text = result[1]
-                binding.txtDetailResultCaseSummaryDescription.text = result[2]
-                binding.txtDetailResultCaseOriginDescription.text = result[3]
-                binding.txtDetailResultCaseDecisionDescription.text = result[4]
-                binding.txtDetailResultCaseReasonDescription.text = result[5]
-                binding.txtDetailResultCaseJudgeDescription.text = result[6]
+                binding.txtDetailResultTitle.text = title // 사건명
+                binding.txtDetailResultCaseDescription.text = result[0] // 사건번호
+                binding.txtDetailResultCaseIssueDescription.text = result[1] // 판시사항
+                binding.txtDetailResultCaseSummaryDescription.text = result[2] // 판결요지
+                binding.txtDetailResultCaseJudgeDescription.text = result[3] // 재판장
             }
-//             tv_title.setText(result)
-
         }
     }
 
