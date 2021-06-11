@@ -77,6 +77,7 @@ class HomeFragment : Fragment() {
                     } else {
                         Intent(requireContext(), SearchResultActivity::class.java)
                             .putExtra("keyword", text.toString())
+                            .putExtra("position", 8)
                             .let {
                                 startActivity(it)
                             }

@@ -43,12 +43,6 @@ class DetailResultActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.none, R.anim.exit_to_bottom)
         }
-
-        binding.txtDetailResultOriginal.setOnClickListener {
-            val address = "https://www.law.go.kr/LSW/precInfoP.do?precSeq=${async.precId}&amp;mode=0"
-            startActivity(Intent(this, WebViewActivity::class.java)
-                .putExtra("address", address))
-        }
     }
 
     //AsyncTask 정의
@@ -119,98 +113,4 @@ class DetailResultActivity : AppCompatActivity() {
             }
         }
     }
-
-    // 스크랩 서버 데이터 받아오기
-
-    /* 스크랩 삽입
-    {
-
-    val u_id = "" // user id
-    val c_id = "" // 카테고리 번호
-    val j_id = "" // 사건 번호
-    val j_name = "" // 사건명
-    val j_serial = "" // 일련 번호
-
-    val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/registerScrap.php?u_id=$u_id&c_id=$c_id&j_id=$j_id&j_name=$j_name&j_serial=$j_serial"
-
-    // Request a string response from the provided URL.
-            val stringRequest = StringRequest(
-                Request.Method.GET, url,
-                { response ->
-                    // Display the first 500 characters of the response string.
-                    if (response.equals("Successfully Registered")) {
-                       // 성공
-                    } else {
-                       // 실패
-                    }
-                },
-                { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()})
-
-            // Add the request to the RequestQueue.
-            MySingleton.getInstance(this).addToRequestQueue(stringRequest)
-    }
-    */
-
-    /* 스크랩 삭제
-    {
-
-    val u_id = "" // user id
-    val j_serial = "" // 판례 일련 번호
-
-    val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/deleteScrap.php?u_id=$u_id&j_serial=$j_serial"
-
-    // Request a string response from the provided URL.
-            val stringRequest = StringRequest(
-                Request.Method.GET, url,
-                { response ->
-                    // Display the first 500 characters of the response string.
-                    if (response.equals("Successfully Deleted")) {
-                       // 성공
-                    } else {
-                       // 실패
-                    }
-                },
-                { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()})
-
-            // Add the request to the RequestQueue.
-            MySingleton.getInstance(this).addToRequestQueue(stringRequest)
-    }
-*/
-
-/*    스크랩 조회
-   {
-
-   val u_id = "" // user id
-   val c_id = "" // 카테고리 번호
-
-   val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/retrieveScrap.php?u_id=$u_id&c_id=$c_id"
-
-   // Request a string response from the provided URL.
-           val stringRequest = StringRequest(
-               Request.Method.GET, url,
-               { response ->
-                   // Display the first 500 characters of the response string.
-                   var strResp = response.toString()
-                   val jsonArray: JSONArray = JSONArray(strResp)
-                   for (var i = 0 i < jsonArray.length (); i++) {
-                       val jsonObject = jsonArray.getJSONObject(i)
-
-                       val title = jsonObject.getString("title")
-                       val description = jsonObject.getString("description")
-                       val date = jsonObject.getString("date")
-                       val serial = jsonObject.getString("serial")
-                    }
-
-                   if (!title.isNullOrEmpty()) {
-                       // 성공
-                   } else {
-                      // 실패
-                    }
-               },
-               { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()})
-
-           // Add the request to the RequestQueue.
-           MySingleton.getInstance(this).addToRequestQueue(stringRequest)
-   }*/
-
 }

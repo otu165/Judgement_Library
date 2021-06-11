@@ -22,7 +22,7 @@ class CategoryAdapter(
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position], position)
     }
 
     override fun getItemCount(): Int = data.size
@@ -31,12 +31,13 @@ class CategoryAdapter(
     inner class CategoryViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         private val txtCategory: TextView = view.findViewById(R.id.rv_category_item)
 
-        fun bind(category: String) {
+        fun bind(category: String, position: Int) {
             txtCategory.text = category
 
             view.setOnClickListener {
                 val intent = Intent(view.context, SearchResultActivity::class.java)
                     .putExtra("keyword", category)
+                    .putExtra("position", position + 1)
                 view.context.startActivity(intent)
             }
         }

@@ -29,6 +29,7 @@ class SearchResultActivity : AppCompatActivity() {
     private lateinit var rvAdapter: SearchResultAdapter
 
     private lateinit var keyword: String
+    private lateinit var position: String
 
     private var isLoading = true
     private var page: Int = 1
@@ -55,6 +56,9 @@ class SearchResultActivity : AppCompatActivity() {
         // search keyword 받기
         intent.getStringExtra("keyword")?.apply { keyword = this }
         binding.txtSearchResultKeyword.text = keyword
+
+        // position 받기
+        position = intent.getIntExtra("position", 0).toString()
 
         // 총 페이지 수 계산 & 검색결과 개수 반영
         totalCount = (getXmlCnt(keyword)).toString()
@@ -88,7 +92,7 @@ class SearchResultActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        rvAdapter = SearchResultAdapter(applicationContext)
+        rvAdapter = SearchResultAdapter(applicationContext, position)
         getXmlData()
 
         binding.rvSearchResult.apply {

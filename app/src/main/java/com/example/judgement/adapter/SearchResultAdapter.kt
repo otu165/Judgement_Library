@@ -9,11 +9,19 @@ import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
+import com.example.judgement.api.ServerAPI
 import com.example.judgement.data.SearchResultData
 import com.example.judgement.extension.logd
+import com.example.judgement.util.MyPreference
 import com.example.judgement.view.detail_result.DetailResultActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class SearchResultAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SearchResultAdapter(
+    val context: Context,
+    val pos: String
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val data: MutableList<SearchResultData?> = mutableListOf()
 
@@ -31,7 +39,7 @@ class SearchResultAdapter(val context: Context) : RecyclerView.Adapter<RecyclerV
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
-            holder.bind(data[position]!!, position)
+            holder.bind(data[position]!!)
         }
     }
 
@@ -46,11 +54,19 @@ class SearchResultAdapter(val context: Context) : RecyclerView.Adapter<RecyclerV
         val description: TextView = view.findViewById(R.id.txt_search_result_description)
         val scrap: ToggleButton = view.findViewById(R.id.toggle_search_result_scrap)
 
-        fun bind(data: SearchResultData, position: Int) {
+        fun bind(data: SearchResultData) {
             title.text = data.title
             description.text = data.description
             if (data.scrap) {
                 scrap.toggle()
+            }
+
+            scrap.setOnClickListener {
+                if (scrap.isChecked) { // 스크랩 추가
+                    requestScrap(data)
+                } else { // 스크랩 삭제
+
+                }
             }
 
             view.setOnClickListener {
@@ -62,6 +78,35 @@ class SearchResultAdapter(val context: Context) : RecyclerView.Adapter<RecyclerV
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 view.context.startActivity(intent)
             }
+        }
+
+        private fun requestScrap(data: SearchResultData) {
+            logd("requestScrap")
+            val call = ServerAPI.server.addScrap(
+                MyPreference.prefs.getString("id", ""),
+                pos,
+                data.description,
+                data.title,
+                data.serialNum
+            )
+
+            call.enqueue(object: Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    if (response.isSuccessful) {
+                        logd("${response.body()}")
+                    } else {
+                        logd("fail")
+                    }
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    logd("error : $t")
+                }
+            })
+        }
+
+        fun removeScrap() {
+
         }
     }
 

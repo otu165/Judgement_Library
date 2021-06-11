@@ -40,7 +40,7 @@ class ScrapFragment : Fragment() {
     }
 
     private fun initViewPagerWithTabLayout() {
-        category = resources.getStringArray(R.array.bottom_navigation_category)
+        category = resources.getStringArray(R.array.bottom_navigation_category).plus("기타")
 
         val viewPager = binding.viewPagerScrap
         pagerAdapter = ScrapPagerAdapter(requireContext(), category, scrapManager)
@@ -56,7 +56,7 @@ class ScrapFragment : Fragment() {
         val tab = binding.tabLayoutScrap
 
         TabLayoutMediator(tab, viewPager) { tab, position ->
-            category = resources.getStringArray(R.array.bottom_navigation_category)
+            category = resources.getStringArray(R.array.bottom_navigation_category).plus("기타")
             tab.text = category[position]
         }.attach()
 
