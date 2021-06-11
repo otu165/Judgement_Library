@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="Instantiatable">
 
-        <activity android:name=".view.main.home.news.NewsActivity"/>
+        <activity android:name=".view.WebViewActivity"/>
         <activity android:name=".view.detail_result.DetailResultActivity" />
         <activity android:name=".view.search_result.SearchResultActivity" />
         <activity android:name=".view.main.MainActivity">

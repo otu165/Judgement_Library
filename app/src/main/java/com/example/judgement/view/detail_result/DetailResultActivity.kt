@@ -1,20 +1,18 @@
 package com.example.judgement.view.detail_result
 
 import android.annotation.SuppressLint
-import android.content.ClipData
 import android.content.Intent
 import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import com.example.judgement.R
 import com.example.judgement.databinding.ActivityDetailResultBinding
 import com.example.judgement.extension.logd
-import com.example.judgement.view.main.home.news.NewsActivity
+import com.example.judgement.view.WebViewActivity
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -44,7 +42,7 @@ class DetailResultActivity : AppCompatActivity() {
 
         binding.txtDetailResultOriginal.setOnClickListener {
             val address = "https://www.law.go.kr/LSW/precInfoP.do?precSeq=${async.precId}&amp;mode=0"
-            startActivity(Intent(this, NewsActivity::class.java)
+            startActivity(Intent(this, WebViewActivity::class.java)
                 .putExtra("address", address))
         }
     }

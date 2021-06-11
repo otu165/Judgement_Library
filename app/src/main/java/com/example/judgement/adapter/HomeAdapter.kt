@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.judgement.R
 import com.example.judgement.data.Items
 import com.example.judgement.extension.logd
-import com.example.judgement.view.main.home.news.NewsActivity
+import com.example.judgement.view.WebViewActivity
 import com.facebook.shimmer.ShimmerFrameLayout
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -55,7 +54,7 @@ class HomeAdapter(private val context: Context): RecyclerView.Adapter<HomeAdapte
             GetThumbnailAsync(data.link).execute()
 
             view.setOnClickListener {
-                val intent = Intent(view.context, NewsActivity::class.java)
+                val intent = Intent(view.context, WebViewActivity::class.java)
                     .putExtra("address", data.link)
 
                 view.context.startActivity(intent)

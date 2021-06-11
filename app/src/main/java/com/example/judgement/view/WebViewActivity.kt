@@ -1,4 +1,4 @@
-package com.example.judgement.view.main.home.news
+package com.example.judgement.view
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +13,7 @@ import com.example.judgement.databinding.ActivityNewsBinding
  * HomeFragment 에서 사용자가 뉴스를 클릭한 경우 보여줄 WebView
  */
 
-class NewsActivity : AppCompatActivity() {
+class WebViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
