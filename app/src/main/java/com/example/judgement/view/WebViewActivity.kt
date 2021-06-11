@@ -1,4 +1,4 @@
-package com.example.judgement.view.main.home.news
+package com.example.judgement.view
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +13,7 @@ import com.example.judgement.databinding.ActivityNewsBinding
  * HomeFragment 에서 사용자가 뉴스를 클릭한 경우 보여줄 WebView
  */
 
-class NewsActivity : AppCompatActivity() {
+class WebViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,15 +27,20 @@ class NewsActivity : AppCompatActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     private fun initWebView() {
         intent.getStringExtra("address")?.let {
-            binding.webViewNews.apply {
-                // 자바스크립트 허용
-                settings.javaScriptEnabled = true
+            binding.webViewNews.settings.apply {
+                useWideViewPort = true
+                javaScriptEnabled = true
+                domStorageEnabled = false
+                allowFileAccess = true
+                setAppCacheEnabled(false)
+                setSupportZoom(true)
+                builtInZoomControls = true
+            }
 
-                // 새 창 뜨기 방지
+            binding.webViewNews.apply {
                 webViewClient = WebViewClient()
                 webChromeClient = WebChromeClient()
 
-                // 주소 연결
                 loadUrl(it)
             }
         }
