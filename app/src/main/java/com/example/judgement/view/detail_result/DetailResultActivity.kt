@@ -1,20 +1,27 @@
 package com.example.judgement.view.detail_result
 
+import android.annotation.SuppressLint
 import android.content.ClipData
+import android.content.Intent
+import android.graphics.Color
 import android.os.AsyncTask
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import com.example.judgement.R
 import com.example.judgement.databinding.ActivityDetailResultBinding
 import com.example.judgement.extension.logd
+import com.example.judgement.view.main.home.news.NewsActivity
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
 class DetailResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailResultBinding
+    private lateinit var async: MyAsyncTask
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +30,8 @@ class DetailResultActivity : AppCompatActivity() {
         binding.activity = this
 
         setOnClickListener()
-        MyAsyncTask().execute()
+        async = MyAsyncTask()
+        async.execute()
 
         // TODO 사용자의 스크랩여부에 따라 토글 버튼 Checked 여부 변경하기
     }
@@ -32,6 +40,12 @@ class DetailResultActivity : AppCompatActivity() {
         binding.imgDetailResultBack.setOnClickListener {
             finish()
             overridePendingTransition(R.anim.none, R.anim.exit_to_bottom)
+        }
+
+        binding.txtDetailResultOriginal.setOnClickListener {
+            val address = "https://www.law.go.kr/LSW/precInfoP.do?precSeq=${async.precId}&amp;mode=0"
+            startActivity(Intent(this, NewsActivity::class.java)
+                .putExtra("address", address))
         }
     }
 
@@ -75,14 +89,21 @@ class DetailResultActivity : AppCompatActivity() {
             return judgementList
         }
 
+        @SuppressLint("ResourceType")
+        @RequiresApi(Build.VERSION_CODES.M)
         override fun onPostExecute(result: ArrayList<String>?) { // background Thread가 일을 끝마치고 result 리턴
             // 문서제목 출력
             if (result != null) {
                 binding.txtDetailResultTitle.text = title // 사건명
+                binding.txtDetailResultTitle.setBackgroundColor(Color.TRANSPARENT)
                 binding.txtDetailResultCaseDescription.text = result[0] // 사건번호
+                binding.txtDetailResultCaseDescription.setBackgroundColor(Color.TRANSPARENT)
                 binding.txtDetailResultCaseIssueDescription.text = result[1] // 판시사항
+                binding.txtDetailResultCaseIssueDescription.setBackgroundColor(Color.TRANSPARENT)
                 binding.txtDetailResultCaseSummaryDescription.text = result[2] // 판결요지
+                binding.txtDetailResultCaseSummaryDescription.setBackgroundColor(Color.TRANSPARENT)
                 binding.txtDetailResultCaseJudgeDescription.text = result[3] // 재판장
+                binding.txtDetailResultCaseJudgeDescription.setBackgroundColor(Color.TRANSPARENT)
             }
         }
     }

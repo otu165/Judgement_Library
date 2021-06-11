@@ -40,4 +40,6 @@
     <string name="search_hint">원하는 키워드를 검색하세요.</string>
     <string name="no_search_result">검색 결과가 없습니다.</string>
 
+    <string name="original">더 자세한 판례 정보를 원한다면? <b><u>판례 원문 보기</u></b></string>
+
 </resources>

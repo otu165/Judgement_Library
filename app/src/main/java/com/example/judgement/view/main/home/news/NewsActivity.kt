@@ -27,15 +27,20 @@ class NewsActivity : AppCompatActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     private fun initWebView() {
         intent.getStringExtra("address")?.let {
-            binding.webViewNews.apply {
-                // 자바스크립트 허용
-                settings.javaScriptEnabled = true
+            binding.webViewNews.settings.apply {
+                useWideViewPort = true
+                javaScriptEnabled = true
+                domStorageEnabled = false
+                allowFileAccess = true
+                setAppCacheEnabled(false)
+                setSupportZoom(true)
+                builtInZoomControls = true
+            }
 
-                // 새 창 뜨기 방지
+            binding.webViewNews.apply {
                 webViewClient = WebViewClient()
                 webChromeClient = WebChromeClient()
 
-                // 주소 연결
                 loadUrl(it)
             }
         }
