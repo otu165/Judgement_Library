@@ -2,7 +2,6 @@ package com.example.judgement.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +9,13 @@ import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
-import com.example.judgement.data.SearchResultRvData
+import com.example.judgement.data.SearchResultData
 import com.example.judgement.extension.logd
 import com.example.judgement.view.detail_result.DetailResultActivity
 
 class SearchResultAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val data: MutableList<SearchResultRvData?> = mutableListOf()
+    val data: MutableList<SearchResultData?> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         if (viewType == VIEW_TYPE_ITEM) {
@@ -47,7 +46,7 @@ class SearchResultAdapter(val context: Context) : RecyclerView.Adapter<RecyclerV
         val description: TextView = view.findViewById(R.id.txt_search_result_description)
         val scrap: ToggleButton = view.findViewById(R.id.toggle_search_result_scrap)
 
-        fun bind(data: SearchResultRvData, position: Int) {
+        fun bind(data: SearchResultData, position: Int) {
             title.text = data.title
             description.text = data.description
             if (data.scrap) {
@@ -58,6 +57,7 @@ class SearchResultAdapter(val context: Context) : RecyclerView.Adapter<RecyclerV
                 logd("view clicked");
                 val intent =
                     Intent(view.context.applicationContext, DetailResultActivity::class.java)
+                        .putExtra("precId", data.serialNum)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 view.context.startActivity(intent)
             }

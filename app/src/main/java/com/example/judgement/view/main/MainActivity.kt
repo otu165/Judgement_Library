@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private var backKeyPressed: Long = 0
     private lateinit var binding: ActivityMainBinding
     private var isCategory: Boolean = false  // 현재 카테고리 프래그먼트가 보여지는가?
+    private var isEdit: Boolean = false  // 회원 정보 수정 프래그먼트가 보여지는가?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,11 +73,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun replaceFragment(fragment: Fragment, tag: String) {
-        supportFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
-            .replace(R.id.frame_layout_main, fragment).commit()
+        when(fragment::class.java.simpleName) {
+            "HomeFragment" -> {
+                binding.bottomNavigationMain.selectedItemId = R.id.home
+                isCategory = tag == "home"
+            }
+            "UserFragment" -> {
+                supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right)
+                    .replace(R.id.frame_layout_main, fragment).commit()
 
-        isCategory = tag == "home"
+                isEdit = false
+            }
+            "UserInfoEditFragment" -> {
+                supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+                    .replace(R.id.frame_layout_main, fragment).commit()
+
+                isEdit = true
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -86,6 +102,15 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigationMain.selectedItemId = R.id.home
             isCategory = false
 
+            return
+        }
+
+        if (isEdit) {
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right)
+                .replace(R.id.frame_layout_main, UserFragment()).commit()
+
+            isEdit = false
             return
         }
 

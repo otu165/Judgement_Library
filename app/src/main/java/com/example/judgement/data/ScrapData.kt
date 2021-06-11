@@ -1,7 +1,7 @@
 package com.example.judgement.data
 
-data class SearchResultRvData(
+data class ScrapData(
     val title: String,
     val description: String,
-    val scrap: Boolean
+    val date: String
 )

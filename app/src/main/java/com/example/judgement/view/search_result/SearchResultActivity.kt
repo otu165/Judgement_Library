@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
 import com.example.judgement.adapter.SearchResultAdapter
-import com.example.judgement.data.SearchResultRvData
+import com.example.judgement.data.SearchResultData
 import com.example.judgement.databinding.ActivitySearchResultBinding
 import com.example.judgement.extension.logd
 import org.xmlpull.v1.XmlPullParser
@@ -193,8 +193,7 @@ class SearchResultActivity : AppCompatActivity() {
                         tag = xpp.name //테그 이름 얻어오기
                         if (tag == "prec") {
                             rvAdapter.data.add(
-//                                rvAdapter.data.size,
-                                SearchResultRvData(name.toString(), caseNum.toString(), false)
+                                SearchResultData(name.toString(), caseNum.toString(), serialNum.toString(),false)
                             )
                         }
                     }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
 import com.example.judgement.adapter.ScrapAdapter
 import com.example.judgement.api.ServerAPI
-import com.example.judgement.data.ScrapRvData
+import com.example.judgement.data.ScrapData
 import com.example.judgement.extension.logd
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,12 +44,12 @@ class ScrapPagerAdapter(
         }
 
         private fun requestScrapData(category: String, adapter: ScrapAdapter) {
-            val call: Call<List<ScrapRvData>> = ServerAPI.server.getScrap(category)
+            val call: Call<List<ScrapData>> = ServerAPI.server.getScrap(category)
 
-            call.enqueue(object : Callback<List<ScrapRvData>> {
+            call.enqueue(object : Callback<List<ScrapData>> {
                 override fun onResponse(
-                    call: Call<List<ScrapRvData>>,
-                    response: Response<List<ScrapRvData>>
+                    call: Call<List<ScrapData>>,
+                    response: Response<List<ScrapData>>
                 ) {
                     if (response.isSuccessful) {
                         adapter.updateData(response.body()!!)
@@ -59,22 +59,22 @@ class ScrapPagerAdapter(
                     }
                 }
 
-                override fun onFailure(call: Call<List<ScrapRvData>>, t: Throwable) {
+                override fun onFailure(call: Call<List<ScrapData>>, t: Throwable) {
                     logd("onFailure: $t")
                 }
             })
         }
 
         private fun getTempData() = listOf(
-            ScrapRvData("제목", "설명", "날짜"),
-            ScrapRvData("제목", "설명", "날짜"),
-            ScrapRvData("제목", "설명", "날짜"),
-            ScrapRvData("제목", "설명", "날짜"),
-            ScrapRvData("제목", "설명", "날짜"),
-            ScrapRvData("제목", "설명", "날짜"),
-            ScrapRvData("제목", "설명", "날짜"),
-            ScrapRvData("제목", "설명", "날짜"),
-            ScrapRvData("제목", "설명", "날짜"),
+            ScrapData("제목", "설명", "날짜"),
+            ScrapData("제목", "설명", "날짜"),
+            ScrapData("제목", "설명", "날짜"),
+            ScrapData("제목", "설명", "날짜"),
+            ScrapData("제목", "설명", "날짜"),
+            ScrapData("제목", "설명", "날짜"),
+            ScrapData("제목", "설명", "날짜"),
+            ScrapData("제목", "설명", "날짜"),
+            ScrapData("제목", "설명", "날짜"),
         )
     }
 
