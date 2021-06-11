@@ -8,7 +8,7 @@ import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
-import com.example.judgement.data.ScrapRvData
+import com.example.judgement.data.ScrapData
 import com.example.judgement.extension.logd
 import com.example.judgement.view.main.scrap.ScrapManager
 
@@ -17,7 +17,7 @@ class ScrapAdapter(
     private val scrapManager: ScrapManager
 ) : RecyclerView.Adapter<ScrapAdapter.ScrapViewHolder>() {
 
-    private var data = listOf<ScrapRvData>()
+    private var data = listOf<ScrapData>()
     private var itemViewType: Int = 0
     val toDelete = mutableListOf<Int>() // 삭제 리스트
 
@@ -47,7 +47,7 @@ class ScrapAdapter(
         notifyDataSetChanged()
     }
 
-    fun updateData(latestData: List<ScrapRvData>) {
+    fun updateData(latestData: List<ScrapData>) {
         data = latestData
         notifyDataSetChanged()
     }
@@ -59,7 +59,7 @@ class ScrapAdapter(
         private val date: TextView = view.findViewById(R.id.txt_scrap_date)
         private val toggleButton: ToggleButton = view.findViewById(R.id.toggle_scrap_item_delete)
 
-        fun bind(data: ScrapRvData, position: Int) {
+        fun bind(data: ScrapData, position: Int) {
             title.text = data.title
             description.text = data.description
             date.text = data.date

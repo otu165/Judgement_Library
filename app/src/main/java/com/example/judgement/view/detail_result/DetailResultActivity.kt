@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.example.judgement.R
 import com.example.judgement.databinding.ActivityDetailResultBinding
+import com.example.judgement.extension.logd
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -36,12 +37,14 @@ class DetailResultActivity : AppCompatActivity() {
 
     //AsyncTask 정의
     inner class MyAsyncTask: AsyncTask<String, String, ArrayList<String>>(){ //input, progress update type, result type
-        private var precId : String = "215415"
+        lateinit var precId : String  // 법령 일련 번호
 
         var judgementList: ArrayList<String> = arrayListOf()
 
         override fun onPreExecute() { // background스레드를 실행하기전 준비 단계
             super.onPreExecute()
+            precId = intent.getStringExtra("precId") ?: ""
+            logd("precId : $precId")
         }
 
         override fun doInBackground(vararg params: String?): ArrayList<String> { // background 스레드로 일처리를 해주는 곳(UI 스레드와 별개로 작동)
@@ -59,11 +62,11 @@ class DetailResultActivity : AppCompatActivity() {
             Log.d("elts", eltsSummary[0].text())
             Log.d("elts", eltsSummary[1].text())
 
-            // 원심판결, 주문, 이유
+            // error 원심판결, 주문, 이유
             val eltsOrigin: Elements = doc.select("p.pty4_dep1")
+            Log.d("elts", eltsOrigin[3].text())
+            Log.d("elts", eltsOrigin[4].text())
             Log.d("elts", eltsOrigin[5].text())
-            Log.d("elts", eltsOrigin[6].text())
-            Log.d("elts", eltsOrigin[7].text())
 
             val judge: Elements = doc.select("div.pgroup div")
             Log.d("elts", judge.text()) // 재판장
@@ -73,9 +76,9 @@ class DetailResultActivity : AppCompatActivity() {
             judgementList.add(case.text())
             judgementList.add(eltsSummary[0].text())
             judgementList.add(eltsSummary[1].text())
+            judgementList.add(eltsOrigin[3].text())
+            judgementList.add(eltsOrigin[4].text())
             judgementList.add(eltsOrigin[5].text())
-            judgementList.add(eltsOrigin[6].text())
-            judgementList.add(eltsOrigin[7].text())
             judgementList.add(judge.text())
 
 /*
@@ -103,7 +106,7 @@ class DetailResultActivity : AppCompatActivity() {
                 binding.txtDetailResultCaseReasonDescription.text = result[5]
                 binding.txtDetailResultCaseJudgeDescription.text = result[6]
             }
-            // tv_title.setText(result)
+//             tv_title.setText(result)
 
         }
     }
