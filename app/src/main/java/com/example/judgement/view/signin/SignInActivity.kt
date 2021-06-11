@@ -32,7 +32,7 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // 아이디 중복확인
+        // 로그인
         binding.signIn.setOnClickListener {
             val id = binding.loginID.text.toString().trim()
             val pw = binding.loginPW.text.toString().trim()
@@ -46,9 +46,10 @@ class SignInActivity : AppCompatActivity() {
                     // Display the first 500 characters of the response string.
                     var strResp = response.toString()
                     val jsonObj: JSONObject = JSONObject(strResp)
-                    val name: String = jsonObj.getString("name")
+                    var name: String? = null
+                    name = jsonObj.getString("name")
 
-                    if (name.isNotEmpty()) {
+                    if (!name.isNullOrEmpty()) {
 
                         MyPreference.prefs.setString("id",id)
                         MyPreference.prefs.setString("pw",id)
