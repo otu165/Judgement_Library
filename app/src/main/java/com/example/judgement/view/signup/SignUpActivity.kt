@@ -21,8 +21,8 @@ import com.example.judgement.view.signin.SignInActivity
 
 
 class SignUpActivity : AppCompatActivity() {
-    var id_flag : Int = 0
-    var email_flag : Int = 0
+    private var id_flag : Int = 0 // 아이디 중복 여부 체크
+    private var email_flag : Int = 0 // 이메일 중복 여부 체크
 
     private lateinit var binding: ActivitySignUpBinding
 
@@ -40,7 +40,7 @@ class SignUpActivity : AppCompatActivity() {
             val id = binding.id.text.toString().trim()
 
             val url =
-                "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/user_check.php?id=$id"
+                "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/userCheck.php?id=$id"
 
             // Request a string response from the provided URL.
             val stringRequest = StringRequest(
@@ -48,6 +48,7 @@ class SignUpActivity : AppCompatActivity() {
                 { response ->
                     // Display the first 500 characters of the response string.
                     if (response.equals("Available")) {
+                        id_flag = 1
                         binding.idCheckTxt.helperText = "사용 가능한 아이디 입니다"
                         val mHandler = Handler()
                         mHandler.postDelayed({
@@ -56,6 +57,7 @@ class SignUpActivity : AppCompatActivity() {
 
                     } else {
                         binding.idCheckTxt.error = "중복된 아이디 입니다"
+                        id_flag = 2
                     }
                 },
                 { binding.idCheckTxt.error = "Error" })
@@ -86,10 +88,13 @@ class SignUpActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) =
                 if (!Patterns.EMAIL_ADDRESS.matcher(s.toString()).matches()) {
                     binding.emailCheckTxt.error = "이메일 형식으로 입력해주세요." // 경고 메세지
-                    //email.setBackgroundResource(com.example.judgement.R.drawable.red_edge) // 적색 테두리 적용
+                    binding.emailCheckBtn.isEnabled = false
+                } else if (email_flag == 2) {
+                    binding.emailCheckTxt.error = "중복된 이메일 입니다"
                 } else {
                     binding.emailCheckTxt.error = null //에러 메세지 제거
-                    //email.setBackgroundResource(com.example.judgement.R.drawable.edge) //테투리 흰색으로 변경
+                    binding.emailCheckBtn.isEnabled = true
+
                 } // afterTextChanged()..
         });
 
@@ -98,7 +103,8 @@ class SignUpActivity : AppCompatActivity() {
             email_flag = 1
             val email = binding.email.text.toString().trim()
 
-            val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/email_check.php?email=" + email
+            val url =
+                "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/emailCheck.php?email=$email"
 
             // Request a string response from the provided URL.
             val stringRequest = StringRequest(
@@ -106,6 +112,7 @@ class SignUpActivity : AppCompatActivity() {
                 { response ->
                     // Display the first 500 characters of the response string.
                     if (response.equals("Available")) {
+                        email_flag = 1
                         binding.emailCheckTxt.helperText = "사용 가능한 이메일 입니다"
                         val mHandler = Handler()
                         mHandler.postDelayed({
@@ -113,6 +120,7 @@ class SignUpActivity : AppCompatActivity() {
                         }, 3000) // 3초후
                     } else {
                         binding.emailCheckTxt.error = "중복된 이메일 입니다"
+                        email_flag = 2
                     }
                 },
                 { binding.emailCheckTxt.error = "Error" })
@@ -142,8 +150,11 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "아이디 중복확인을 해주세요.", Toast.LENGTH_SHORT).show()
             } else if (email_flag == 0){
                 Toast.makeText(this, "이메일 중복확인을 해주세요.", Toast.LENGTH_SHORT).show()
-            }
-            else {
+            } else if (id_flag == 2){
+                Toast.makeText(this, "아이디가 중복되었습니다.", Toast.LENGTH_SHORT).show()
+            } else if (email_flag == 2){
+                Toast.makeText(this, "이메일이 중복되었습니다.", Toast.LENGTH_SHORT).show()
+            } else {
                 registerNewAccount(this, id, pw, email, name)
             }
         }
