@@ -8,17 +8,23 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
+import android.widget.ToggleButton
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.judgement.R
+import com.example.judgement.api.ServerAPI
 import com.example.judgement.databinding.ActivityDetailResultBinding
 import com.example.judgement.extension.logd
+import com.example.judgement.util.MyPreference
 import com.example.judgement.view.WebViewActivity
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.safety.Whitelist
 import org.jsoup.select.Elements
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class DetailResultActivity : AppCompatActivity() {
@@ -43,6 +49,58 @@ class DetailResultActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.none, R.anim.exit_to_bottom)
         }
+
+        binding.toggleDetailResultScrap.setOnClickListener {
+            if ((it as ToggleButton).isChecked) {  // 스크랩 해제
+                addScrap()
+            } else {  // 스크랩 추가
+                removeScrap()
+            }
+        }
+    }
+
+    private fun addScrap() {
+        logd("requestScrap")
+        val call = ServerAPI.server.addScrap(
+            MyPreference.prefs.getString("id", ""), // 사용자 아이디
+            intent.getStringExtra("pos")?:"", // 카테고리 번호
+            intent.getStringExtra("description")?:"", // 형량 2020노
+            intent.getStringExtra("title")?:"", // 제목
+            intent.getStringExtra("precId")?:"" // 216543
+        )
+
+        call.enqueue(object: Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if (response.isSuccessful) {
+                    logd("${response.body()}")
+                } else {
+                    logd("fail")
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                logd("error : $t")
+            }
+        })
+    }
+
+    private fun removeScrap() {
+        val call = ServerAPI.server.removeScrap(
+            MyPreference.prefs.getString("id", ""),
+            intent.getStringExtra("precId")?:""
+        )
+
+        call.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if (response.isSuccessful) {
+                    logd("successful")
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                logd("onFailure : $t")
+            }
+        })
     }
 
     //AsyncTask 정의

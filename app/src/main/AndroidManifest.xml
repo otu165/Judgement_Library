@@ -19,14 +19,14 @@
         <activity android:name=".view.WebViewActivity"/>
         <activity android:name=".view.detail_result.DetailResultActivity" />
         <activity android:name=".view.search_result.SearchResultActivity" />
-        <activity android:name=".view.main.MainActivity">
+        <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.SplashActivity" />
+        <activity android:name=".view.main.MainActivity" />
         <activity android:name=".view.signup.SignUpActivity" />
         <activity android:name=".view.signin.SignInActivity" />
     </application>

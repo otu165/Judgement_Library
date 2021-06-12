@@ -2,6 +2,7 @@ package com.example.judgement.view.main.scrap
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +13,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.judgement.R
 import com.example.judgement.adapter.ScrapAdapter
+import com.example.judgement.api.ServerAPI
 import com.example.judgement.databinding.FragmentScrapBinding
+import com.example.judgement.extension.logd
+import com.example.judgement.util.MyPreference
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ScrapFragment : Fragment() {
@@ -103,9 +110,13 @@ class ScrapFragment : Fragment() {
                 binding.txtScrapList.text = "삭제"
             } else {
                 // 삭제 아이템 개수 > 0
-                if (scrapManager.scrapRvAdapters[category[position]]!!.toDelete.size > 0) {
-                    removeDataFromRv(category[position]) // 삭제 요청
+                if (scrapManager.scrapRvAdapters[category[position]]!!.toDelete.isNotEmpty()) {
+                    for (j_serial  in scrapManager.scrapRvAdapters[category[position]]!!.toDelete.values) {
+                        removeDataFromRv(j_serial) // 삭제 요청
+                    }
+
                     scrapManager.scrapRvAdapters[category[position]]!!.toDelete.clear() // 리스트 초기화
+                    scrapManager.scrapRvAdapters[category[position]]?.notifyDataSetChanged()
                 }
 
                 scrapManager.scrapRvAdapters[category[position]]?.setItemViewType(ScrapAdapter.GONE_TYPE)
@@ -114,10 +125,27 @@ class ScrapFragment : Fragment() {
         }
     }
     
-    private fun removeDataFromRv(category: String) {
-        // TODO request delete data to Server
-        val data = scrapManager.scrapRvAdapters[category]?.toDelete // 삭제할 스크랩 리스트
-        scrapManager.scrapRvAdapters[category]?.notifyDataSetChanged()
-        Toast.makeText(context, "$data 삭제를 요청합니다.", Toast.LENGTH_SHORT).show()
+    private fun removeDataFromRv(j_serial: String) {
+        val call = ServerAPI.server.removeScrap(
+            MyPreference.prefs.getString("id", ""),
+            j_serial
+        )
+
+        call.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if (response.isSuccessful) {
+                    logd("successful")
+                    scrapManager.scrapRvAdapters[category[binding.viewPagerScrap.currentItem]]?.notifyDataSetChanged()
+
+                }
+                else {
+                    logd("fail")
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                logd("onFailure : $t")
+            }
+        })
     }
 }

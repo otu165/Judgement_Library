@@ -1,6 +1,7 @@
 package com.example.judgement.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.judgement.R
 import com.example.judgement.data.ScrapData
 import com.example.judgement.extension.logd
+import com.example.judgement.view.detail_result.DetailResultActivity
 import com.example.judgement.view.main.scrap.ScrapManager
 
 class ScrapAdapter(
@@ -19,7 +21,8 @@ class ScrapAdapter(
 
     private var data = listOf<ScrapData>()
     private var itemViewType: Int = 0
-    val toDelete = mutableListOf<Int>() // 삭제 리스트
+//    val toDelete = mutableListOf<Int>() // 삭제 리스트
+    val toDelete = mutableMapOf<Int, String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrapViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.rv_scrap_item, parent, false)
@@ -67,11 +70,22 @@ class ScrapAdapter(
 
             toggleButton.setOnClickListener {
                 if (toggleButton.isChecked) {
-                    toDelete.add(position)
+                    toDelete[position] = data.serial
                 } else {
                     toDelete.remove(position)
                 }
-                logd("bind: remove $toDelete")
+            }
+
+            // show DetailResultActivity
+            view.setOnClickListener {
+                val intent =
+                    Intent(view.context.applicationContext, DetailResultActivity::class.java)
+                        .putExtra("precId", data.serial)
+                        .putExtra("title", data.title)
+                        .putExtra("pos", position + 1)
+                        .putExtra("description", data.description)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                view.context.startActivity(intent)
             }
         }
     }
