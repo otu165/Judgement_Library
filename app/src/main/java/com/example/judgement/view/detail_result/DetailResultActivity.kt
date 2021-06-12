@@ -176,6 +176,8 @@ class DetailResultActivity : AppCompatActivity() {
         override fun onPostExecute(result: ArrayList<String>?) { // background Thread가 일을 끝마치고 result 리턴
             // 문서제목 출력
             if (result != null) {
+                binding.progressBarDetailResultLoading.visibility = View.GONE
+
                 binding.txtDetailResultTitle.text = title // 사건명
                 binding.txtDetailResultTitle.setBackgroundColor(Color.TRANSPARENT)
 
