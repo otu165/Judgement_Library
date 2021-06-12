@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
+import com.bumptech.glide.Glide
 import com.example.judgement.R
 import com.example.judgement.util.MyPreference
 import com.example.judgement.api.MySingleton
@@ -38,18 +39,20 @@ class UserInfoEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initUI()
         setOnClickListener()
+    }
+
+    private fun initUI() {
+        Glide.with(requireContext()).load(R.drawable.profile_image).centerCrop().into(binding.imgEdit)
+        binding.txtEditUserId.text = MyPreference.prefs.getString("id", "")
+        binding.txtEditName.text = MyPreference.prefs.getString("name", "")
     }
 
     private fun setOnClickListener() {
         // 뒤로가기
         binding.imgEditBack.setOnClickListener {
             (requireActivity() as MainActivity).replaceFragment(UserFragment(), "User")
-        }
-
-        // 프로필 사진 변경
-        binding.imgEdit.setOnClickListener {
-            // TODO replace User Profile Image
         }
 
         // 수정 제출
@@ -76,10 +79,6 @@ class UserInfoEditFragment : Fragment() {
         binding.txtEditCancel.setOnClickListener {
             (requireActivity() as MainActivity).replaceFragment(UserFragment(), "User")
         }
-
-        binding.txtEditUserId.text = MyPreference.prefs.getString("id", "")
-
-        binding.txtEditName.text = MyPreference.prefs.getString("name", "")
 
         // 이메일 형식 체크
         binding.txtInputEditEmail.addTextChangedListener(object : TextWatcher {

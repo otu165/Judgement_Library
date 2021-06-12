@@ -1,24 +1,29 @@
 package com.example.judgement.view.detail_result
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
-import android.graphics.Paint
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.widget.TextView
+import android.util.Log
+import android.view.View
+import android.widget.ToggleButton
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.judgement.R
+import com.example.judgement.api.ServerAPI
+import com.example.judgement.data.ScrapData
 import com.example.judgement.databinding.ActivityDetailResultBinding
 import com.example.judgement.extension.logd
-import com.example.judgement.view.WebViewActivity
+import com.example.judgement.util.MyPreference
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class DetailResultActivity : AppCompatActivity() {
@@ -31,11 +36,41 @@ class DetailResultActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_result)
         binding.activity = this
 
+        initScrap()
         setOnClickListener()
         async = MyAsyncTask()
         async.execute()
 
         // TODO 사용자의 스크랩여부에 따라 토글 버튼 Checked 여부 변경하기
+    }
+
+    private fun initScrap() {
+        val call: Call<List<ScrapData>> = ServerAPI.server.getScrap(
+            MyPreference.prefs.getString("id", ""),
+            intent.getStringExtra("pos")?:""
+        )
+
+        call.enqueue(object : Callback<List<ScrapData>> {
+            override fun onResponse(
+                call: Call<List<ScrapData>>,
+                response: Response<List<ScrapData>>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.apply {
+                        for (data in this) {
+                            if (data.serial == intent.getStringExtra("precId")) {
+                                binding.toggleDetailResultScrap.isChecked = true
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<ScrapData>>, t: Throwable) {
+                logd("onFailure: $t")
+            }
+        })
     }
 
     private fun setOnClickListener() {
@@ -44,11 +79,57 @@ class DetailResultActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.none, R.anim.exit_to_bottom)
         }
 
-        binding.txtDetailResultOriginal.setOnClickListener {
-            val address = "https://www.law.go.kr/LSW/precInfoP.do?precSeq=${async.precId}&amp;mode=0"
-            startActivity(Intent(this, WebViewActivity::class.java)
-                .putExtra("address", address))
+        binding.toggleDetailResultScrap.setOnClickListener {
+            if ((it as ToggleButton).isChecked) {  // 스크랩 해제
+                addScrap()
+            } else {  // 스크랩 추가
+                removeScrap()
+            }
         }
+    }
+
+    private fun addScrap() {
+        logd("requestScrap")
+        val call = ServerAPI.server.addScrap(
+            MyPreference.prefs.getString("id", ""), // 사용자 아이디
+            intent.getStringExtra("pos")?:"", // 카테고리 번호
+            intent.getStringExtra("description")?:"", // 형량 2020노
+            intent.getStringExtra("title")?:"", // 제목
+            intent.getStringExtra("precId")?:"" // 216543
+        )
+
+        call.enqueue(object: Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if (response.isSuccessful) {
+                    logd("${response.body()}")
+                } else {
+                    logd("fail")
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                logd("error : $t")
+            }
+        })
+    }
+
+    private fun removeScrap() {
+        val call = ServerAPI.server.removeScrap(
+            MyPreference.prefs.getString("id", ""),
+            intent.getStringExtra("precId")?:""
+        )
+
+        call.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if (response.isSuccessful) {
+                    Log.d("DetailResultActivity", "onResponse: success")
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Log.d("DetailResultActivity", "onFailure : $t")
+            }
+        })
     }
 
     //AsyncTask 정의
@@ -93,6 +174,8 @@ class DetailResultActivity : AppCompatActivity() {
         override fun onPostExecute(result: ArrayList<String>?) { // background Thread가 일을 끝마치고 result 리턴
             // 문서제목 출력
             if (result != null) {
+                binding.progressBarDetailResultLoading.visibility = View.GONE
+
                 binding.txtDetailResultTitle.text = title // 사건명
                 binding.txtDetailResultTitle.setBackgroundColor(Color.TRANSPARENT)
 
@@ -110,98 +193,11 @@ class DetailResultActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
 
-    // 스크랩 서버 데이터 받아오기
-
-    /* 스크랩 삽입
-    {
-
-    val u_id = "" // user id
-    val c_id = "" // 카테고리 번호
-    val j_id = "" // 사건 번호
-    val j_name = "" // 사건명
-    val j_serial = "" // 일련 번호
-
-    val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/registerScrap.php?u_id=$u_id&c_id=$c_id&j_id=$j_id&j_name=$j_name&j_serial=$j_serial"
-
-    // Request a string response from the provided URL.
-            val stringRequest = StringRequest(
-                Request.Method.GET, url,
-                { response ->
-                    // Display the first 500 characters of the response string.
-                    if (response.equals("Successfully Registered")) {
-                       // 성공
-                    } else {
-                       // 실패
-                    }
-                },
-                { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()})
-
-            // Add the request to the RequestQueue.
-            MySingleton.getInstance(this).addToRequestQueue(stringRequest)
+        if (isFinishing) {
+            overridePendingTransition(R.anim.none, R.anim.exit_to_bottom)
+        }
     }
-    */
-
-    /* 스크랩 삭제
-    {
-
-    val u_id = "" // user id
-    val j_serial = "" // 판례 일련 번호
-
-    val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/deleteScrap.php?u_id=$u_id&j_serial=$j_serial"
-
-    // Request a string response from the provided URL.
-            val stringRequest = StringRequest(
-                Request.Method.GET, url,
-                { response ->
-                    // Display the first 500 characters of the response string.
-                    if (response.equals("Successfully Deleted")) {
-                       // 성공
-                    } else {
-                       // 실패
-                    }
-                },
-                { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()})
-
-            // Add the request to the RequestQueue.
-            MySingleton.getInstance(this).addToRequestQueue(stringRequest)
-    }
-*/
-
-/*    스크랩 조회
-   {
-
-   val u_id = "" // user id
-   val c_id = "" // 카테고리 번호
-
-   val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/retrieveScrap.php?u_id=$u_id&c_id=$c_id"
-
-   // Request a string response from the provided URL.
-           val stringRequest = StringRequest(
-               Request.Method.GET, url,
-               { response ->
-                   // Display the first 500 characters of the response string.
-                   var strResp = response.toString()
-                   val jsonArray: JSONArray = JSONArray(strResp)
-                   for (var i = 0 i < jsonArray.length (); i++) {
-                       val jsonObject = jsonArray.getJSONObject(i)
-
-                       val title = jsonObject.getString("title")
-                       val description = jsonObject.getString("description")
-                       val date = jsonObject.getString("date")
-                       val serial = jsonObject.getString("serial")
-                    }
-
-                   if (!title.isNullOrEmpty()) {
-                       // 성공
-                   } else {
-                      // 실패
-                    }
-               },
-               { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()})
-
-           // Add the request to the RequestQueue.
-           MySingleton.getInstance(this).addToRequestQueue(stringRequest)
-   }*/
-
 }

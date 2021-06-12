@@ -11,8 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.example.judgement.R
 import com.example.judgement.databinding.FragmentUserBinding
+import com.example.judgement.util.MyPreference
 import com.example.judgement.view.main.MainActivity
 import com.example.judgement.view.signin.SignInActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -32,7 +34,13 @@ class UserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // TODO UI_update user name (get data from sign in data) and add proper profile image
+        initUI()
         setOnclickListener()
+    }
+
+    private fun initUI() {
+        Glide.with(requireContext()).load(R.drawable.profile_image).centerCrop().into(binding.imgUser)
+        binding.txtUserName.text = MyPreference.prefs.getString("name", "")
     }
 
     private fun setOnclickListener() {
