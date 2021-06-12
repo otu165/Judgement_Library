@@ -69,6 +69,7 @@
             app:helperTextTextColor="@color/main_color"
             app:hintTextColor="@color/main_color"
             app:passwordToggleEnabled="true"
+            app:passwordToggleDrawable="@drawable/password_toggle_drawable"
             app:layout_constraintTop_toBottomOf="@id/loginID_text_input"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

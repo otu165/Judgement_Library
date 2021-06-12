@@ -70,8 +70,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLines="2"
                     tools:text="층간소음 이웃 폭행 혐의 부부 무죄 확정" />
 
                 <ToggleButton

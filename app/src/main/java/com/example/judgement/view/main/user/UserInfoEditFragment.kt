@@ -65,6 +65,8 @@ class UserInfoEditFragment : Fragment() {
                 Toast.makeText(requireActivity().applicationContext, "모든 값을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }  else if (email_flag == 0) {
                 Toast.makeText(requireActivity().applicationContext, "이메일 중복확인을 해주세요.", Toast.LENGTH_SHORT).show()
+            } else if (email_flag == 2){
+                Toast.makeText(requireActivity().applicationContext, "이메일이 중복되었습니다.", Toast.LENGTH_SHORT).show()
             } else {
                 updateNewAccount( id, pw, email)
             }
@@ -86,8 +88,12 @@ class UserInfoEditFragment : Fragment() {
             override fun afterTextChanged(s: Editable) =
                 if (!Patterns.EMAIL_ADDRESS.matcher(s.toString()).matches()) {
                     binding.txtInputEmail.error = "이메일 형식으로 입력해주세요." // 경고 메세지
+                    binding.btnEmailCheck.isEnabled = false
+                } else if (email_flag == 2) {
+                    binding.txtInputEmail.error = "중복된 이메일 입니다"
                 } else {
                     binding.txtInputEmail.error = null //에러 메세지 제거
+                    binding.btnEmailCheck.isEnabled = true
                 } // afterTextChanged()..
         });
 
@@ -95,7 +101,7 @@ class UserInfoEditFragment : Fragment() {
         binding.btnEmailCheck.setOnClickListener {
             email_flag = 1
             val email = binding.txtInputEditEmail.text.toString().trim()
-            val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/email_check.php?email=$email"
+            val url = "http://ec2-3-35-53-252.ap-northeast-2.compute.amazonaws.com/emailCheck.php?email=$email"
 
             // Request a string response from the provided URL.
             val stringRequest = StringRequest(
@@ -103,6 +109,7 @@ class UserInfoEditFragment : Fragment() {
                 { response ->
                     // Display the first 500 characters of the response string.
                     if (response.equals("Available")) {
+                        email_flag = 1
                         binding.txtInputEmail.helperText = "사용 가능한 이메일 입니다"
                         val mHandler = Handler()
                         mHandler.postDelayed({
@@ -110,6 +117,7 @@ class UserInfoEditFragment : Fragment() {
                         }, 3000) // 3초후
                     } else {
                         binding.txtInputEmail.error = "중복된 이메일 입니다"
+                        email_flag = 2
                     }
                 },
                 { binding.txtInputEmail.error = "Error" })
@@ -124,10 +132,8 @@ class UserInfoEditFragment : Fragment() {
             override fun afterTextChanged(s: Editable) = //EditText에 입력이 끝난 후
                 if (binding.txtInputEditPwdCheck.text.toString() != binding.txtInputEditPwd.text.toString()) {
                     binding.txtInputPwdCheck.error = "일치하지 않습니다." // 경고 메세지
-                    //password_check.setBackgroundResource(com.example.judgement.R.drawable.red_edge) // 적색 테두리 적용
                 } else {
                     binding.txtInputPwdCheck.error = null // 에러 메세지 제거
-                    //password_check.setBackgroundResource(com.example.judgement.R.drawable.edge) //테투리 흰색으로 변경
                 }
         });
     }
