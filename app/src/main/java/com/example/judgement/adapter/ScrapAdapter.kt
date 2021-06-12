@@ -84,6 +84,7 @@ class ScrapAdapter(
                         .putExtra("title", data.title)
                         .putExtra("pos", position + 1)
                         .putExtra("description", data.description)
+                        .putExtra("scrap", true)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 view.context.startActivity(intent)
             }

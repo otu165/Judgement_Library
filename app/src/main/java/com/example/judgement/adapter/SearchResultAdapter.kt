@@ -52,22 +52,10 @@ class SearchResultAdapter(
     inner class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.txt_search_result_title)
         val description: TextView = view.findViewById(R.id.txt_search_result_description)
-        val scrap: ToggleButton = view.findViewById(R.id.toggle_search_result_scrap)
 
         fun bind(data: SearchResultData) {
             title.text = data.title
             description.text = data.description
-            if (data.scrap) {
-                scrap.toggle()
-            }
-
-            scrap.setOnClickListener {
-                if (scrap.isChecked) { // 스크랩 추가
-                    requestScrap(data)
-                } else { // 스크랩 삭제
-                    removeScrap(data)
-                }
-            }
 
             view.setOnClickListener {
                 val intent =
@@ -79,49 +67,6 @@ class SearchResultAdapter(
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 view.context.startActivity(intent)
             }
-        }
-
-        private fun requestScrap(data: SearchResultData) {
-            val call = ServerAPI.server.addScrap(
-                MyPreference.prefs.getString("id", ""),
-                pos,
-                data.description,
-                data.title,
-                data.serialNum
-            )
-
-            call.enqueue(object: Callback<String> {
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-                    if (response.isSuccessful) {
-                        logd("${response.body()}")
-                    } else {
-                        logd("fail")
-                    }
-                }
-
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    logd("error : $t")
-                }
-            })
-        }
-
-        fun removeScrap(data: SearchResultData) {
-            val call = ServerAPI.server.removeScrap(
-                MyPreference.prefs.getString("id", ""),
-                data.serialNum
-            )
-
-            call.enqueue(object : Callback<String> {
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-                    if (response.isSuccessful) {
-                        logd("successful")
-                    }
-                }
-
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    logd("onFailure : $t")
-                }
-            })
         }
     }
 

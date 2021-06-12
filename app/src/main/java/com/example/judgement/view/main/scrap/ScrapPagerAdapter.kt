@@ -87,4 +87,5 @@ class ScrapPagerAdapter(
     }
 
     override fun getItemCount(): Int = list.size
+
 }

@@ -6,12 +6,15 @@ import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
+import android.view.View
 import android.widget.ToggleButton
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.judgement.R
 import com.example.judgement.api.ServerAPI
+import com.example.judgement.data.ScrapData
 import com.example.judgement.databinding.ActivityDetailResultBinding
 import com.example.judgement.extension.logd
 import com.example.judgement.util.MyPreference
@@ -33,11 +36,43 @@ class DetailResultActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_result)
         binding.activity = this
 
+        initScrap()
         setOnClickListener()
         async = MyAsyncTask()
         async.execute()
 
         // TODO 사용자의 스크랩여부에 따라 토글 버튼 Checked 여부 변경하기
+    }
+
+    private fun initScrap() {
+//        binding.toggleDetailResultScrap.isChecked = intent.getBooleanExtra("scrap", false)
+
+        val call: Call<List<ScrapData>> = ServerAPI.server.getScrap(
+            MyPreference.prefs.getString("id", ""),
+            intent.getStringExtra("pos")?:""
+        )
+
+        call.enqueue(object : Callback<List<ScrapData>> {
+            override fun onResponse(
+                call: Call<List<ScrapData>>,
+                response: Response<List<ScrapData>>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.apply {
+                        for (data in this) {
+                            if (data.serial == intent.getStringExtra("precId")) {
+                                binding.toggleDetailResultScrap.isChecked = true
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<ScrapData>>, t: Throwable) {
+                logd("onFailure: $t")
+            }
+        })
     }
 
     private fun setOnClickListener() {
@@ -89,12 +124,12 @@ class DetailResultActivity : AppCompatActivity() {
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response.isSuccessful) {
-                    logd("successful")
+                    Log.d("DetailResultActivity", "onResponse: success")
                 }
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
-                logd("onFailure : $t")
+                Log.d("DetailResultActivity", "onFailure : $t")
             }
         })
     }

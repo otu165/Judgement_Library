@@ -39,6 +39,11 @@ class ScrapFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        pagerAdapter.notifyDataSetChanged()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -111,40 +116,37 @@ class ScrapFragment : Fragment() {
             } else {
                 // 삭제 아이템 개수 > 0
                 if (scrapManager.scrapRvAdapters[category[position]]!!.toDelete.isNotEmpty()) {
-                    for (j_serial  in scrapManager.scrapRvAdapters[category[position]]!!.toDelete.values) {
-                        removeDataFromRv(j_serial) // 삭제 요청
+                    val length = scrapManager.scrapRvAdapters[category[position]]!!.toDelete.values.size
+                    for ((idx, j_serial)  in scrapManager.scrapRvAdapters[category[position]]!!.toDelete.values.withIndex()) {
+                        removeDataFromRv(idx, j_serial, length) // 삭제 요청
                     }
 
                     scrapManager.scrapRvAdapters[category[position]]!!.toDelete.clear() // 리스트 초기화
-                    scrapManager.scrapRvAdapters[category[position]]?.notifyDataSetChanged()
                 }
-
-                scrapManager.scrapRvAdapters[category[position]]?.setItemViewType(ScrapAdapter.GONE_TYPE)
+                scrapManager.scrapRvAdapters[category[binding.viewPagerScrap.currentItem]]?.setItemViewType(ScrapAdapter.GONE_TYPE)
                 binding.txtScrapList.text = "목록"
             }
         }
     }
     
-    private fun removeDataFromRv(j_serial: String) {
+    private fun removeDataFromRv(idx: Int, j_serial: String, length: Int) {
         val call = ServerAPI.server.removeScrap(
             MyPreference.prefs.getString("id", ""),
             j_serial
         )
+        Log.d("Scrap", "removeDataFromRv: id: ${MyPreference.prefs.getString("id", "")}, j_serial: $j_serial")
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
-                if (response.isSuccessful) {
-                    logd("successful")
-                    scrapManager.scrapRvAdapters[category[binding.viewPagerScrap.currentItem]]?.notifyDataSetChanged()
-
-                }
-                else {
-                    logd("fail")
-                }
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
-                logd("onFailure : $t")
+                if (idx == length - 1) {
+                    logd("실행됨")
+                    Log.d("Scrap", "onResponse: here")
+                    scrapManager.scrapRvAdapters[category[binding.viewPagerScrap.currentItem]]?.setItemViewType(ScrapAdapter.GONE_TYPE)
+                    pagerAdapter.notifyDataSetChanged()
+                }
             }
         })
     }
