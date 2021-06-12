@@ -157,4 +157,12 @@ class DetailResultActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        if (isFinishing) {
+            overridePendingTransition(R.anim.none, R.anim.exit_to_bottom)
+        }
+    }
 }
