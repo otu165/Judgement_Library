@@ -3,11 +3,12 @@ package com.example.judgement.view.detail_result
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Paint
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -17,7 +18,6 @@ import com.example.judgement.extension.logd
 import com.example.judgement.view.WebViewActivity
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
-import org.jsoup.safety.Whitelist
 import org.jsoup.select.Elements
 
 
@@ -82,14 +82,8 @@ class DetailResultActivity : AppCompatActivity() {
 
             eltsOriginContents = eltsOrigin.html().replace("&nbsp;", " ")
 
-            // 재판장
-            // val judge: Elements = doc.select("div.pgroup div")
-
-            //  사건번호, 판시사항, 판결요지, 원심판결, 주문, 이유, 재판장
+            //  사건번호
             judgementList.add(case.text())
-            // judgementList.add("eltsContentWithoutHTML")
-            // judgementList.add(eltsSummary[1].text())
-            // judgementList.add(judge.text())
 
             return judgementList
         }
@@ -106,19 +100,16 @@ class DetailResultActivity : AppCompatActivity() {
                 binding.txtDetailResultCaseDescription.setBackgroundColor(Color.TRANSPARENT)
 
                 binding.txtDetailResultCaseIssueDescription.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    Html.fromHtml(eltsOriginContents, Html.FROM_HTML_MODE_COMPACT)
+                    Html.fromHtml(eltsOriginContents, Html.FROM_HTML_MODE_LEGACY)
                 } else {
                     Html.fromHtml(eltsOriginContents)
                 }
+               // binding.txtDetailResultCaseIssueDescription.movementMethod = LinkMovementMethod.getInstance()
                 binding.txtDetailResultCaseIssueDescription.setBackgroundColor(Color.TRANSPARENT)
-
-                //binding.txtDetailResultCaseSummaryDescription.text = result[2] // 판결요지
-                //binding.txtDetailResultCaseSummaryDescription.setBackgroundColor(Color.TRANSPARENT)
-                //binding.txtDetailResultCaseJudgeDescription.text = result[3] // 재판장
-               // binding.txtDetailResultCaseJudgeDescription.setBackgroundColor(Color.TRANSPARENT)
             }
         }
     }
+
 
     // 스크랩 서버 데이터 받아오기
 
