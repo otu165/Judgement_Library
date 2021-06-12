@@ -18,7 +18,7 @@
         tools:context=".view.detail_result.DetailResultActivity">
 
         <!-- top -->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/detail_result_top"
             style="@style/TextPadding"
             android:layout_width="match_parent"
@@ -33,23 +33,42 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
+                android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
                 android:text="판례 원문"
                 android:id="@+id/txt_detail_result_keyword"
                 style="@style/MiddleFontStyle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
-                android:gravity="center|start" />
+                android:gravity="center|start"
+                app:layout_constraintLeft_toRightOf="@id/img_detail_result_back"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
-        </LinearLayout>
+            <ToggleButton
+                android:id="@+id/toggle_detail_result_scrap"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_vertical|end"
+                android:background="@drawable/toggle_selector"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- contents -->
        <androidx.core.widget.NestedScrollView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/TextPadding"
             android:layout_width="match_parent"
@@ -71,15 +90,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     tools:text="층간소음 이웃 폭행 혐의 부부 무죄 확정" />
-
-                <ToggleButton
-                    android:id="@+id/toggle_detail_result_scrap"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal|top"
-                    android:background="@drawable/toggle_selector"
-                    android:textOff=""
-                    android:textOn="" />
 
             </LinearLayout>
 
