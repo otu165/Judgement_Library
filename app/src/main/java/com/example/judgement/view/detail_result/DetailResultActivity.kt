@@ -45,8 +45,6 @@ class DetailResultActivity : AppCompatActivity() {
     }
 
     private fun initScrap() {
-//        binding.toggleDetailResultScrap.isChecked = intent.getBooleanExtra("scrap", false)
-
         val call: Call<List<ScrapData>> = ServerAPI.server.getScrap(
             MyPreference.prefs.getString("id", ""),
             intent.getStringExtra("pos")?:""

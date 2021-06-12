@@ -82,9 +82,8 @@ class ScrapAdapter(
                     Intent(view.context.applicationContext, DetailResultActivity::class.java)
                         .putExtra("precId", data.serial)
                         .putExtra("title", data.title)
-                        .putExtra("pos", position + 1)
+                        .putExtra("pos", data.category)
                         .putExtra("description", data.description)
-                        .putExtra("scrap", true)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 view.context.startActivity(intent)
             }
