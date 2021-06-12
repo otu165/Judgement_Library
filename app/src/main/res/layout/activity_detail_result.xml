@@ -87,10 +87,9 @@
 
             <TextView
                 android:id="@+id/txt_detail_result_title"
-                style="@style/HeadFontStyle"
+                style="@style/MiddleFontStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 tools:text="층간소음 이웃 폭행 혐의 부부 무죄 확정"
                 app:layout_constraintTop_toTopOf="parent"/>
 
