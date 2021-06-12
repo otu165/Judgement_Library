@@ -70,8 +70,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLines="2"
                     tools:text="층간소음 이웃 폭행 혐의 부부 무죄 확정" />
 
                 <ToggleButton
@@ -95,19 +93,15 @@
                 app:layout_constraintTop_toBottomOf="@id/detail_result_title">
                 <!--사건번호-->
                 <TextView
-                    android:id="@+id/txt_detail_result_case_title"
-                    style="@style/MiddleFontStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="사건" />
-
-                <TextView
                     android:id="@+id/txt_detail_result_case_description"
                     style="@style/NormalFontStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:justificationMode="inter_word"
-                    tools:text="2019도 16192 폭력행위등처벌에관한법률위반"
+                    tools:text="대법원 2020. 10. 22., 선고, 2020도4140, 전원합의체 판결"
+                    android:gravity="center"
+                    android:breakStrategy="simple"
+                    android:textColor="@color/colorPrimary"
                     android:background="@color/light_gray"/>
 
                 <!--원문-->

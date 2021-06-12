@@ -114,7 +114,11 @@
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginTop="16dp"
+            app:boxStrokeColor="@color/main_color"
+            app:helperTextTextColor="@color/main_color"
+            app:hintTextColor="@color/main_color"
             app:passwordToggleEnabled="true"
+            app:passwordToggleDrawable="@drawable/password_toggle_drawable"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -123,7 +127,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:textCursorDrawable="@color/main_color"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,6 +139,10 @@
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             app:passwordToggleEnabled="true"
+            app:passwordToggleDrawable="@drawable/password_toggle_drawable"
+            app:boxStrokeColor="@color/main_color"
+            app:helperTextTextColor="@color/main_color"
+            app:hintTextColor="@color/main_color"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -142,7 +151,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password Check"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:textCursorDrawable="@color/main_color"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -157,6 +167,9 @@
                 android:layout_width="246dp"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
+                app:boxStrokeColor="@color/main_color"
+                app:helperTextTextColor="@color/main_color"
+                app:hintTextColor="@color/main_color"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -165,7 +178,8 @@
                     android:layout_height="wrap_content"
                     android:hint="E-mail"
                     android:layout_marginRight="15dp"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress"
+                    android:textCursorDrawable="@color/main_color"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
