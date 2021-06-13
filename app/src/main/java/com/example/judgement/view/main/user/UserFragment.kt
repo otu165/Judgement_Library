@@ -39,7 +39,6 @@ class UserFragment : Fragment() {
     }
 
     private fun initUI() {
-        Glide.with(requireContext()).load(R.drawable.profile_image).centerCrop().into(binding.imgUser)
         binding.txtUserName.text = MyPreference.prefs.getString("name", "")
     }
 
