@@ -44,7 +44,6 @@ class UserInfoEditFragment : Fragment() {
     }
 
     private fun initUI() {
-        Glide.with(requireContext()).load(R.drawable.profile_image).centerCrop().into(binding.imgEdit)
         binding.txtEditUserId.text = MyPreference.prefs.getString("id", "")
         binding.txtEditName.text = MyPreference.prefs.getString("name", "")
     }

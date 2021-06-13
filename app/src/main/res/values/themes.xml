@@ -14,6 +14,11 @@
         <!-- Customize your theme here. -->
     </style>
 
+<!--    <style name="ThemeOverlay.AppTheme.TextInputEditText.Outlined" parent="">-->
+<!--        <item name="colorControlActivated">@color/control</item>-->
+<!--        <item name="android:textSelectHandle">@color/control</item>-->
+<!--    </style>-->
+
     <!-- Custom AlertDialog -->
     <style name="Custom.Dialog.Alert" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="colorAccent">@color/main_color</item>
