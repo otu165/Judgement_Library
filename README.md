@@ -28,8 +28,8 @@
 <br/>
 
 ## Contributor
-- [윤주연]("https://github.com/otu165")
-- [정연희]("https://github.com/JungYeonHee")
+- [윤주연](https://github.com/otu165)
+- [정연희](https://github.com/JungYeonHee)
 
 <br/>
 
