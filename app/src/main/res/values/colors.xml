@@ -13,4 +13,6 @@
     <color name="light_gray">#C3C3C3</color>
     <color name="red">#F44336</color>
     <color name="yellow">#FFC107</color>
+    <color name="highlight">#8B2196F3</color>
+    <color name="control">#126EB8</color>
 </resources>

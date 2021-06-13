@@ -60,7 +60,7 @@
                     android:ems="10"
                     android:hint="ID"
                     android:inputType="text"
-                    android:textCursorDrawable="@color/main_color" />
+                    style="@style/TextInputEdittextStyle" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +100,7 @@
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textCursorDrawable="@color/main_color"/>
+                style="@style/TextInputEdittextStyle"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,7 +128,7 @@
                 android:ems="10"
                 android:hint="Password Check"
                 android:inputType="textPassword"
-                android:textCursorDrawable="@color/main_color"/>
+                style="@style/TextInputEdittextStyle"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,7 +166,7 @@
                     android:ems="10"
                     android:hint="E-mail"
                     android:inputType="textEmailAddress"
-                    android:textCursorDrawable="@color/main_color" />
+                    style="@style/TextInputEdittextStyle" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -204,7 +204,7 @@
                 android:ems="10"
                 android:hint="Name"
                 android:inputType="text"
-                android:textCursorDrawable="@color/main_color"/>
+                style="@style/TextInputEdittextStyle"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

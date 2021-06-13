@@ -66,4 +66,12 @@
         <item name="errorEnabled">true</item>
     </style>
 
+    <style name="TextInputEdittextStyle">
+        <item name="android:textSelectHandle">@color/control</item>
+        <item name="android:textSelectHandleRight">@color/control</item>
+        <item name="android:textSelectHandleLeft">@color/control</item>
+        <item name="android:textColorHighlight">@color/highlight</item>
+        <item name="android:textCursorDrawable">@color/main_color</item>
+    </style>
+
 </resources>
